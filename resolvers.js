@@ -20,7 +20,17 @@ exports.resolvers = {
     },
     searchShots: async (root, { searchTerm }, { Shot }) => {
       if (searchTerm) {
-        // search
+        const searchResults = await Shot.find(
+          {
+            $text: { $search: searchTerm }
+          },
+          {
+            score: { $meta: "textScore" }
+          }
+        ).sort({
+          score: { $meta: "textScore" }
+        });
+        return searchResults;
       } else {
         const shots = await Shot.find().sort({
           likes: "desc",

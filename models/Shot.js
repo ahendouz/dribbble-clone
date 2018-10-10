@@ -9,4 +9,8 @@ const ShotSchema = new Schema({
   username: { type: String }
 });
 
+ShotSchema.index({
+  "$**": "text"
+});
+
 module.exports = mongoose.model("Shot", ShotSchema);

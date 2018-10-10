@@ -21,7 +21,6 @@ exports.typeDefs = `
         getAllShots: [Shot]
         getShot(_id: ID!): Shot
         searchShots(searchTerm: String): [Shot]
-
         getCurrentUser: User
     }
 

@@ -33,19 +33,11 @@ export const GET_CURRENT_USER = gql`
   }
 `;
 
-// ShotS MUTATIONS
+// SHOT MUTATIONS
 
 export const ADD_SHOT = gql`
-  mutation(
-    $name: String!
-    $description: String!
-    $username: String!
-  ) {
-    addShot(
-      name: $name
-      description: $description
-      username: $username
-    ) {
+  mutation($name: String!, $description: String!, $username: String!) {
+    addShot(name: $name, description: $description, username: $username) {
       _id
       name
       description
@@ -56,11 +48,15 @@ export const ADD_SHOT = gql`
   }
 `;
 
-// export const SEARCH_SHOT = gql`
-//   query($searchTerm: String) {
-
-//   }
-// `
+export const SEARCH_SHOTS = gql`
+  query($searchTerm: String) {
+    searchShots(searchTerm: $searchTerm) {
+      _id
+      name
+      likes
+    }
+  }
+`;
 
 // USER  QUERIES
 
