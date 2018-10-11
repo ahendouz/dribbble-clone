@@ -14,7 +14,7 @@ exports.typeDefs = `
         password: String!
         email: String!
         joinDate: String!
-        favorites: [Shot]
+        favorites: [Shot!]!
     }
 
     type Query {
@@ -33,7 +33,7 @@ exports.typeDefs = `
         addShot(
             name: String!,
             description: String!, 
-            username: String!
+            username: String
         ): Shot
 
         signinUser(

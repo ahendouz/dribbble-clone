@@ -7,7 +7,9 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   email: { type: String, required: true },
   joinDate: { type: Date, default: Date.now },
-  favorites: { type: [Schema.Types.ObjectId], ref: "Shot" }
+  // 💥 check this favs need to be an array of shots
+  //favorites: { type: [Schema.Types.ObjectId], ref: "Shot" }
+  favorites: [{ type: Schema.Types.ObjectId, ref: "Shot" }]
 });
 
 // before any user save to the database we goining to excute this function

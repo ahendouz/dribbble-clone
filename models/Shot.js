@@ -6,6 +6,7 @@ const ShotSchema = new Schema({
   description: { type: String, required: true },
   createDate: { type: Date, default: Date.now },
   likes: { type: Number, default: 0 },
+  // 
   username: { type: String }
 });
 

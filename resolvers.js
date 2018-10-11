@@ -47,7 +47,7 @@ exports.resolvers = {
         // find user in our database
         username: currentUser.username
       }).populate({
-        path: "favorite",
+        path: "favorites",
         model: "Shot"
       });
       return user;
