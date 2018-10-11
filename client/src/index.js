@@ -54,7 +54,7 @@ const Root = ({ refetch, session }) => (
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Route path="/shot/add" render={() => <AddShot session={session} />} />
-        <Route path="/shots/:_id" component={ShotPage} />} />
+        <Route path="/shot/:_id" component={ShotPage} />} />
         <Route path="/profile" render={() => <Profile session={session} />} />
         <Redirect to="/" />
       </Switch>

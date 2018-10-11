@@ -22,6 +22,7 @@ exports.typeDefs = `
         getShot(_id: ID!): Shot
         searchShots(searchTerm: String): [Shot]
         getCurrentUser: User
+        getUserShots(username: String!): [Shot]
     }
 
     type Token {

@@ -31,7 +31,9 @@ const Navbar = ({ session }) => (
 
 const NavbarAuth = ({ session }) => (
   <ul>
-    <li>{session.getCurrentUser.username}</li>
+    <NavLink to="/profile">
+      <li>{session.getCurrentUser.username}</li>
+    </NavLink>
     <li>
       <Signout />
     </li>

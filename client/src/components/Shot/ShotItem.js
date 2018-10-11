@@ -5,7 +5,7 @@ const ShotItem = ({ _id, name }) => {
     // console.log(_id)
   return (
     <li>
-      <Link to={`/Shots/${_id}`}>
+      <Link to={`/shot/${_id}`}>
         <h4>{name}</h4>
       </Link>
     </li>

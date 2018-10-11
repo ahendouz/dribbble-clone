@@ -3,6 +3,7 @@ import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
 import { ADD_SHOT, GET_ALL_SHOTS } from "../../queries";
 import Error from "../Error";
+import withAuth from "../withAuth";
 
 const initialState = {
   name: "",
@@ -110,4 +111,6 @@ class AddShot extends React.Component {
   }
 }
 
-export default withRouter(AddShot);
+export default withAuth(session => session && session.getCurrentUser)(
+  withRouter(AddShot)
+);

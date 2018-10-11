@@ -14,10 +14,12 @@ exports.resolvers = {
       });
       return allShots;
     },
+
     getShot: async (root, { _id }, { Shot }) => {
       const shot = await Shot.findOne({ _id });
       return shot;
     },
+
     searchShots: async (root, { searchTerm }, { Shot }) => {
       if (searchTerm) {
         const searchResults = await Shot.find(
@@ -39,6 +41,14 @@ exports.resolvers = {
         return shots;
       }
     },
+
+    getUserShots: async (root, { username }, { Shot }) => {
+      const userShots = await Shot.find({ username }).sort({
+        createdDate: "desc"
+      });
+      return userShots;
+    },
+
     getCurrentUser: async (root, args, { currentUser, User }) => {
       if (!currentUser) {
         return null;
@@ -47,7 +57,7 @@ exports.resolvers = {
         // find user in our database
         username: currentUser.username
       }).populate({
-        path: "favorite",
+        path: "favorites",
         model: "Shot"
       });
       return user;
@@ -63,6 +73,7 @@ exports.resolvers = {
       }).save();
       return newShot;
     },
+
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
       if (!user) {
