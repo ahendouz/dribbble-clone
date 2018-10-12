@@ -48,7 +48,6 @@ export const GET_USER_SHOTS = gql`
 `;
 
 // SHOT MUTATIONS
-
 export const ADD_SHOT = gql`
   mutation($name: String!, $description: String!, $username: String!) {
     addShot(name: $name, description: $description, username: $username) {
@@ -58,6 +57,14 @@ export const ADD_SHOT = gql`
       createDate
       likes
       username
+    }
+  }
+`;
+
+export const DELETE_USER_SHOT = gql`
+  mutation($_id: ID!) {
+    deleteUserShot(_id: $_id) {
+      _id
     }
   }
 `;

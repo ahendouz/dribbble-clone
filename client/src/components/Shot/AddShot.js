@@ -1,7 +1,7 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
-import { ADD_SHOT, GET_ALL_SHOTS } from "../../queries";
+import { ADD_SHOT, GET_ALL_SHOTS, GET_USER_SHOTS } from "../../queries";
 import Error from "../Error";
 import withAuth from "../withAuth";
 
@@ -65,6 +65,9 @@ class AddShot extends React.Component {
       <Mutation
         mutation={ADD_SHOT}
         variables={{ name, description, username }}
+        refetchQueries={() => [
+          { query: GET_USER_SHOTS, variables: { username } }
+        ]}
         update={this.updateCache}
       >
         {(addShot, { data, loading, error }) => {

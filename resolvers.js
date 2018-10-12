@@ -74,6 +74,11 @@ exports.resolvers = {
       return newShot;
     },
 
+    deleteUserShot: async (root, { _id }, { Shot }) => {
+      const shot = await Shot.findOneAndRemove({ _id });
+      return shot;
+    },
+
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
       if (!user) {

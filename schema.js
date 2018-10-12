@@ -20,9 +20,9 @@ exports.typeDefs = `
     type Query {
         getAllShots: [Shot]
         getShot(_id: ID!): Shot
-        searchShots(searchTerm: String): [Shot]
+        searchShots(searchTerm: String) : [Shot]
         getCurrentUser: User
-        getUserShots(username: String!): [Shot]
+        getUserShots(username: String!) : [Shot]
     }
 
     type Token {
@@ -35,17 +35,19 @@ exports.typeDefs = `
             name: String!,
             description: String!, 
             username: String
-        ): Shot
+        ) : Shot
+
+        deleteUserShot(_id: ID) : Shot
 
         signinUser(
             username: String!,
             password: String!
-        ): Token
+        ) : Token
 
         signupUser(
             username: String!, 
             email: String!, 
             password: String!
-        ): Token
+        ) : Token
     }
 `;
