@@ -75,7 +75,7 @@ app.use(
   }))
 );
 
-if (process.env.MODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build")); // we want to access some static files
 
   app.get("*", (req, res) => {
