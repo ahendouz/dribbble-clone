@@ -27,7 +27,7 @@ class AddShot extends React.Component {
   handleSubmit = (event, addShot) => {
     event.preventDefault();
     addShot().then(({ data }) => {
-      console.log(data);
+      // console.log(data);
       this.clearState();
       this.props.history.push("/");
     });

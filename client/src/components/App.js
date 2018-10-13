@@ -16,7 +16,7 @@ const App = () => (
         return (
           <ul>
             {data.getAllShots.map(Shot => (
-              <ShotItem  key={Shot._id} {...Shot} />
+              <ShotItem key={Shot._id} {...Shot} />
             ))}
           </ul>
         );

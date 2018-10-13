@@ -79,6 +79,27 @@ exports.resolvers = {
       return shot;
     },
 
+    likeShot: async (root, { _id, username }, { Shot, User }) => {
+      const shot = await Shot.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
+      const user = await User.findOneAndUpdate(
+        { username },
+        { $addToSet: { favorites: _id } }
+      );
+      return shot;
+    },
+
+    unlikeShot: async (root, { _id, username }, { Shot, User }) => {
+      const shot = await Shot.findOneAndUpdate(
+        { _id },
+        { $inc: { likes: -1 } }
+      );
+      const user = await User.findOneAndUpdate(
+        { username },
+        { $pull: { favorites: _id } } // pull will remove a giving id
+      );
+      return shot;
+    },
+
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
       if (!user) {

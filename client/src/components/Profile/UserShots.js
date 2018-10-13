@@ -14,7 +14,7 @@ const handleDelete = deleteUserShot => {
   );
   if (confirmDelete) {
     deleteUserShot().then(({ data }) => {
-      console.log(data);
+      // console.log(data);
     });
   }
 };
@@ -23,7 +23,7 @@ const UserShots = ({ username }) => (
     {({ data, loading, error }) => {
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error</div>;
-      console.log(data);
+      // console.log(data);
       return (
         <ul>
           <h3>your shots</h3>

@@ -18,8 +18,6 @@ import AddShot from "./components/Shot/AddShot";
 import Profile from "./components/Profile/Profile";
 import ShotPage from "./components/Shot/ShotPage";
 
-import registerServiceWorker from "./registerServiceWorker";
-
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
@@ -70,5 +68,3 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById("root")
 );
-
-registerServiceWorker();

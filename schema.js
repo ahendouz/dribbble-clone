@@ -39,6 +39,9 @@ exports.typeDefs = `
 
         deleteUserShot(_id: ID) : Shot
 
+        likeShot(_id: ID!, username: String!) : Shot
+        unlikeShot(_id: ID!, username: String!) : Shot
+
         signinUser(
             username: String!,
             password: String!
