@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const path = require("path");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "./variables.env" });
@@ -57,7 +58,7 @@ app.use(async (req, res, next) => {
 });
 
 // Create Graphiql application
-app.get("/playground", expressPlayground.default({ endpoint: "/graphql" }));
+// app.get("/playground", expressPlayground.default({ endpoint: "/graphql" }));
 
 // Connect schema with GraphQl
 app.use(
@@ -73,6 +74,15 @@ app.use(
     }
   }))
 );
+
+if (process.env.MODE_ENV === "production") {
+  app.use(express.static("client/build")); // we want to access some static files
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", build));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 4000;
 

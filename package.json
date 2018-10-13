@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "v10.6.0"
+  },
   "scripts": {
+    "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\"",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",

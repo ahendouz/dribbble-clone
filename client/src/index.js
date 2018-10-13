@@ -23,7 +23,7 @@ import { ApolloProvider } from "react-apollo";
 
 // connecting the frontend with the backend
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "https://m-dribbble-clone.herokuapp.com/graphql",
   fetchOptions: {
     credentials: "include"
   },
