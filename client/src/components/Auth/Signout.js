@@ -12,7 +12,12 @@ const Signout = ({ history }) => (
     {client => {
       // console.log(client);
       return (
-        <button onClick={() => handleSignout(client, history)}>Signout</button>
+        <p
+          style={{ cursor: "pointer" }}
+          onClick={() => handleSignout(client, history)}
+        >
+          Signout
+        </p>
       );
     }}
   </ApolloConsumer>

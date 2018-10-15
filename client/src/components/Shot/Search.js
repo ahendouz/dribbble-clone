@@ -7,10 +7,15 @@ class Search extends Component {
   state = {
     searchResults: []
   };
-  handleChange = ({ searchShots }) => {
-    this.setState({
-      searchResults: searchShots
-    });
+  // handleChange = ({ searchShots }) => {
+  //   this.setState({
+  //     searchResults: searchShots
+  //   });
+  // };
+  handleChange = event => {
+    const { name, value } = event.target;
+    // console.log(`${name}: ${value}`);
+    this.setState({ [name]: value });
   };
   render() {
     const { searchResults } = this.state;
@@ -18,25 +23,25 @@ class Search extends Component {
       <ApolloConsumer>
         {client => {
           return (
-            <div className="App">
+            <div>
               <input
                 type="search"
                 className="search"
                 placeholder="Search"
-                onChange={async event => {
-                  event.persist();
-                  const { data } = await client.query({
-                    query: SEARCH_SHOTS,
-                    variables: { searchTerm: event.target.value }
-                  });
-                  this.handleChange(data);
+                onChange={event => {
+                  //   event.persist();
+                  //   const { data } = await client.query({
+                  //     query: SEARCH_SHOTS,
+                  //     variables: { searchTerm: event.target.value }
+                  //   });
+                  this.handleChange;
                 }}
               />
-              <ul>
+              {/* <ul>
                 {searchResults.map(shot => (
                   <SearchItem key={shot._id} {...shot} />
                 ))}
-              </ul>
+              </ul> */}
             </div>
           );
         }}

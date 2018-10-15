@@ -2,6 +2,7 @@ exports.typeDefs = `
     type Shot {
         _id: ID
         name: String! 
+        imageUrl: String!
         description: String!
         createDate: String
         likes: Int
@@ -33,6 +34,7 @@ exports.typeDefs = `
     type Mutation {
         addShot(
             name: String!,
+            imageUrl: String!,
             description: String!, 
             username: String
         ) : Shot

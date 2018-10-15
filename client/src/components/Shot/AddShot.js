@@ -7,6 +7,7 @@ import withAuth from "../withAuth";
 
 const initialState = {
   name: "",
+  imageUrl: "",
   description: "",
   username: ""
 };
@@ -34,8 +35,8 @@ class AddShot extends React.Component {
   };
 
   validateForm = () => {
-    const { name, description } = this.state;
-    const isInvalid = !name || !description;
+    const { name, imageUrl, description } = this.state;
+    const isInvalid = !name || !imageUrl || !description;
     return isInvalid;
   };
 
@@ -59,12 +60,12 @@ class AddShot extends React.Component {
   }
 
   render() {
-    const { name, description, username } = this.state;
+    const { name, imageUrl, description, username } = this.state;
 
     return (
       <Mutation
         mutation={ADD_SHOT}
-        variables={{ name, description, username }}
+        variables={{ name, imageUrl, description, username }}
         refetchQueries={() => [
           { query: GET_USER_SHOTS, variables: { username } }
         ]}
@@ -86,6 +87,13 @@ class AddShot extends React.Component {
                     placeholder="Add Name"
                     onChange={this.handleChange}
                     value={name}
+                  />
+                  <input
+                    type="text"
+                    name="imageUrl"
+                    placeholder="Shot image"
+                    onChange={this.handleChange}
+                    value={imageUrl}
                   />
                   <label htmlFor="description">Shot Description</label>
                   <input

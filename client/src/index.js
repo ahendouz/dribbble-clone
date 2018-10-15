@@ -13,7 +13,7 @@ import Signin from "./components/Auth/Signin";
 import Signup from "./components/Auth/Signup";
 import withSession from "./components/withSession";
 import Navbar from "./components/Navbar";
-import Search from "./components/Shot/Search";
+// import Search from "./components/Shot/Search";
 import AddShot from "./components/Shot/AddShot";
 import Profile from "./components/Profile/Profile";
 import ShotPage from "./components/Shot/ShotPage";
@@ -23,7 +23,8 @@ import { ApolloProvider } from "react-apollo";
 
 // connecting the frontend with the backend
 const client = new ApolloClient({
-  uri: "https://m-dribbble-clone.herokuapp.com/graphql",
+  uri: "http://localhost:4000/graphql",
+  // https://m-dribbble-clone.herokuapp.com/graphql
   fetchOptions: {
     credentials: "include"
   },
@@ -48,7 +49,7 @@ const Root = ({ refetch, session }) => (
       <Navbar session={session} />
       <Switch>
         <Route path="/" exact component={App} />
-        <Route path="/search" component={Search} />
+        {/* <Route path="/search" component={Search} /> */}
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Route path="/shot/add" render={() => <AddShot session={session} />} />

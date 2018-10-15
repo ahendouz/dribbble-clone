@@ -10,11 +10,10 @@ html {
                        1rem = 10px, 10px/16px = 62.5% */
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   color: rgb(181, 181, 181);
   line-height: 1.7;
+  box-sizing: border-box;
 }
 
 .container {
@@ -27,4 +26,13 @@ body {
   .container {
     width: 27rem;
   }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
 }

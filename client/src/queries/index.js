@@ -6,10 +6,10 @@ import { shotFragments } from "./fragments";
 export const GET_ALL_SHOTS = gql`
   query {
     getAllShots {
-      _id
-      name
+      ...CompleteShot
     }
   }
+  ${shotFragments.shot}
 `;
 
 export const GET_SHOT = gql`
@@ -47,8 +47,18 @@ export const GET_USER_SHOTS = gql`
 
 // SHOT MUTATIONS
 export const ADD_SHOT = gql`
-  mutation($name: String!, $description: String!, $username: String!) {
-    addShot(name: $name, description: $description, username: $username) {
+  mutation(
+    $name: String!
+    $imageUrl: String!
+    $description: String!
+    $username: String!
+  ) {
+    addShot(
+      name: $name
+      imageUrl: $imageUrl
+      description: $description
+      username: $username
+    ) {
       ...CompleteShot
     }
   }
