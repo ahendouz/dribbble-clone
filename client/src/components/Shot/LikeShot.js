@@ -93,7 +93,7 @@ class LikeShot extends Component {
             {likeShot =>
               username && (
                 <button onClick={() => this.handleClick(likeShot, unlikeShot)}>
-                  {liked ? "Unlike" : "Like"}
+                  {liked ? "Liked" : "Like"}
                 </button>
               )
             }

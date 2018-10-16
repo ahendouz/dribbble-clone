@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const UnAuthMessage = () => {
-  return (
+const UnAuthMessage = ({ session }) => {
+  let message = (
     <Message>
       <p>
         <span>What are you working on?</span> Dribbble is where designers get
@@ -14,8 +14,11 @@ const UnAuthMessage = () => {
       </Link>
     </Message>
   );
+  if (session && session.getCurrentUser) {
+    message = null;
+  }
+  return <Fragment>{message}</Fragment>;
 };
-
 export default UnAuthMessage;
 
 const Message = Styled.div`
@@ -32,7 +35,7 @@ const Message = Styled.div`
     }
 `;
 
-const HighlightedBtn = Styled.button`
+export const HighlightedBtn = Styled.button`
   background: #e84f89;
   padding: 1.3rem 3.2rem;
   border: none;

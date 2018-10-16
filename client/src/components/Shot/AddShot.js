@@ -74,10 +74,9 @@ class AddShot extends React.Component {
         {(addShot, { data, loading, error }) => {
           return (
             <div>
-              <div className="App">
-                <h2 className="main-title">Add Shot</h2>
+              <div>
+                <h2>Add Shot</h2>
                 <form
-                  className="form"
                   onSubmit={event => this.handleSubmit(event, addShot)}
                 >
                   <label htmlFor="name">Shot Name</label>
@@ -106,7 +105,6 @@ class AddShot extends React.Component {
                   <button
                     disabled={loading || this.validateForm()}
                     type="submit"
-                    className="button-primary"
                   >
                     Submit
                   </button>

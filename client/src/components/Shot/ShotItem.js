@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import posed from "react-pose";
 import Styled from "styled-components";
 
 import { formatDate } from "../Profile/UserInfo";
@@ -19,7 +18,7 @@ export default ({
     <Card>
       <div>
         <div>
-          <img src={imageUrl} />
+          <img src={imageUrl} alt="shot" />
           <Link to={`/shot/${_id}`}>
             <div>
               <h4>{name}</h4>
@@ -42,7 +41,7 @@ export default ({
 const Card = Styled.li`
 /* text-align: left; */
   > h3 {
-    color: #1e6189ab;
+    color: #1d81bdbd;
     font-size: 1.3rem;
     text-transform: capitalize;
     padding-top: 0.8rem;
@@ -74,12 +73,14 @@ const Card = Styled.li`
           text-align: start;
           justify-content: space-around;
           padding: 1rem;
+          font-weight: inherit
           > h4 {
             font-size: 1.5rem;
             color: #444;
           }
           p {
-            font-weight: 100
+            font-weight: 300
+            font-size: 1.1rem;
           }
 
       }

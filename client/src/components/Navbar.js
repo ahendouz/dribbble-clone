@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import Signout from "./Auth/Signout";
 import Styled from "styled-components";
 
-import UnAuthMessage from "../UI/UnAuthMessage";
 import Search from "./Shot/Search";
 
 const Navbar = ({ session }) => (
@@ -12,7 +11,7 @@ const Navbar = ({ session }) => (
       <div className="container">
         <NavLink to="/">
           <img
-            alt="dribbble"
+            alt="dribbble logo"
             src="http://www.jrentdesign.com/images/dribbble_type.png"
           />
         </NavLink>
@@ -26,14 +25,13 @@ const Navbar = ({ session }) => (
         </div>
       </div>
     </Nav>
-    {!session.getCurrentUser ? <UnAuthMessage /> : null}
   </Fragment>
 );
 
 const NavbarAuth = ({ session }) => (
   <DropDown>
     <button>{session.getCurrentUser.username}</button>
-    <div className="dropdown-content">
+    <div>
       <NavLink to="/profile">{session.getCurrentUser.username}</NavLink>
       <hr />
       <Signout />
@@ -56,9 +54,8 @@ export default Navbar;
 const Nav = Styled.nav`
     background: #333333;
     color: #DDDDDD;
-    font-weight: 200;
     font-size: 1.3rem;
-    height: 5rem;
+    height: 5.7rem;
     display: flex;
     > div {
       display: flex;
@@ -89,7 +86,8 @@ const Nav = Styled.nav`
         display: flex;
         align-items: center;
         li {
-          padding-left: 15px
+          padding-left: 15px;
+          font-weight: inherit
         }
       }
     }

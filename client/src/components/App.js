@@ -4,17 +4,18 @@ import Styled from "styled-components";
 
 import { GET_ALL_SHOTS } from "../queries";
 import ShotItem from "./Shot/ShotItem";
+import UnAuthMessage from "../UI/UnAuthMessage";
 
-const App = () => (
-  <div className="App">
-    <h1>Home</h1>
+const App = ({ session }) => (
+  <div>
+    <UnAuthMessage session={session} />
     <Query query={GET_ALL_SHOTS}>
       {({ data, loading, error }) => {
         if (loading) return <div>Loading..</div>;
         if (error) return <div>Error</div>;
-        console.log(data);
+        // console.log(data);
         return (
-          <Cards className="cards">
+          <Cards>
             {data.getAllShots.map(Shot => (
               <ShotItem key={Shot._id} {...Shot} />
             ))}

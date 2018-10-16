@@ -10,7 +10,9 @@ html {
                        1rem = 10px, 10px/16px = 62.5% */
 }
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-weight: 400;
   color: rgb(181, 181, 181);
   line-height: 1.7;
   box-sizing: border-box;

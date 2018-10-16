@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ApolloConsumer } from "react-apollo";
-import { SEARCH_SHOTS } from "../../queries";
-import SearchItem from "./SearchItem";
+// import { SEARCH_SHOTS } from "../../queries";
+// import SearchItem from "./SearchItem";
 
 class Search extends Component {
   state = {
@@ -18,7 +18,7 @@ class Search extends Component {
     this.setState({ [name]: value });
   };
   render() {
-    const { searchResults } = this.state;
+    // const { searchResults } = this.state;
     return (
       <ApolloConsumer>
         {client => {
@@ -26,7 +26,6 @@ class Search extends Component {
             <div>
               <input
                 type="search"
-                className="search"
                 placeholder="Search"
                 onChange={event => {
                   //   event.persist();
