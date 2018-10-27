@@ -9,7 +9,7 @@ import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
 
 const ShotItem = ({
   _id,
-  imageUrl,
+  image,
   name,
   description,
   createDate,
@@ -21,7 +21,7 @@ const ShotItem = ({
     <Card>
       <div className="container">
         <div className="shotImg">
-          <img src={imageUrl} alt="shot" />
+          <img src={image} alt="shot" />
           <Link to={`/shot/${_id}`}>
             <div className="shotInfo">
               <h4 className="shotName">{name}</h4>

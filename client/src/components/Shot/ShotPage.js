@@ -19,7 +19,7 @@ const ShotPage = ({ match }) => {
         if (error) return <Error />;
         const {
           _id,
-          imageUrl,
+          largeImage,
           name,
           description,
           createDate,
@@ -45,7 +45,7 @@ const ShotPage = ({ match }) => {
             </div>
             <div className="shot">
               <div>
-                <img src={imageUrl} alt="shot" />
+                <img src={largeImage} alt="shot" />
               </div>
             </div>
             <div className="Description">

@@ -13,7 +13,8 @@ import { HeadingPrimary } from "../../styles/Heading";
 
 const initialState = {
   name: "",
-  imageUrl: "",
+  image: "",
+  largeImage: "",
   description: "",
   username: ""
 };
@@ -41,8 +42,8 @@ class AddShot extends React.Component {
   };
 
   validateForm = () => {
-    const { name, imageUrl, description } = this.state;
-    const isInvalid = !name || !imageUrl || !description;
+    const { name, image, largeImage, description } = this.state;
+    const isInvalid = !name || !image || !largeImage || !description;
     return isInvalid;
   };
 
@@ -58,6 +59,28 @@ class AddShot extends React.Component {
     });
   };
 
+  uploadFile = async e => {
+    console.log("uploading file...");
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "dribble-clone");
+
+    const res = await fetch(
+      "https://res.cloudinary.com/drs4xxaa4/image/upload",
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    console.log(file);
+    this.setState({
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url
+    });
+  };
+
   componentDidMount() {
     // console.log(this.props.session.getCurrentUser.username);
     this.setState({
@@ -66,12 +89,12 @@ class AddShot extends React.Component {
   }
 
   render() {
-    const { name, imageUrl, description, username } = this.state;
+    const { name, image, largeImage, description, username } = this.state;
 
     return (
       <Mutation
         mutation={ADD_SHOT}
-        variables={{ name, imageUrl, description, username }}
+        variables={{ name, image, largeImage, description, username }}
         refetchQueries={() => [
           { query: GET_USER_SHOTS, variables: { username } }
         ]}
@@ -91,11 +114,10 @@ class AddShot extends React.Component {
                     value={name}
                   />
                   <input
-                    type="text"
-                    name="imageUrl"
-                    placeholder="Shot image"
-                    onChange={this.handleChange}
-                    value={imageUrl}
+                    type="file"
+                    name="file"
+                    placeholder="Upload A Shot"
+                    onChange={this.uploadFile}
                   />
                   <input
                     type="text"

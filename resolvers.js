@@ -68,12 +68,13 @@ exports.resolvers = {
   Mutation: {
     addShot: async (
       root,
-      { name, imageUrl, description, username },
+      { name, image, largeImage, description, username },
       { Shot }
     ) => {
       const newShot = await new Shot({
         name,
-        imageUrl,
+        image,
+        largeImage,
         description,
         username
       }).save();
