@@ -1,14 +1,14 @@
 import React from "react";
 import { Mutation } from "react-apollo";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Styled from "styled-components";
 
 import { SIGNIN_USER } from "../../queries";
 
 import Error from "../Error";
-import { Container } from "./Signup";
-import { Form } from "./Signup";
-import { HighlightedBtn } from "../../UI/UnAuthMessage";
+import { Form } from "../../styles/Form";
+import { PinkBtn } from "../../styles/Buttons";
+import withAuth from "../withAuth";
 
 const initialState = {
   username: "",
@@ -46,17 +46,18 @@ class Signin extends React.Component {
   };
   render() {
     const { username, password } = this.state;
+    const { session } = this.props;
     return (
-      <Container>
-        <Card>
-          <div>
+      <SignInContainer>
+        <div className="container">
+          <div className="logo">
             <img
               src="http://www.jrentdesign.com/images/dribbble_type.png"
               alt="dribbble logo"
             />
           </div>
           <h2>Signin</h2>
-          <Form>
+          <SignInForm>
             <Mutation mutation={SIGNIN_USER} variables={{ username, password }}>
               {(signupUser, { data, loading, error }) => {
                 return (
@@ -77,48 +78,65 @@ class Signin extends React.Component {
                       value={password}
                       onChange={this.handleChange}
                     />
-                    <HighlightedBtn
+                    <PinkBtn
                       style={{ alignSelf: "stretch" }}
                       type="submit"
                       disabled={loading || this.validateForm()}
                     >
                       Submit
-                    </HighlightedBtn>
-                    {error && <Error error={error} />}
+                    </PinkBtn>
+                    {/* {error && <Error error={error} />} */}
                   </form>
                 );
               }}
             </Mutation>
-          </Form>
-        </Card>
-      </Container>
+          </SignInForm>
+          <Mes>
+            Not a member? <Link to="/signup">Sign up now</Link>
+          </Mes>
+        </div>
+      </SignInContainer>
     );
   }
 }
 
-export default withRouter(Signin);
+export default withAuth(session => session && !session.getCurrentUser)(
+  withRouter(Signin)
+);
 
-const Card = Styled.div`
-  text-align: center;
-  margin: 4rem 0;
-  > div:first-of-type {
-    width: 23rem;
-    margin: 0 auto;
-    img {
-      width: 100%
+const SignInContainer = Styled.div`
+  background: ${props => props.theme.gray3};
+  min-height: 100vh;
+  padding: 3rem 0;
+  .container {
+    text-align: center;
+    padding: 4rem 0;
+    .logo {
+      width: 23rem;
+      margin: 0 auto;
+      img {
+        width: 100%
+      }
+    }
+    h2 {
+      font-size: 2.7rem;
+      font-weight: 500;
+      color: ${props => props.theme.grey3};    
+      padding-bottom: 2rem;
     }
   }
-  h2 {
-    font-size: 2.7rem;
-    font-weight: 500;
-    color: #999999;    
-    padding-bottom: 2rem;
-  }
-  > div:last-of-type {
-    width: 40rem;
-    margin: 0 auto;
+`;
+
+const SignInForm = Styled(Form)`
+  width: 40rem;
+  margin: 0 auto;
   }
   input {
     background: white !important;
   }
+`;
+
+const Mes = Styled.div`
+  font-size: 1.4rem;
+  color: ${props => props.theme.gray4};
 `;

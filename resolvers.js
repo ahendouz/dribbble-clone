@@ -11,6 +11,7 @@ exports.resolvers = {
     getAllShots: async (root, args, { Shot }) => {
       const allShots = await Shot.find().sort({
         createdDate: "desc"
+        // createdDate: "esc"
       });
       return allShots;
     },
@@ -65,7 +66,11 @@ exports.resolvers = {
   },
 
   Mutation: {
-    addShot: async (root, { name, imageUrl, description, username }, { Shot }) => {
+    addShot: async (
+      root,
+      { name, imageUrl, description, username },
+      { Shot }
+    ) => {
       const newShot = await new Shot({
         name,
         imageUrl,

@@ -38,11 +38,10 @@ export const GET_CURRENT_USER = gql`
 export const GET_USER_SHOTS = gql`
   query($username: String!) {
     getUserShots(username: $username) {
-      _id
-      name
-      likes
+      ...CompleteShot
     }
   }
+  ${shotFragments.shot}
 `;
 
 // SHOT MUTATIONS

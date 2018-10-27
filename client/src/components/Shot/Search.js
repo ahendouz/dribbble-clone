@@ -7,11 +7,7 @@ class Search extends Component {
   state = {
     searchResults: []
   };
-  // handleChange = ({ searchShots }) => {
-  //   this.setState({
-  //     searchResults: searchShots
-  //   });
-  // };
+
   handleChange = event => {
     const { name, value } = event.target;
     // console.log(`${name}: ${value}`);
@@ -27,14 +23,7 @@ class Search extends Component {
               <input
                 type="search"
                 placeholder="Search"
-                onChange={event => {
-                  //   event.persist();
-                  //   const { data } = await client.query({
-                  //     query: SEARCH_SHOTS,
-                  //     variables: { searchTerm: event.target.value }
-                  //   });
-                  this.handleChange;
-                }}
+                onChange={event => this.handleChange}
               />
               {/* <ul>
                 {searchResults.map(shot => (

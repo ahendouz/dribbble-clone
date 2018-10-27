@@ -1,21 +1,22 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { Query } from "react-apollo";
 import Styled from "styled-components";
-import { GET_SHOT } from "../../queries";
-import { formatDate } from "../Profile/UserInfo";
+import { Query } from "react-apollo";
 
+import { GET_SHOT } from "../../queries";
+
+import Error from "../Error";
+import { date } from "../Date";
 import LikeShot from "./LikeShot";
+import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
 
 const ShotPage = ({ match }) => {
   const { _id } = match.params;
-  // console.log(_id);
   return (
     <Query query={GET_SHOT} variables={{ _id }}>
       {({ data, loading, error }) => {
         if (loading) return <div>Loading...</div>;
-        if (error) return <div>Error</div>;
-        console.log(data);
+        if (error) return <Error />;
         const {
           _id,
           imageUrl,
@@ -27,27 +28,37 @@ const ShotPage = ({ match }) => {
         } = data.getShot;
         return (
           <Container style={{ fontSize: "1.3rem" }}>
-            <Header>
-              <div className="container">
-                <HeaderTex>
-                  <h2>{name}</h2>
-                  <p>
-                    by <span>{username} </span>
-                    on {formatDate(createDate)}
-                  </p>
-                </HeaderTex>
-                <button>Like</button>
+            <div className="header">
+              <div className="header-wrapper wrapper medium-wrapper">
+                <div className="headerContent">
+                  <h2 className="shotName">{name}</h2>
+                  <div className="shotInfo">
+                    by{" "}
+                    <UsernameHighlighted className="username">
+                      {username}{" "}
+                    </UsernameHighlighted>
+                    on {date(createDate)}
+                  </div>
+                </div>
+                <LikeShot _id={_id} btnType="button" />
               </div>
-            </Header>
-            <Shot>
-              <img src={imageUrl} alt="shot image" />
-            </Shot>
-            <Description>
-              <div className="container">
+            </div>
+            <div className="shot">
+              <div>
+                <img src={imageUrl} alt="shot" />
+              </div>
+            </div>
+            <div className="Description">
+              <div className="wrapper medium-wrapper">
                 <p>{description}</p>
+                <p>
+                  <span role="img" aria-label="heart">
+                    ❤️
+                  </span>
+                  {likes} likes
+                </p>
               </div>
-            </Description>
-            {/* <LikeShot _id={_id} /> */}
+            </div>
           </Container>
         );
       }}
@@ -61,55 +72,49 @@ const Container = Styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-`;
-
-const Header = Styled.div`
-  background: #f4f4f4;
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  > div {
+  .header {
+    background: ${props => props.theme.grey7};
+    height: 10rem;
     display: flex;
-    justify-content: space-between
-    > button {
-      align-self: center
-      background-color: white;
-      color: #777;
-      border: 1px solid #bdbdbd;
-      border-radius: 5px;
-      padding: 1rem 1.3rem;
-      font-size: 1.4rem;
-      font-weight: 600;    
-      outline: none     
+    align-items: center;
+    .header-wrapper {
+      display: flex;
+      justify-content: space-between
+      .headerContent {
+        .shotName {
+          color: ${props => props.theme.gray3};
+        }
+        .shotInfo {
+          display: flex;
+          .username {
+            padding: 0px 5px 2px 5px;
+            margin-top: -0.1px;
+          }
+        }
+      }
+      > button {
+        align-self: center
+      }
     }
   }
-`;
-const HeaderTex = Styled.div`
-  h2 {
-    color: #444;
-  }
-  > p {
-    span {
-      color: #1d81bdbd;
-      font-weight: 600;
-      text-transform: capitalize;
+  .shot {
+    background: white;
+    > div {
+      padding: 2rem 0;
+      width: 45rem;
+      margin: 0 auto;
+      > img {
+        width: 100%
+        box-shadow: 0 0 1px rgba(0,0,0,0.2);
+      }
     }
   }
-`;
-const Shot = Styled.div`
-  padding: 2rem 0;
-  width: 45rem;
-  margin: 0 auto;
-  > img {
-    width: 100%
-    box-shadow: 0 0 1px rgba(0,0,0,0.2);
-  }
-`;
-const Description = Styled.div`
-  background: #f4f4f4;
-  flex: 1
-  p {
-    width: 46rem;
-    padding: 1rem 0
+  .description {
+    background: ${props => props.theme.grey7};
+    flex: 1
+    p {
+      width: 46rem;
+      padding: 1rem 0
+    }
   }
 `;

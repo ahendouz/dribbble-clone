@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import Styled from "styled-components";
 import { Link } from "react-router-dom";
 
+import { PinkBtn } from "../styles/Buttons";
+
 const UnAuthMessage = ({ session }) => {
   let message = (
     <Message>
@@ -10,19 +12,16 @@ const UnAuthMessage = ({ session }) => {
         inspired and hired.
       </p>
       <Link to="/signup">
-        <HighlightedBtn>Continue →</HighlightedBtn>
+        <PinkBtn>Continue →</PinkBtn>
       </Link>
     </Message>
   );
-  if (session && session.getCurrentUser) {
-    message = null;
-  }
   return <Fragment>{message}</Fragment>;
 };
 export default UnAuthMessage;
 
 const Message = Styled.div`
-    background: #252525;
+    background: ${props => props.theme.gray1};
     text-align: center;
     font-size: 1.8rem;
     padding: 4rem 0;
@@ -33,15 +32,4 @@ const Message = Styled.div`
         color: white
       }
     }
-`;
-
-export const HighlightedBtn = Styled.button`
-  background: #e84f89;
-  padding: 1.3rem 3.2rem;
-  border: none;
-  border-radius: 7px;
-  font-size: 1.4rem;
-  color: white;
-  cursor: pointer;
-  outline: none
 `;

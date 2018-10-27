@@ -2,92 +2,55 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
-import { formatDate } from "../Profile/UserInfo";
+import { Card } from "../../styles/Card";
+import { date } from "../Date";
+import LikeShot from "./LikeShot";
+import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
 
-export default ({
+const ShotItem = ({
   _id,
   imageUrl,
   name,
   description,
   createDate,
   likes,
-  username
+  username,
+  props
 }) => {
-  // console.log(_id)
   return (
     <Card>
-      <div>
-        <div>
+      <div className="container">
+        <div className="shotImg">
           <img src={imageUrl} alt="shot" />
           <Link to={`/shot/${_id}`}>
-            <div>
-              <h4>{name}</h4>
-              <p>{description}</p>
-              <p>{formatDate(createDate)}</p>
+            <div className="shotInfo">
+              <h4 className="shotName">{name}</h4>
+              <p className="shotDescription">
+                {description.slice(0, 120)}
+                ...
+              </p>
+              <p>{date(createDate)}</p>
             </div>
           </Link>
         </div>
-        <div>
+        <div className="shotInfo">
           <Link to={`/shot/${_id}`}>
-            <p>{name}</p>
+            <p>
+              {name.slice(0, 29)}
+              ...
+            </p>
           </Link>
+          <div className="like">
+            <p className="likesNum">{likes}</p>
+            <LikeShot _id={_id} btnType="heart" />
+          </div>
         </div>
       </div>
-      <h3>{username}</h3>
+      <UsernameHighlighted className="username">{username}</UsernameHighlighted>
     </Card>
   );
 };
 
-const Card = Styled.li`
-/* text-align: left; */
-  > h3 {
-    color: #1d81bdbd;
-    font-size: 1.3rem;
-    text-transform: capitalize;
-    padding-top: 0.8rem;
-    padding-left: 2rem;
-  }
-  > div { /* the child of card*/
-    padding: 1.3rem 1.3rem 0 1.3rem;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
-    > div:first-of-type {
-      position: relative;
-      overflow: hidden;
-      img {
-        width: 100%
-      } 
-      &:hover div {
-        visibility: visible
-      }
-       div {
-          background-color: white;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 98%;
-          visibility: hidden;
-          /* transition: visibility 0.3s ease-in-out; */
-          display: flex;
-          flex-direction: column;
-          text-align: start;
-          justify-content: space-around;
-          padding: 1rem;
-          font-weight: inherit
-          > h4 {
-            font-size: 1.5rem;
-            color: #444;
-          }
-          p {
-            font-weight: 300
-            font-size: 1.1rem;
-          }
+export default ShotItem;
 
-      }
-    }
-    > div:last-of-type { /* card text*/
-      padding: 0.2rem 0 0.8rem 0;
-      font-size: 1.1rem
-    }
-  }
-`;
+    

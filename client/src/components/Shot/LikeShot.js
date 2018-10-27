@@ -1,8 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import Styled from "styled-components";
 import { Mutation } from "react-apollo";
 
-import withSession from "../withSession.js";
 import { LIKE_SHOT, UNLIKE_SHOT, GET_SHOT } from "../../queries";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import withSession from "../withSession.js";
+import { LikeBtn } from "../../styles/Buttons";
 
 class LikeShot extends Component {
   state = {
@@ -16,18 +21,20 @@ class LikeShot extends Component {
       const { _id } = this.props;
       const prevLiked =
         favorites.findIndex(favorite => favorite._id === _id) > -1;
-    //   console.log(prevLiked);
+      //   console.log(prevLiked);
       this.setState({ username, liked: prevLiked });
     }
   }
 
   handleClick = (likeShot, unlikeShot) => {
-    this.setState(
-      prevState => ({
-        liked: !prevState.liked
-      }),
-      () => this.handleLike(likeShot, unlikeShot)
-    );
+    if (this.state.username) {
+      this.setState(
+        prevState => ({
+          liked: !prevState.liked
+        }),
+        () => this.handleLike(likeShot, unlikeShot)
+      );
+    }
   };
 
   handleLike = (likeShot, unlikeShot) => {
@@ -75,9 +82,8 @@ class LikeShot extends Component {
   };
 
   render() {
-    // console.log(this.props);
     const { username, liked } = this.state;
-    const { _id } = this.props;
+    const { _id, btnType } = this.props;
     return (
       <Mutation
         mutation={UNLIKE_SHOT}
@@ -90,13 +96,44 @@ class LikeShot extends Component {
             variables={{ _id, username }}
             update={this.updateLike}
           >
-            {likeShot =>
-              username && (
-                <button onClick={() => this.handleClick(likeShot, unlikeShot)}>
-                  {liked ? "Liked" : "Like"}
-                </button>
-              )
-            }
+            {likeShot => {
+              let btn;
+              btnType === "button" ? (
+                (btn = (
+                  <LikeBtn
+                    type={liked ? "Liked" : "Like"}
+                    onClick={() => this.handleClick(likeShot, unlikeShot)}
+                  >
+                    {liked ? "Liked" : "Like"}
+                  </LikeBtn>
+                ))
+              ) : btnType === "heart" ? (
+                (btn = (
+                  <div
+                    type={liked ? "Liked" : "Like"}
+                    onClick={() => this.handleClick(likeShot, unlikeShot)}
+                  >
+                    <FontAwesomeIcon
+                      style={
+                        username
+                          ? liked
+                            ? { color: "#ee4589", fontSize: "1.2rem" }
+                            : { color: "#bbbbbb", fontSize: "1.2rem" }
+                          : { color: "#bbbbbb", fontSize: "1.2rem" }
+                      }
+                      icon="heart"
+                    />
+                  </div>
+                ))
+              ) : (
+                <button>like</button>
+              );
+              return username ? (
+                <Fragment>{btn}</Fragment>
+              ) : (
+                <Link to="/signup">{btn}</Link>
+              );
+            }}
           </Mutation>
         )}
       </Mutation>

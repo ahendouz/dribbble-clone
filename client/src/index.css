@@ -7,21 +7,31 @@
 }
 html {
   font-size: 62.5%; /* 100% = 16px so 62.5% = 10px
-                       1rem = 10px, 10px/16px = 62.5% */
+                    1rem = 10px, 10px/16px = 62.5% */
 }
 body {
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
   font-weight: 400;
+  background: #f4f4f4;
   color: rgb(181, 181, 181);
   line-height: 1.7;
   box-sizing: border-box;
 }
 
-.container {
-  width: 111rem;
+
+.wrapper {
   max-width: 100%;
   margin: 0 auto;
+}
+.small-wrapper {
+  width: 55rem;
+}
+.medium-wrapper {
+  width: 100rem;
+}
+.big-wrapper {
+  width: 122rem;
 }
 
 @media screen and (max-width: 350px) {
@@ -34,7 +44,12 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+button {
+  border: none;
+}
+button:focus {
+  outline: none;
+}
 ul {
   list-style: none;
 }

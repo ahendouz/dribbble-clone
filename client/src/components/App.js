@@ -1,38 +1,39 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Query } from "react-apollo";
-import Styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 import { GET_ALL_SHOTS } from "../queries";
 import ShotItem from "./Shot/ShotItem";
-import UnAuthMessage from "../UI/UnAuthMessage";
+import UnAuthMessage from "./UnAuthMessage";
+import { Cards } from "../styles/Cards";
+import Error from "./Error";
 
 const App = ({ session }) => (
   <div>
-    <UnAuthMessage session={session} />
     <Query query={GET_ALL_SHOTS}>
       {({ data, loading, error }) => {
         if (loading) return <div>Loading..</div>;
-        if (error) return <div>Error</div>;
-        // console.log(data);
+        if (error) return <Error />;
+        // console.log(session);
         return (
-          <Cards>
-            {data.getAllShots.map(Shot => (
-              <ShotItem key={Shot._id} {...Shot} />
-            ))}
-          </Cards>
+          <Fragment>
+            {!session ||
+              (!session.getCurrentUser && <UnAuthMessage session={session} />)}
+            <div
+              className="wrapper medium-wrapper"
+              style={{ padding: "3.7rem 0" }}
+            >
+              <Cards>
+                {data.getAllShots.map(Shot => (
+                  <ShotItem key={Shot._id} {...Shot} />
+                ))}
+              </Cards>
+            </div>
+          </Fragment>
         );
       }}
     </Query>
   </div>
 );
 
-export default App;
-
-const Cards = Styled.ul`
-  display: grid;
-  margin: 1.5em 3em;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-flow: row dense;
-  grid-gap: 2em;
-  grid-auto-rows: auto;
-`;
+export default withRouter(App);

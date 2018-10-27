@@ -1,9 +1,15 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
+import Styled from "styled-components";
+
 import { ADD_SHOT, GET_ALL_SHOTS, GET_USER_SHOTS } from "../../queries";
+
 import Error from "../Error";
 import withAuth from "../withAuth";
+import { PinkBtn } from "../../styles/Buttons";
+import { Form } from "../../styles/Form";
+import { HeadingPrimary } from "../../styles/Heading";
 
 const initialState = {
   name: "",
@@ -73,13 +79,10 @@ class AddShot extends React.Component {
       >
         {(addShot, { data, loading, error }) => {
           return (
-            <div>
-              <div>
-                <h2>Add Shot</h2>
-                <form
-                  onSubmit={event => this.handleSubmit(event, addShot)}
-                >
-                  <label htmlFor="name">Shot Name</label>
+            <AddShotContainer>
+              <AddShotHeading>What are you working on?</AddShotHeading>
+              <Form className="small-wrapper wrapper">
+                <form onSubmit={event => this.handleSubmit(event, addShot)}>
                   <input
                     type="text"
                     name="name"
@@ -94,7 +97,6 @@ class AddShot extends React.Component {
                     onChange={this.handleChange}
                     value={imageUrl}
                   />
-                  <label htmlFor="description">Shot Description</label>
                   <input
                     type="text"
                     name="description"
@@ -102,17 +104,17 @@ class AddShot extends React.Component {
                     onChange={this.handleChange}
                     value={description}
                   />
-                  <button
+                  <PinkBtn
                     disabled={loading || this.validateForm()}
                     type="submit"
                   >
-                    Submit
-                  </button>
+                    Add Shot
+                  </PinkBtn>
 
-                  {error && <Error error={error} />}
+                  {/* {error && <Error error={error} />} */}
                 </form>
-              </div>
-            </div>
+              </Form>
+            </AddShotContainer>
           );
         }}
       </Mutation>
@@ -123,3 +125,13 @@ class AddShot extends React.Component {
 export default withAuth(session => session && session.getCurrentUser)(
   withRouter(AddShot)
 );
+
+const AddShotHeading = Styled(HeadingPrimary)`
+    padding: 1.2rem 0;
+    margin-bottom: 2rem;
+    background: ${props => props.theme.gray7};
+`;
+const AddShotContainer = Styled.div`
+  min-height: 100vh;
+  text-align: center
+`;
