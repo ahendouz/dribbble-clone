@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const ShotSchema = new Schema({
   name: { type: String, required: true },
-  imageUrl: { type: String, required: true },
+  image: { type: String, required: true },
+  largeImage: { type: String },
   description: { type: String, required: true },
   createDate: { type: Date, default: Date.now },
   likes: { type: Number, default: 0 },

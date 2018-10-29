@@ -48,13 +48,15 @@ export const GET_USER_SHOTS = gql`
 export const ADD_SHOT = gql`
   mutation(
     $name: String!
-    $imageUrl: String!
+    $image: String!
+    $largeImage: String!
     $description: String!
     $username: String!
   ) {
     addShot(
       name: $name
-      imageUrl: $imageUrl
+      image: $image
+      largeImage: $largeImage
       description: $description
       username: $username
     ) {

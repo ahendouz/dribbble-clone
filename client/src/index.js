@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import Styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 
 import "./index.css";
 import App from "./components/App";
@@ -20,19 +20,6 @@ import Navbar from "./components/Navbar/Navbar";
 import AddShot from "./components/Shot/AddShot";
 import Profile from "./components/Profile/Profile";
 import ShotPage from "./components/Shot/ShotPage";
-
-// for icon
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import {
-  faCheckSquare,
-  faHeart,
-  faShip
-} from "@fortawesome/free-solid-svg-icons";
-
-library.add(fab, faCheckSquare, faHeart, faShip);
-// for icon
-
 
 // connecting the frontend with the backend
 const client = new ApolloClient({
@@ -55,7 +42,6 @@ const client = new ApolloClient({
     }
   }
 });
-
 
 const Root = ({ refetch, session }) => (
   <Router>

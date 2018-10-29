@@ -8,7 +8,6 @@ import { SIGNUP_USER } from "../../queries";
 import { Form } from "../../styles/Form";
 import { PinkBtn } from "../../styles/Buttons";
 import withAuth from "../withAuth";
-import Error from "../Error";
 
 const initialState = {
   username: "",
@@ -148,7 +147,7 @@ const SignUpContainer = Styled.div`
     overflow: hidden;
     background: white
     text-align: center;
-    box-shadow: ${props => props.theme.shadow2}
+    box-shadow: ${props => props.theme.shadow2};
     .artwork {
       background: ${props => props.theme.highlight4};
       height: 25rem;
@@ -178,8 +177,8 @@ const Mes = Styled.div`
   font-size: 1.4rem;
   font-weight: 500;
   color: ${props => props.theme.gray3}
-  border-top: 1px solid ${props => props.theme.gray6};
-  a {highlight1
+  border-top: 1px solid ${props => props.theme.gray7};
+  a {
     color: ${props => props.theme.highlight1};
   }
 `;

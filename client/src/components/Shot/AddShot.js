@@ -5,7 +5,7 @@ import Styled from "styled-components";
 
 import { ADD_SHOT, GET_ALL_SHOTS, GET_USER_SHOTS } from "../../queries";
 
-import Error from "../Error";
+import ErrorPage from "../ErrorPage";
 import withAuth from "../withAuth";
 import { PinkBtn } from "../../styles/Buttons";
 import { Form } from "../../styles/Form";
@@ -13,7 +13,8 @@ import { HeadingPrimary } from "../../styles/Heading";
 
 const initialState = {
   name: "",
-  imageUrl: "",
+  image: "",
+  largeImage: "",
   description: "",
   username: ""
 };
@@ -41,8 +42,8 @@ class AddShot extends React.Component {
   };
 
   validateForm = () => {
-    const { name, imageUrl, description } = this.state;
-    const isInvalid = !name || !imageUrl || !description;
+    const { name, image, description } = this.state;
+    const isInvalid = !name || !image || image === "loading" || !description;
     return isInvalid;
   };
 
@@ -65,13 +66,34 @@ class AddShot extends React.Component {
     });
   }
 
-  render() {
-    const { name, imageUrl, description, username } = this.state;
+  uploadFile = async e => {
+    console.log("uploading file...");
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "dribble-clone");
+    this.setState({ image: "loading" });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/ahendouz/image/upload",
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    console.log(file);
+    this.setState({
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url
+    });
+  };
 
+  render() {
+    const { name, image, largeImage, description, username } = this.state;
     return (
       <Mutation
         mutation={ADD_SHOT}
-        variables={{ name, imageUrl, description, username }}
+        variables={{ name, image, largeImage, description, username }}
         refetchQueries={() => [
           { query: GET_USER_SHOTS, variables: { username } }
         ]}
@@ -90,13 +112,27 @@ class AddShot extends React.Component {
                     onChange={this.handleChange}
                     value={name}
                   />
-                  <input
-                    type="text"
-                    name="imageUrl"
-                    placeholder="Shot image"
-                    onChange={this.handleChange}
-                    value={imageUrl}
-                  />
+                  <fieldset disabled={loading} aria-busy={loading}>
+                    <label htmlFor="file">
+                      Image
+                      <input
+                        type="file"
+                        name="file"
+                        disabled={this.state.image === "loading"}
+                        placeholder="Upload an image"
+                        onChange={this.uploadFile}
+                      />
+                      {this.state.image == "loading" ? (
+                        <p>Loading...</p>
+                      ) : this.state.image == "" ? null : (
+                        <img
+                          width="200"
+                          src={this.state.image}
+                          alt="Upload Preview"
+                        />
+                      )}
+                    </label>
+                  </fieldset>
                   <input
                     type="text"
                     name="description"
@@ -129,7 +165,7 @@ export default withAuth(session => session && session.getCurrentUser)(
 const AddShotHeading = Styled(HeadingPrimary)`
     padding: 1.2rem 0;
     margin-bottom: 2rem;
-    background: ${props => props.theme.gray7};
+    background: ${props => props.theme.gray9};
 `;
 const AddShotContainer = Styled.div`
   min-height: 100vh;

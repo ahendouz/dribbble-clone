@@ -5,7 +5,8 @@ export const shotFragments = {
     fragment CompleteShot on Shot {
       _id
       name
-      imageUrl
+      image
+      largeImage
       description
       createDate
       likes

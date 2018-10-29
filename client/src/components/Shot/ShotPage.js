@@ -5,9 +5,10 @@ import { Query } from "react-apollo";
 
 import { GET_SHOT } from "../../queries";
 
-import Error from "../Error";
-import { date } from "../Date";
+import ErrorPage from "../ErrorPage";
+import { formatDate } from "../formatDate.js";
 import LikeShot from "./LikeShot";
+import SVGicon from "../SVGicon";
 import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
 
 const ShotPage = ({ match }) => {
@@ -16,10 +17,10 @@ const ShotPage = ({ match }) => {
     <Query query={GET_SHOT} variables={{ _id }}>
       {({ data, loading, error }) => {
         if (loading) return <div>Loading...</div>;
-        if (error) return <Error />;
+        if (error) return <ErrorPage />;
         const {
           _id,
-          imageUrl,
+          largeImage,
           name,
           description,
           createDate,
@@ -37,7 +38,7 @@ const ShotPage = ({ match }) => {
                     <UsernameHighlighted className="username">
                       {username}{" "}
                     </UsernameHighlighted>
-                    on {date(createDate)}
+                    on {formatDate(createDate)}
                   </div>
                 </div>
                 <LikeShot _id={_id} btnType="button" />
@@ -45,17 +46,15 @@ const ShotPage = ({ match }) => {
             </div>
             <div className="shot">
               <div>
-                <img src={imageUrl} alt="shot" />
+                <img src={largeImage} alt="shot" />
               </div>
             </div>
-            <div className="Description">
+            <div className="description">
               <div className="wrapper medium-wrapper">
                 <p>{description}</p>
                 <p>
-                  <span role="img" aria-label="heart">
-                    ❤️
-                  </span>
-                  {likes} likes
+                  <SVGicon name="heart" width={13} height={13} fill="#777777" />
+                  <span>{likes} likes</span>
                 </p>
               </div>
             </div>
@@ -111,10 +110,18 @@ const Container = Styled.div`
   }
   .description {
     background: ${props => props.theme.grey7};
+    padding: 3rem 0;
     flex: 1
     p {
       width: 46rem;
-      padding: 1rem 0
+      font-size: 1.5rem;
+      color: ${props => props.theme.gray4};
+    }
+    p:last-of-type {
+      padding: 2rem 0;
+      span {
+        margin-left: 7px;
+      }
     }
   }
 `;

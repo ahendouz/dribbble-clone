@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
 import { Mutation } from "react-apollo";
 
 import { LIKE_SHOT, UNLIKE_SHOT, GET_SHOT } from "../../queries";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SVGicon from "../SVGicon";
 import withSession from "../withSession.js";
 import { LikeBtn } from "../../styles/Buttons";
+import { heartBtn } from "../../styles/Buttons";
 
 class LikeShot extends Component {
   state = {
@@ -43,7 +43,7 @@ class LikeShot extends Component {
         // console.log(data);
         await this.props.refetch();
       });
-    } else {
+    } else if (!this.state.liked) {
       unlikeShot().then(async ({ data }) => {
         // console.log(data);
         await this.props.refetch();
@@ -89,45 +89,45 @@ class LikeShot extends Component {
         mutation={UNLIKE_SHOT}
         variables={{ _id, username }}
         update={this.updateUnlike}
+        refetchQueries={() => [{ query: GET_SHOT, variables: { _id } }]}
       >
         {unlikeShot => (
           <Mutation
             mutation={LIKE_SHOT}
             variables={{ _id, username }}
             update={this.updateLike}
+            refetchQueries={() => [{ query: GET_SHOT, variables: { _id } }]}
           >
             {likeShot => {
               let btn;
-              btnType === "button" ? (
-                (btn = (
+              if (btnType === "button") {
+                btn = (
                   <LikeBtn
                     type={liked ? "Liked" : "Like"}
                     onClick={() => this.handleClick(likeShot, unlikeShot)}
                   >
                     {liked ? "Liked" : "Like"}
                   </LikeBtn>
-                ))
-              ) : btnType === "heart" ? (
-                (btn = (
+                );
+              } else if (btnType === "heart") {
+                btn = (
                   <div
                     type={liked ? "Liked" : "Like"}
                     onClick={() => this.handleClick(likeShot, unlikeShot)}
                   >
-                    <FontAwesomeIcon
-                      style={
-                        username
-                          ? liked
-                            ? { color: "#ee4589", fontSize: "1.2rem" }
-                            : { color: "#bbbbbb", fontSize: "1.2rem" }
-                          : { color: "#bbbbbb", fontSize: "1.2rem" }
+                    <SVGicon
+                      name="heart"
+                      width={13}
+                      height={13}
+                      fill={
+                        username ? (liked ? "#ee4589" : "#bbbbbb") : "#bbbbbb"
                       }
-                      icon="heart"
                     />
                   </div>
-                ))
-              ) : (
-                <button>like</button>
-              );
+                );
+              } else {
+                <button>like</button>;
+              }
               return username ? (
                 <Fragment>{btn}</Fragment>
               ) : (
