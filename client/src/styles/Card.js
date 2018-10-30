@@ -46,7 +46,7 @@ export const Card = Styled.li`
     .shotInfo {
         display: flex;
         justify-content: space-between;
-        padding: 0.2rem 0 0.8rem 0;
+        padding: 0.4rem 0 0.7rem 0;
         font-size: 1.1rem
         .like {
             display: flex;
@@ -55,6 +55,10 @@ export const Card = Styled.li`
                 line-height: 1;
                 padding: 0 3px 0 0;
                 font-size: 1.3rem;
+            }
+            div {
+                line-height: 1;
+                margin-top: 1.9px;
             }
             > div {
                 line-height: 0.7;
