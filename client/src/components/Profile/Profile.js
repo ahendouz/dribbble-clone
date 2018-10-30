@@ -1,5 +1,4 @@
 import React from "react";
-import Styled from "styled-components";
 
 import UserInfo from "./UserInfo";
 import UserShots from "./UserShots";
@@ -12,11 +11,14 @@ const style = {
   padding: "3rem 0"
 };
 
-const Profile = ({ session }) => (
-  <div style={style}>
-    <UserInfo session={session} />
-    <UserShots username={session.getCurrentUser.username} />
-  </div>
-);
+const Profile = ({ session }) => {
+  console.log(session);
+  return (
+    <div style={style}>
+      <UserInfo session={session} />
+      <UserShots username={session.getCurrentUser.username} />
+    </div>
+  );
+};
 
 export default withAuth(session => session && session.getCurrentUser)(Profile);

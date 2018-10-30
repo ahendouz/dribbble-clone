@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Mutation } from "react-apollo";
 import { withRouter, Link } from "react-router-dom";
 import Styled from "styled-components";
 
 import { SIGNIN_USER } from "../../queries";
 
-import Error from "../Error";
+import ErrorMessage from "../ErrorMessage";
 import { Form } from "../../styles/Form";
 import { PinkBtn } from "../../styles/Buttons";
 import withAuth from "../withAuth";
@@ -48,54 +48,60 @@ class Signin extends React.Component {
     const { username, password } = this.state;
     const { session } = this.props;
     return (
-      <SignInContainer>
-        <div className="container">
-          <div className="logo">
-            <img
-              src="http://www.jrentdesign.com/images/dribbble_type.png"
-              alt="dribbble logo"
-            />
-          </div>
-          <h2>Signin</h2>
-          <SignInForm>
-            <Mutation mutation={SIGNIN_USER} variables={{ username, password }}>
-              {(signupUser, { data, loading, error }) => {
-                return (
-                  <form
-                    onSubmit={event => this.handleSubmit(event, signupUser)}
-                  >
-                    <input
-                      type="text"
-                      name="username"
-                      placeholder="Username"
-                      value={username}
-                      onChange={this.handleChange}
+      <Mutation mutation={SIGNIN_USER} variables={{ username, password }}>
+        {(signupUser, { data, loading, error }) => {
+          return (
+            <Fragment>
+              {error && (
+                <SigninError>
+                  <ErrorMessage error={error} />
+                </SigninError>
+              )}
+              <SignInContainer>
+                <div className="container">
+                  <div className="logo">
+                    <img
+                      src="http://www.jrentdesign.com/images/dribbble_type.png"
+                      alt="dribbble logo"
                     />
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={this.handleChange}
-                    />
-                    <PinkBtn
-                      style={{ alignSelf: "stretch" }}
-                      type="submit"
-                      disabled={loading || this.validateForm()}
+                  </div>
+                  <h2>Signin</h2>
+                  <SignInForm>
+                    <form
+                      onSubmit={event => this.handleSubmit(event, signupUser)}
                     >
-                      Submit
-                    </PinkBtn>
-                    {/* {error && <Error error={error} />} */}
-                  </form>
-                );
-              }}
-            </Mutation>
-          </SignInForm>
-          <Mes>
-            Not a member? <Link to="/signup">Sign up now</Link>
-          </Mes>
-        </div>
-      </SignInContainer>
+                      <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        value={username}
+                        onChange={this.handleChange}
+                      />
+                      <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={this.handleChange}
+                      />
+                      <PinkBtn
+                        style={{ alignSelf: "stretch" }}
+                        type="submit"
+                        disabled={loading || this.validateForm()}
+                      >
+                        Sign In
+                      </PinkBtn>
+                    </form>
+                  </SignInForm>
+                  <Mes>
+                    Not a member? <Link to="/signup">Sign up now</Link>
+                  </Mes>
+                </div>
+              </SignInContainer>
+            </Fragment>
+          );
+        }}
+      </Mutation>
     );
   }
 }
@@ -103,6 +109,14 @@ class Signin extends React.Component {
 export default withAuth(session => session && !session.getCurrentUser)(
   withRouter(Signin)
 );
+
+const SigninError = Styled.div`
+    background: #f55;
+    color: white;
+    padding: 1.4rem 0;
+    text-align: center;
+    font-size: 1.8rem;
+`;
 
 const SignInContainer = Styled.div`
   background: ${props => props.theme.gray3};

@@ -12,9 +12,10 @@ export const Card = Styled.li`
     .shotImg {
         position: relative;
         overflow: hidden;
-        img {
-            width: 100%
-        } 
+        height: 16rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
         &:hover div {
             visibility: visible
         }
@@ -24,7 +25,7 @@ export const Card = Styled.li`
             top: 0;
             left: 0;
             width: 100%;
-            height: 98%;
+            height: 100%;
             visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -45,7 +46,7 @@ export const Card = Styled.li`
     .shotInfo {
         display: flex;
         justify-content: space-between;
-        padding: 0.2rem 0 0.8rem 0;
+        padding: 0.4rem 0 0.7rem 0;
         font-size: 1.1rem
         .like {
             display: flex;
@@ -54,6 +55,14 @@ export const Card = Styled.li`
                 line-height: 1;
                 padding: 0 3px 0 0;
                 font-size: 1.3rem;
+            }
+            div {
+                line-height: 1;
+                margin-top: 1.9px;
+            }
+            > div {
+                line-height: 0.7;
+                cursor: pointer
             }
         }
     }

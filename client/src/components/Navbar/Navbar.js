@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
+import SVGicon from "../SVGicon";
 import Search from "../Shot/Search";
-import Signout from "../Auth/Signout";
 import NavbarAuth from "./NavbarAuth";
 import NavbarUnAuth from "./NavbarUnAuth";
 
@@ -12,11 +12,7 @@ const Navbar = ({ session }) => (
     <Nav>
       <div className="navContent wrapper big-wrapper">
         <Link to="/" className="logo">
-          <img
-            className="logoImg"
-            alt="dribbble logo"
-            src="http://www.jrentdesign.com/images/dribbble_type.png"
-          />
+          <SVGicon name="dribbble-logo" width={79} height={20} fill="white" />
         </Link>
         {session && session.getCurrentUser ? (
           <NavbarAuth session={session} />
@@ -33,7 +29,7 @@ export default Navbar;
 
 const Nav = Styled.nav`
     background: ${props => props.theme.gray2};
-    color: ${props => props.theme.gray6};
+    color: ${props => props.theme.gray7};
     font-size: 1.3rem;
     height: 5.7rem;
     display: flex;
@@ -47,9 +43,10 @@ const Nav = Styled.nav`
         min-width: 8rem;
         text-decoration: none;
         color: inherit
-        .logoImg {
-          width: 100%
-        }
+        > svg:hover {
+          fill: ${props => props.theme.gray6}
+          transition: fill 0.6s;
+        } 
       }
       > div:first-of-type {
         margin-left: auto;

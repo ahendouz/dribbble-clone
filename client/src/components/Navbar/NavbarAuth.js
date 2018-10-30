@@ -2,13 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
+import SVGicon from "../SVGicon";
 import Signout from "../Auth/Signout";
 
 const NavbarAuth = ({ session }) => (
   <NavAuth>
     <div className="addNewShot">
       <Link to="/shot/add">
-        <p>Add new shot</p>
+        <SVGicon
+          name="upload"
+          style={{ marginTop: "6px" }}
+          width={21}
+          height={20}
+          fill="white"
+        />
       </Link>
     </div>
     <div className="dropdown">

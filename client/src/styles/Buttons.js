@@ -19,15 +19,15 @@ export const GreenBtn = Styled(DefaultBtn)`
 export const LikeBtn = Styled(DefaultBtn)`
   padding: 0.8rem 2.4rem;
   background: ${props =>
-    props.type == "Liked"
+    props.type === "Liked"
       ? props => props.theme.highlight2
       : "white"} !important;
   color: ${props =>
-    props.type == "Liked" ? "white" : props => props.theme.gray4};
+    props.type === "Liked" ? "white" : props => props.theme.gray4};
   border: ${props =>
-    props.type == "Liked"
+    props.type === "Liked"
       ? `1px solid ${props.theme.highlight2}`
-      : `1px solid ${props.theme.gray5}`} 
+      : `1px solid ${props.theme.gray9}`} 
 `;
 
 export const PinkBtn = Styled(DefaultBtn)`
@@ -35,3 +35,4 @@ export const PinkBtn = Styled(DefaultBtn)`
   padding: 1.3rem 3.2rem;
   color: white;
 `;
+

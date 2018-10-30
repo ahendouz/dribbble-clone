@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
 
 import { Card } from "../../styles/Card";
-import { date } from "../Date";
+import { formatDate } from "../formatDate.js";
 import LikeShot from "./LikeShot";
 import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
 
@@ -20,8 +19,7 @@ const ShotItem = ({
   return (
     <Card>
       <div className="container">
-        <div className="shotImg">
-          <img src={image} alt="shot" />
+        <div className="shotImg" style={{ backgroundImage: `url(${image})` }}>
           <Link to={`/shot/${_id}`}>
             <div className="shotInfo">
               <h4 className="shotName">{name}</h4>
@@ -29,7 +27,7 @@ const ShotItem = ({
                 {description.slice(0, 120)}
                 ...
               </p>
-              <p>{date(createDate)}</p>
+              <p>{formatDate(createDate)}</p>
             </div>
           </Link>
         </div>
@@ -52,5 +50,3 @@ const ShotItem = ({
 };
 
 export default ShotItem;
-
-    

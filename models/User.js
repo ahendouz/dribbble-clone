@@ -7,8 +7,6 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   email: { type: String, required: true },
   joinDate: { type: Date, default: Date.now },
-  // 💥 check this favs need to be an array of shots
-  //favorites: { type: [Schema.Types.ObjectId], ref: "Shot" }
   favorites: [{ type: Schema.Types.ObjectId, ref: "Shot" }]
 });
 

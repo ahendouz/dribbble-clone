@@ -5,7 +5,7 @@ import Styled from "styled-components";
 
 import { ADD_SHOT, GET_ALL_SHOTS, GET_USER_SHOTS } from "../../queries";
 
-import Error from "../Error";
+import ErrorPage from "../ErrorPage";
 import withAuth from "../withAuth";
 import { PinkBtn } from "../../styles/Buttons";
 import { Form } from "../../styles/Form";
@@ -42,8 +42,8 @@ class AddShot extends React.Component {
   };
 
   validateForm = () => {
-    const { name, image, largeImage, description } = this.state;
-    const isInvalid = !name || !image || !largeImage || !description;
+    const { name, image, description } = this.state;
+    const isInvalid = !name || !image || image === "loading" || !description;
     return isInvalid;
   };
 
@@ -59,15 +59,22 @@ class AddShot extends React.Component {
     });
   };
 
+  componentDidMount() {
+    // console.log(this.props.session.getCurrentUser.username);
+    this.setState({
+      username: this.props.session.getCurrentUser.username
+    });
+  }
+
   uploadFile = async e => {
     console.log("uploading file...");
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "dribble-clone");
-
+    this.setState({ image: "loading" });
     const res = await fetch(
-      "https://res.cloudinary.com/drs4xxaa4/image/upload",
+      "https://api.cloudinary.com/v1_1/ahendouz/image/upload",
       {
         method: "POST",
         body: data
@@ -81,16 +88,8 @@ class AddShot extends React.Component {
     });
   };
 
-  componentDidMount() {
-    // console.log(this.props.session.getCurrentUser.username);
-    this.setState({
-      username: this.props.session.getCurrentUser.username
-    });
-  }
-
   render() {
     const { name, image, largeImage, description, username } = this.state;
-
     return (
       <Mutation
         mutation={ADD_SHOT}
@@ -113,12 +112,27 @@ class AddShot extends React.Component {
                     onChange={this.handleChange}
                     value={name}
                   />
-                  <input
-                    type="file"
-                    name="file"
-                    placeholder="Upload A Shot"
-                    onChange={this.uploadFile}
-                  />
+                  <fieldset disabled={loading} aria-busy={loading}>
+                    <label htmlFor="file">
+                      Image
+                      <input
+                        type="file"
+                        name="file"
+                        disabled={this.state.image === "loading"}
+                        placeholder="Upload an image"
+                        onChange={this.uploadFile}
+                      />
+                      {this.state.image == "loading" ? (
+                        <p>Loading...</p>
+                      ) : this.state.image == "" ? null : (
+                        <img
+                          width="200"
+                          src={this.state.image}
+                          alt="Upload Preview"
+                        />
+                      )}
+                    </label>
+                  </fieldset>
                   <input
                     type="text"
                     name="description"
@@ -151,7 +165,7 @@ export default withAuth(session => session && session.getCurrentUser)(
 const AddShotHeading = Styled(HeadingPrimary)`
     padding: 1.2rem 0;
     margin-bottom: 2rem;
-    background: ${props => props.theme.gray7};
+    background: ${props => props.theme.gray9};
 `;
 const AddShotContainer = Styled.div`
   min-height: 100vh;

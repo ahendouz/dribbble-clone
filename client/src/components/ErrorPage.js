@@ -43,7 +43,7 @@ const Container = Styled.div`
             span {
                 font-weight: 600;
                 ta
-                color: ${props => props.theme.gray5};
+                color: ${props => props.theme.gray6};
             }
         }
         > div {
