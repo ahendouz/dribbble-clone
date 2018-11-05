@@ -1,14 +1,23 @@
 import Styled from "styled-components";
 
-export const Card = Styled.li`
+export const Shot = Styled.li`
   .username{
     padding-top: 0.8rem;
     padding-left: 2rem;
+    @media (max-width: ${props => props.theme.breakPointd}) {
+        display: none;
+    };
   }
-  .container { 
-    padding: 1.3rem 1.3rem 0 1.3rem;
+  .shotContainer { 
+    padding: 1rem 1rem 0 1rem;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07);
     background: white;
+    @media (max-width: ${props => props.theme.breakPointd}) {
+      padding: 0.6rem;
+    };
+    @media (max-width: ${props => props.theme.breakPointv}) {
+      padding: 0.4rem;
+    };
     .shotImg {
         position: relative;
         overflow: hidden;
@@ -16,6 +25,24 @@ export const Card = Styled.li`
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
+        @media (max-width: ${props => props.theme.breakPointm}) {
+            height: 14rem;
+        }
+        @media (max-width: ${props => props.theme.breakPointn}) {
+            height: 12rem;
+        };
+        @media (max-width: ${props => props.theme.breakPointb}) {
+            height: 10rem;
+        };
+        @media (max-width: ${props => props.theme.breakPointv}) {
+            height: 9rem;
+        };
+        @media (max-width: ${props => props.theme.breakPointc}) {
+            height: 8rem;
+        };
+        @media (max-width: ${props => props.theme.breakPointz}) {
+            height: 7rem;
+        };
         &:hover div {
             visibility: visible
         }
@@ -32,7 +59,7 @@ export const Card = Styled.li`
             text-align: start;
             justify-content: space-around;
             padding: 1rem;
-            font-weight: inherit
+            font-weight: inherit;
             .shotName {
                 font-size: 1.5rem;
                 color: ${props => props.theme.gray3};
@@ -47,7 +74,10 @@ export const Card = Styled.li`
         display: flex;
         justify-content: space-between;
         padding: 0.4rem 0 0.7rem 0;
-        font-size: 1.1rem
+        font-size: 1.1rem;
+        @media (max-width: ${props => props.theme.breakPointd}) {
+            display: none;
+        };
         .like {
             display: flex;
             align-items: center;

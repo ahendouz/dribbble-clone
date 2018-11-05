@@ -46,7 +46,6 @@ class Signin extends React.Component {
   };
   render() {
     const { username, password } = this.state;
-    const { session } = this.props;
     return (
       <Mutation mutation={SIGNIN_USER} variables={{ username, password }}>
         {(signupUser, { data, loading, error }) => {

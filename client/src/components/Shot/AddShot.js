@@ -5,7 +5,6 @@ import Styled from "styled-components";
 
 import { ADD_SHOT, GET_ALL_SHOTS, GET_USER_SHOTS } from "../../queries";
 
-import ErrorPage from "../ErrorPage";
 import withAuth from "../withAuth";
 import { PinkBtn } from "../../styles/Buttons";
 import { Form } from "../../styles/Form";
@@ -32,10 +31,12 @@ class AddShot extends React.Component {
     });
   };
 
-  handleSubmit = (event, addShot) => {
+  handleSubmit = async (event, addShot) => {
     event.preventDefault();
+    // const data = await addShot();
+    // this.clearState();
+    // this.props.history.push("/");
     addShot().then(({ data }) => {
-      // console.log(data);
       this.clearState();
       this.props.history.push("/");
     });
@@ -72,7 +73,7 @@ class AddShot extends React.Component {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "dribble-clone");
-    this.setState({ image: "loading" });
+    this.setState({ image: "loading" }); // todo
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/ahendouz/image/upload",
       {
@@ -84,7 +85,7 @@ class AddShot extends React.Component {
     console.log(file);
     this.setState({
       image: file.secure_url,
-      largeImage: file.eager[0].secure_url
+      largeImage: file.secure_url
     });
   };
 
@@ -122,9 +123,9 @@ class AddShot extends React.Component {
                         placeholder="Upload an image"
                         onChange={this.uploadFile}
                       />
-                      {this.state.image == "loading" ? (
+                      {this.state.image === "loading" ? (
                         <p>Loading...</p>
-                      ) : this.state.image == "" ? null : (
+                      ) : this.state.image === "" ? null : (
                         <img
                           width="200"
                           src={this.state.image}

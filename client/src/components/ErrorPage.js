@@ -16,7 +16,7 @@ const Error = ({ error }) => (
       </p>
       <div>
         <img
-          src="https://cdn-images-1.medium.com/max/1200/1*PhW8nDP8C9fDmHcfEE0mvA.png"
+          src="https://res.cloudinary.com/ahendouz/image/upload/v1541272454/1_PhW8nDP8C9fDmHcfEE0mvA.png"
           alt="ball"
         />
       </div>
@@ -42,17 +42,14 @@ const Container = Styled.div`
             padding: 0rem 0 6rem 0;
             span {
                 font-weight: 600;
-                ta
                 color: ${props => props.theme.gray6};
             }
         }
         > div {
-            width: 39rem;
-            height: 22.2rem;
+            width: 22.2rem;
             overflow: hidden;
             img {
-                height: 100%;
-                margin-left: -28%;
+                width: 100%;
             }
         }
     }

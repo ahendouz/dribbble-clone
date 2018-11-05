@@ -20,6 +20,8 @@ import Navbar from "./components/Navbar/Navbar";
 import AddShot from "./components/Shot/AddShot";
 import Profile from "./components/Profile/Profile";
 import ShotPage from "./components/Shot/ShotPage";
+import ComingSoon from "./components/ComingSoon";
+import Footer from "./components/Footer/Footer";
 
 // connecting the frontend with the backend
 const client = new ApolloClient({
@@ -64,8 +66,10 @@ const Root = ({ refetch, session }) => (
           />
           <Route path="/shot/:_id" component={ShotPage} />} />
           <Route path="/profile" render={() => <Profile session={session} />} />
+          <Route path="/coming-soon" component={ComingSoon} />
           <Redirect to="/" />
         </Switch>
+        <Footer />
       </div>
     </ThemeProvider>
   </Router>

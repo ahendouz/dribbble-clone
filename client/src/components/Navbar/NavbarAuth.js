@@ -6,7 +6,7 @@ import SVGicon from "../SVGicon";
 import Signout from "../Auth/Signout";
 
 const NavbarAuth = ({ session }) => (
-  <NavAuth>
+  <NavAuth className="user">
     <div className="addNewShot">
       <Link to="/shot/add">
         <SVGicon
@@ -14,7 +14,6 @@ const NavbarAuth = ({ session }) => (
           style={{ marginTop: "6px" }}
           width={21}
           height={20}
-          fill="white"
         />
       </Link>
     </div>
@@ -34,6 +33,13 @@ const NavAuth = Styled.div`
     .addNewShot {
         padding-right: 1rem;
         margin-bottom: -2px;
+        svg {
+        fill: ${props => props.theme.gray6};
+            &:hover {
+            fill: ${props => props.theme.gray8}
+            transition: fill 0.6s;
+            } 
+        }
     }
     .dropdown {
         position: relative;
@@ -43,8 +49,8 @@ const NavAuth = Styled.div`
         > button {
             background: none;
             font-size: inherit;
-            color: inherit;
             text-transform: capitalize;
+            color: ${props => props.theme.gray5};            
         }
         .items {
             display: none;
@@ -59,6 +65,7 @@ const NavAuth = Styled.div`
             display: block;
             margin: 6px 0;
             padding: 4px;
+            color: ${props => props.theme.gray5};
                 &:hover {
                     background-color: #dddddd4d;
                 }

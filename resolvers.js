@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const createToken = (user, secret, expiresIn) => {
+const createToken = (user, secret, duration) => {
   const { username, email } = user;
-  return jwt.sign({ username, email }, secret, { expiresIn });
+  return jwt.sign({ username, email }, secret, { expiresIn: duration });
 };
 
 exports.resolvers = {
@@ -116,7 +116,9 @@ exports.resolvers = {
           "We couldn’t find an account matching the email and password you entered. Please check your email and password and try again."
         );
       }
-      return { token: createToken(user, process.env.SECRET, "1hr") };
+      return {
+        token: createToken(user, process.env.SECRET, "7d")
+      };
     },
 
     signupUser: async (root, { username, email, password }, { User }) => {
@@ -129,7 +131,7 @@ exports.resolvers = {
         email,
         password
       }).save();
-      return { token: createToken(newUser, process.env.SECRET, "1hr") };
+      return { token: createToken(newUser, process.env.SECRET, "7d") };
     }
   }
 };

@@ -50,7 +50,7 @@ app.use(async (req, res, next) => {
       // console.log(currentUser);
       req.currentUser = currentUser;
     } catch (err) {
-      console.log(err);
+      console.log("verifying jwt ERROR--------", err);
     }
   }
   // console.log(token);

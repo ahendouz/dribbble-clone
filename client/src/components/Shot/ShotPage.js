@@ -10,13 +10,15 @@ import { formatDate } from "../formatDate.js";
 import LikeShot from "./LikeShot";
 import SVGicon from "../SVGicon";
 import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
+import Loader from "../UI/Loader";
+import ShotColors from "../UI/ShotColors";
 
 const ShotPage = ({ match }) => {
   const { _id } = match.params;
   return (
     <Query query={GET_SHOT} variables={{ _id }}>
       {({ data, loading, error }) => {
-        if (loading) return <div>Loading...</div>;
+        if (loading) return <Loader />;
         if (error) return <ErrorPage />;
         const {
           _id,
@@ -28,36 +30,42 @@ const ShotPage = ({ match }) => {
           username
         } = data.getShot;
         return (
-          <Container style={{ fontSize: "1.3rem" }}>
-            <div className="header">
-              <div className="header-wrapper wrapper medium-wrapper">
-                <div className="headerContent">
-                  <h2 className="shotName">{name}</h2>
-                  <div className="shotInfo">
+          <Container>
+            <Header>
+              <div className="headerContent">
+                <h2 className="shotName">{name}</h2>
+                <div className="shotInfo">
+                  <span>
                     by{" "}
                     <UsernameHighlighted className="username">
-                      {username}{" "}
-                    </UsernameHighlighted>
+                      {username}
+                    </UsernameHighlighted>{" "}
                     on {formatDate(createDate)}
-                  </div>
+                  </span>
                 </div>
-                <LikeShot _id={_id} btnType="button" />
               </div>
-            </div>
-            <div className="shot">
-              <div>
+              <LikeShot _id={_id} btnType="button" />
+            </Header>
+            <Shot>
+              <div className="shot-wrapper">
                 <img src={largeImage} alt="shot" />
               </div>
-            </div>
-            <div className="description">
-              <div className="wrapper medium-wrapper">
-                <p>{description}</p>
-                <p>
-                  <SVGicon name="heart" width={13} height={13} fill="#777777" />
-                  <span>{likes} likes</span>
-                </p>
+            </Shot>
+            <Description>
+              <div className="description-wrapper">
+                <div className="left">
+                  <p className="description-text">{description}</p>
+                  <p className="likes">
+                    <SVGicon name="heart" className="heartIcon" />
+                    <span className="likeNum">{likes} likes</span>
+                  </p>
+                </div>
+                <div className="right">
+                  <SVGicon name="palette" className="paletteIcon" />
+                  <ShotColors />
+                </div>
               </div>
-            </div>
+            </Description>
           </Container>
         );
       }}
@@ -67,60 +75,108 @@ const ShotPage = ({ match }) => {
 export default withRouter(ShotPage);
 
 const Container = Styled.div`
-  font-size: 1.4rem;
-  min-height: 100vh;
+  font-size: 1.3rem;
   display: flex;
   flex-direction: column;
-  .header {
-    background: ${props => props.theme.grey7};
-    height: 10rem;
-    display: flex;
-    align-items: center;
-    .header-wrapper {
+  > div:nth-of-type(1), div:nth-of-type(2) .shot-wrapper, div:nth-of-type(3) .description-wrapper {
+    width: 80rem;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+`;
+
+const Header = Styled.div`
+  background: ${props => props.theme.grey7};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+  @media(max-width: ${props => props.theme.breakPointl}) {
+    padding: 2rem 2rem;
+    width: auto;
+  }
+  .headerContent {
+    .shotName {
+      color: ${props => props.theme.gray3};
+    }
+    .shotInfo {
       display: flex;
-      justify-content: space-between
-      .headerContent {
-        .shotName {
-          color: ${props => props.theme.gray3};
-        }
-        .shotInfo {
-          display: flex;
-          .username {
-            padding: 0px 5px 2px 5px;
-            margin-top: -0.1px;
-          }
-        }
-      }
-      > button {
-        align-self: center
+      .username {
+        margin-top: -0.1px;
       }
     }
   }
-  .shot {
-    background: white;
-    > div {
-      padding: 2rem 0;
-      width: 45rem;
-      margin: 0 auto;
-      > img {
-        width: 100%
-        box-shadow: 0 0 1px rgba(0,0,0,0.2);
-      }
+  > button {
+    align-self: center
+  }
+`;
+
+const Shot = Styled.div`
+  background: ${props => props.theme.white};
+  @media(max-width: ${props => props.theme.breakPointl}) {
+    background: none;
+  }
+  .shot-wrapper {
+    padding: 2rem 0;
+    @media(max-width: ${props => props.theme.breakPointl}) {
+      padding: 0;
+      width: auto;
+    }
+    > img {
+      width: 100%
+      box-shadow: 0 0 1px rgba(0,0,0,0.2);
     }
   }
-  .description {
-    background: ${props => props.theme.grey7};
-    padding: 3rem 0;
-    flex: 1
-    p {
-      width: 46rem;
-      font-size: 1.5rem;
+`;
+
+const Description = Styled.div`
+  padding: 3rem 0;
+  flex: 1;
+  @media(max-width: ${props => props.theme.breakPointl}) {
+    padding: 2rem 2rem;
+    width: auto;
+  };
+  .description-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2rem 0;
+    @media(max-width:  ${props => props.theme.breakPoint2}) {
+      flex-direction: column;
+    }
+    .left {
+      width: 60%;
       color: ${props => props.theme.gray4};
+      font-size: 1.5rem;
+      @media(max-width:  ${props => props.theme.breakPoint2}) {
+        width: 100%;
+      }
+      .description-text {
+        border-bottom: 1px solid ${props => props.theme.gray8};
+        padding-bottom: 2rem
+      }
+      .likes {
+        padding-top: 2rem
+        @media(max-width:  ${props => props.theme.breakPoint2}) {
+          padding-bottom: 2rem
+        }
+        .heartIcon {
+          width: 13px;
+          fill: ${props => props.theme.gray5};
+        }
+        .likeNum {
+          margin-left: 7px;
+        }
+      }
     }
-    p:last-of-type {
-      padding: 2rem 0;
-      span {
-        margin-left: 7px;
+    .right {
+      display: flex;
+      align-items: center;
+      .paletteIcon {
+        margin-right: 1rem;
+        width: 13px;
+        fill: ${props => props.theme.gray5};
       }
     }
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Card } from "../../styles/Card";
+import { Shot } from "../../styles/Shot";
 import { formatDate } from "../formatDate.js";
 import LikeShot from "./LikeShot";
 import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
@@ -17,8 +17,8 @@ const ShotItem = ({
   props
 }) => {
   return (
-    <Card>
-      <div className="container">
+    <Shot>
+      <div className="shotContainer">
         <div className="shotImg" style={{ backgroundImage: `url(${image})` }}>
           <Link to={`/shot/${_id}`}>
             <div className="shotInfo">
@@ -45,7 +45,7 @@ const ShotItem = ({
         </div>
       </div>
       <UsernameHighlighted className="username">{username}</UsernameHighlighted>
-    </Card>
+    </Shot>
   );
 };
 

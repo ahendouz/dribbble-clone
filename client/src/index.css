@@ -9,6 +9,7 @@ html {
   font-size: 62.5%; /* 100% = 16px so 62.5% = 10px
                     1rem = 10px, 10px/16px = 62.5% */
 }
+
 body {
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
@@ -17,6 +18,7 @@ body {
   color: rgb(181, 181, 181);
   line-height: 1.7;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -30,13 +32,7 @@ body {
   width: 100rem;
 }
 .big-wrapper {
-  width: 122rem;
-}
-
-@media screen and (max-width: 350px) {
-  .container {
-    width: 27rem;
-  }
+  width: 200rem;
 }
 
 a {
@@ -46,6 +42,7 @@ a {
 button {
   border: none;
 }
+input:focus,
 button:focus {
   outline: none;
 }

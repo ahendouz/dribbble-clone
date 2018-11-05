@@ -3,7 +3,7 @@ exports.typeDefs = `
         _id: ID
         name: String! 
         image: String!
-        largeImage: String
+        largeImage: String!
         description: String!
         createDate: String
         likes: Int
@@ -36,7 +36,7 @@ exports.typeDefs = `
         addShot(
             name: String!,
             image: String!,
-            largeImage: String,
+            largeImage: String!,
             description: String!, 
             username: String
         ) : Shot

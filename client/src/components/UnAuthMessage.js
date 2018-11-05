@@ -7,13 +7,18 @@ import { PinkBtn } from "../styles/Buttons";
 const UnAuthMessage = ({ session }) => {
   let message = (
     <Message>
-      <p>
-        <span>What are you working on?</span> Dribbble is where designers get
-        inspired and hired.
-      </p>
-      <Link to="/signup">
-        <PinkBtn>Continue →</PinkBtn>
-      </Link>
+      <div className="message">
+        <p>
+          <span>What are you working on?</span> Dribbble is where designers get
+          inspired and hired.
+        </p>
+        <Link to="/signup">
+          <PinkBtn>Continue →</PinkBtn>
+        </Link>
+      </div>
+      <div className="hire">
+        Looking to hire a designer? <Link to="coming-soon">Learn more</Link>
+      </div>
     </Message>
   );
   return <Fragment>{message}</Fragment>;
@@ -21,6 +26,7 @@ const UnAuthMessage = ({ session }) => {
 export default UnAuthMessage;
 
 const Message = Styled.div`
+  .message {
     background: ${props => props.theme.gray1};
     text-align: center;
     font-size: 1.8rem;
@@ -32,4 +38,15 @@ const Message = Styled.div`
         color: white
       }
     }
+  }
+  .hire {
+    background: ${props => props.theme.gray2};
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 2rem 0;
+    a {
+      color: white;
+      text-decoration: underline;
+    }
+  }
 `;

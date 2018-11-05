@@ -7,7 +7,6 @@ import { LIKE_SHOT, UNLIKE_SHOT, GET_SHOT } from "../../queries";
 import SVGicon from "../SVGicon";
 import withSession from "../withSession.js";
 import { LikeBtn } from "../../styles/Buttons";
-import { heartBtn } from "../../styles/Buttons";
 
 class LikeShot extends Component {
   state = {
@@ -125,8 +124,6 @@ class LikeShot extends Component {
                     />
                   </div>
                 );
-              } else {
-                <button>like</button>;
               }
               return username ? (
                 <Fragment>{btn}</Fragment>
