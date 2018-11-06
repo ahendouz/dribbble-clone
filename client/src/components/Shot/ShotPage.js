@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Styled from "styled-components";
 import { Query } from "react-apollo";
+import { ColorExtractor } from "react-color-extractor";
 
 import { GET_SHOT } from "../../queries";
 
@@ -11,67 +12,80 @@ import LikeShot from "./LikeShot";
 import SVGicon from "../SVGicon";
 import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
 import Loader from "../UI/Loader";
-import ShotColors from "../UI/ShotColors";
+import ShotColor from "../UI/ShotColor";
 
-const ShotPage = ({ match }) => {
-  const { _id } = match.params;
-  return (
-    <Query query={GET_SHOT} variables={{ _id }}>
-      {({ data, loading, error }) => {
-        if (loading) return <Loader />;
-        if (error) return <ErrorPage />;
-        const {
-          _id,
-          largeImage,
-          name,
-          description,
-          createDate,
-          likes,
-          username
-        } = data.getShot;
-        return (
-          <Container>
-            <Header>
-              <div className="headerContent">
-                <h2 className="shotName">{name}</h2>
-                <div className="shotInfo">
-                  <span>
-                    by{" "}
-                    <UsernameHighlighted className="username">
-                      {username}
-                    </UsernameHighlighted>{" "}
-                    on {formatDate(createDate)}
-                  </span>
+class ShotPage extends Component {
+  state = { colors: [] };
+
+  getColors = colors =>
+    this.setState(state => ({ colors: [...state.colors, ...colors] }));
+
+  render() {
+    const { _id } = this.props.match.params;
+    return (
+      <Query query={GET_SHOT} variables={{ _id }}>
+        {({ data, loading, error }) => {
+          if (loading) return <Loader />;
+          if (error) return <ErrorPage />;
+          const {
+            _id,
+            largeImage,
+            name,
+            description,
+            createDate,
+            likes,
+            username
+          } = data.getShot;
+          return (
+            <Container>
+              <Header>
+                <div className="headerContent">
+                  <h2 className="shotName">{name}</h2>
+                  <div className="shotInfo">
+                    <span>
+                      by{" "}
+                      <UsernameHighlighted className="username">
+                        {username}
+                      </UsernameHighlighted>{" "}
+                      on {formatDate(createDate)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <LikeShot _id={_id} btnType="button" />
-            </Header>
-            <Shot>
-              <div className="shot-wrapper">
-                <img src={largeImage} alt="shot" />
-              </div>
-            </Shot>
-            <Description>
-              <div className="description-wrapper">
-                <div className="left">
-                  <p className="description-text">{description}</p>
-                  <p className="likes">
-                    <SVGicon name="heart" className="heartIcon" />
-                    <span className="likeNum">{likes} likes</span>
-                  </p>
+                <LikeShot _id={_id} btnType="button" />
+              </Header>
+              <Shot>
+                <div className="shot-wrapper">
+                  <ColorExtractor getColors={this.getColors}>
+                    <img src={largeImage} alt="shot" />
+                  </ColorExtractor>
                 </div>
-                <div className="right">
-                  <SVGicon name="palette" className="paletteIcon" />
-                  <ShotColors />
+              </Shot>
+              <Description>
+                <div className="description-wrapper">
+                  <div className="left">
+                    <p className="description-text">{description}</p>
+                    <p className="likes">
+                      <SVGicon name="heart" className="heartIcon" />
+                      <span className="likeNum">{likes} likes</span>
+                    </p>
+                  </div>
+                  <div className="right">
+                    <SVGicon name="palette" className="paletteIcon" />
+                    <ul className="shotColors">
+                      {this.state.colors.map(color => (
+                        <ShotColor hex={color} />
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </Description>
-          </Container>
-        );
-      }}
-    </Query>
-  );
-};
+              </Description>
+            </Container>
+          );
+        }}
+      </Query>
+    );
+  }
+}
 export default withRouter(ShotPage);
 
 const Container = Styled.div`
@@ -177,6 +191,9 @@ const Description = Styled.div`
         margin-right: 1rem;
         width: 13px;
         fill: ${props => props.theme.gray5};
+      }
+      .shotColors {
+        display: flex;
       }
     }
   }

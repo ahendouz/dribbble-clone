@@ -13,6 +13,7 @@
     "npm": "^6.4.1",
     "react": "^16.5.0",
     "react-apollo": "^2.1.11",
+    "react-color-extractor": "^1.1.2",
     "react-dom": "^16.5.0",
     "react-pose": "^3.3.6",
     "react-router-dom": "^4.3.1",

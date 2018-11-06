@@ -109,11 +109,16 @@ exports.resolvers = {
 
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
-      const isValidPassword = await bcrypt.compare(password, user.password);
 
-      if (!user || !isValidPassword) {
+      if (!user) {
         throw new Error(
-          "We couldn’t find an account matching the email and password you entered. Please check your email and password and try again."
+          "We couldn’t find an account matching the username you entered. Please check your password and try again."
+        );
+      }
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        throw new Error(
+          "We couldn’t find an account matching the password you entered. Please check your password and try again."
         );
       }
       return {

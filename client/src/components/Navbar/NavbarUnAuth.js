@@ -18,6 +18,9 @@ export default NavbarUnAuth;
 
 const NavUnAuth = Styled.div`
   margin-left: auto;
+  @media (max-width: ${props => props.theme.breakPoint9}) {
+      margin-left: 0;
+  }
     ul {
         margin: 0;
         padding-right: 2.7rem;

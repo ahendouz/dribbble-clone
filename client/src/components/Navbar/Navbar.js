@@ -27,7 +27,7 @@ class Navbar extends Component {
           <div onClick={this.toggle}>
             <SVGicon className="navicon" name="nav" />
           </div>
-          <Logo className="dribbble-logo" name="dribbble-logo" />
+          <Logo name="dribbble-logo" />
           <NavbarLinks />
           {session && session.getCurrentUser ? (
             <NavbarAuth session={session} />
@@ -115,6 +115,7 @@ const Nav = Styled.nav`
   position: relative;
   @media (max-width: ${props => props.theme.breakPoint9}) {
     height: 4.2rem;
+    justify-content: space-between;
   }
   .navicon {
     display: none;
@@ -125,12 +126,13 @@ const Nav = Styled.nav`
     }
   }
   .dribbble-logo {
-    line-height: 1.1;
-    width: 79px;
-    height: 20px;
-    fill: ${props => props.theme.white};
+    svg {
+      line-height: 1.1;
+      width: 79px;
+      height: 20px;
+      fill: ${props => props.theme.white};
+    }
     @media (max-width: ${props => props.theme.breakPoint9}) {
-      flex: 1;
       display: flex;
       justify-content: center;
       padding-left: 20px;

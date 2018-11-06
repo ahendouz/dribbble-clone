@@ -5,10 +5,12 @@ import Styled from "styled-components";
 
 import { SIGNIN_USER } from "../../queries";
 
-import ErrorMessage from "../ErrorMessage";
-import { Form } from "../../styles/Form";
-import { PinkBtn } from "../../styles/Buttons";
 import withAuth from "../withAuth";
+import ErrorMessage from "../ErrorMessage";
+import { PinkBtn } from "../../styles/Buttons";
+import { Form } from "../../styles/Form";
+
+
 
 const initialState = {
   username: "",

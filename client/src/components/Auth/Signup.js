@@ -5,10 +5,15 @@ import { Mutation } from "react-apollo";
 
 import { SIGNUP_USER } from "../../queries";
 
+import withAuth from "../withAuth";
 import { Form } from "../../styles/Form";
 import { PinkBtn } from "../../styles/Buttons";
-import withAuth from "../withAuth";
 import Logo from "../UI/Logo";
+
+
+const emailRegex = RegExp(
+  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+);
 
 const initialState = {
   username: "",
@@ -59,7 +64,7 @@ class Signup extends React.Component {
         <SignUpContainer>
           <Artwork>
             <div className="left--text">
-              <Logo className="dribbble-logo" name="dribbble-logo" />
+              <Logo name="dribbble-logo" />
               <h1>Discover the world’s top Designers & Creatives</h1>
               <p>Art by Alexa Erkaeva</p>
             </div>
@@ -137,6 +142,12 @@ export default withAuth(session => session && !session.getCurrentUser)(
   withRouter(Signup)
 );
 
+
+
+
+
+
+
 const BigContainer = Styled.div`
   background: ${props => props.theme.gray3};
   padding: 3rem 0;
@@ -148,6 +159,7 @@ const BigContainer = Styled.div`
     background: ${props => props.theme.white};
   }
 `;
+
 
 const SignUpContainer = Styled.div`
   width: 70rem;
@@ -164,6 +176,7 @@ const SignUpContainer = Styled.div`
     border-radius: 0;
   }
 `;
+
 
 const Artwork = Styled.div`
   background: ${props => props.theme.highlight4};
@@ -191,9 +204,11 @@ const Artwork = Styled.div`
       text-align: center;
     }
     .dribbble-logo {
-      height: 2.5rem;
-      width: 10rem;
-      fill: ${props => props.theme.gray9}
+        svg {
+          height: 2.5rem;
+          width: 10rem;
+          fill: ${props => props.theme.gray9}
+        }
     }
     h1 {
       padding: 1.4rem 0 2.2rem 0;
@@ -211,6 +226,8 @@ const Artwork = Styled.div`
   }
 `;
 
+
+
 const FormContainer = Styled.div`
   background-color: ${props => props.theme.white};
   .title {
@@ -218,6 +235,7 @@ const FormContainer = Styled.div`
     color: ${props => props.theme.gray4}
   }
 `;
+
 
 const Message = Styled.div`
   background-color: ${props => props.theme.white};
