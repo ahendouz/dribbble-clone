@@ -5,10 +5,9 @@ import SVGicon from "../SVGicon";
 
 const Logo = props => {
   return (
-      <Link to="/" className="logo">
-        <SVGicon {...props}  />
-      </Link>
+    <Link to="/" className="dribbble-logo">
+      <SVGicon {...props} />
+    </Link>
   );
 };
 export default Logo;
-

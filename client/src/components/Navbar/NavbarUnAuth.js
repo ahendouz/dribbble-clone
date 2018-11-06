@@ -4,7 +4,7 @@ import Styled from "styled-components";
 
 const NavbarUnAuth = () => (
   <NavUnAuth>
-    <ul className="links">
+    <ul>
       <li className="link">
         <Link to="/signin">Signin</Link>
       </li>
@@ -17,11 +17,15 @@ const NavbarUnAuth = () => (
 export default NavbarUnAuth;
 
 const NavUnAuth = Styled.div`
-    .links {
+  margin-left: auto;
+    ul {
         margin: 0;
         padding-right: 2.7rem;
         display: flex;
         align-items: center;
+        @media (max-width: ${props => props.theme.breakPoint9}) {
+          padding-right: 0
+        }
         .link {
           padding-left: 15px;
           font-weight: inherit

@@ -2,12 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
+import SVGicon from "../SVGicon";
+
 const ShotMenu = () => {
   return (
     <Menu className="shot-menu">
       <ul>
         <Dropdown>
-          <button>Following ⌄</button>
+          <button>
+            Following <SVGicon name="downArrow" />
+          </button>
           <div className="items">
             <Link to="/coming-soon">Shots You Like</Link>
           </div>
@@ -36,7 +40,8 @@ const Menu = Styled.div`
     border: 1px solid ${props => props.theme.gray8};
     color: ${props => props.theme.gray6};
     font-size: 1.52rem;
-    @media (max-width: ${props => props.theme.breakPointo}) {
+    @media (max-width: ${props => props.theme.breakPoint12}) {
+        /* HERE */
         font-size: 1.22rem
     };
     > ul {
@@ -44,7 +49,7 @@ const Menu = Styled.div`
         justify-content: center;
         align-items: center;
         margin: 0 auto;
-        @media (max-width: ${props => props.theme.breakPointd}) {
+        @media (max-width: ${props => props.theme.breakPoint15}) {
             max-width: 34rem;
             flex-wrap: wrap;
         }
@@ -68,7 +73,11 @@ const Dropdown = Styled.li`
         background: none;
         font-size: inherit;
         color: ${props => props.theme.gray3};
-        font-weight: 600           
+        font-weight: 600     
+        > svg {
+            fill: ${props => props.theme.gray6};
+            width: 8px;
+        }      
     }
     .items {
         display: none;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
+import Styled from "styled-components";
 
 import { GET_USER_SHOTS } from "../../queries";
 
@@ -14,14 +15,27 @@ const UserShots = ({ username }) => (
       if (loading) return <Loader />;
       if (error) return <ErrorPage />;
       return (
-        <Shots>
-          {data.getUserShots.map(shot => (
-            <ShotItem key={shot._id} {...shot} />
-          ))}
-        </Shots>
+        <UserShoots>
+          <ul>
+            {data.getUserShots.map(shot => (
+              <ShotItem key={shot._id} {...shot} />
+            ))}
+          </ul>
+        </UserShoots>
       );
     }}
   </Query>
 );
 
 export default UserShots;
+
+const UserShoots = Styled(Shots)`
+  flex-basis: 67%;
+  .username {
+    display: none
+  }
+  @media(max-width: ${props => props.theme.breakPoint6}) {
+    width: 100%;
+    padding: 2rem 0;
+  }
+`;

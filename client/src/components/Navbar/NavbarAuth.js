@@ -6,7 +6,7 @@ import SVGicon from "../SVGicon";
 import Signout from "../Auth/Signout";
 
 const NavbarAuth = ({ session }) => (
-  <NavAuth className="user">
+  <NavAuth>
     <div className="addNewShot">
       <Link to="/shot/add">
         <SVGicon
@@ -20,7 +20,9 @@ const NavbarAuth = ({ session }) => (
     <div className="dropdown">
       <button>{session.getCurrentUser.username}</button>
       <div className="items">
-        <Link to="/profile">{session.getCurrentUser.username}</Link>
+        <Link to="/profile" className="username">
+          {session.getCurrentUser.username}
+        </Link>
         <hr />
         <Signout />
       </div>
@@ -30,6 +32,13 @@ const NavbarAuth = ({ session }) => (
 export default NavbarAuth;
 
 const NavAuth = Styled.div`
+    margin-left: auto;
+    display: flex;
+    align-items: center
+    align-self: stretch;
+    @media (max-width: ${props => props.theme.breakPoint9}) {
+      margin-left: 0;
+    }
     .addNewShot {
         padding-right: 1rem;
         margin-bottom: -2px;
@@ -46,6 +55,9 @@ const NavAuth = Styled.div`
         display: flex;
         margin-right: 3rem;
         align-self: stretch;
+        @media (max-width: ${props => props.theme.breakPoint9}) {
+            margin-right: 0;
+        }
         > button {
             background: none;
             font-size: inherit;
@@ -61,18 +73,18 @@ const NavAuth = Styled.div`
             box-shadow: ${props => props.theme.shadow1};
             z-index: 1;
             border-radius: 8px;
-            a, p {
-            display: block;
-            margin: 6px 0;
-            padding: 4px;
-            color: ${props => props.theme.gray5};
+            .username, .signout {
+                display: block;
+                margin: 6px 0;
+                padding: 4px;
+                color: ${props => props.theme.gray5};
                 &:hover {
                     background-color: #dddddd4d;
                 }
             }
             hr {
-            border-top: 1px solid #9e9e9e26;
-            border-bottom: none;
+                border-top: 1px solid #9e9e9e26;
+                border-bottom: none;
             }
         }
         &:hover {

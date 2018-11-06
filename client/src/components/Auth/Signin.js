@@ -65,32 +65,30 @@ class Signin extends React.Component {
                     />
                   </div>
                   <h2>Signin</h2>
-                  <SignInForm>
-                    <form
-                      onSubmit={event => this.handleSubmit(event, signupUser)}
+                  <SignInForm
+                    onSubmit={event => this.handleSubmit(event, signupUser)}
+                  >
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder="Username"
+                      value={username}
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={this.handleChange}
+                    />
+                    <PinkBtn
+                      style={{ alignSelf: "stretch" }}
+                      type="submit"
+                      disabled={loading || this.validateForm()}
                     >
-                      <input
-                        type="text"
-                        name="username"
-                        placeholder="Username"
-                        value={username}
-                        onChange={this.handleChange}
-                      />
-                      <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={this.handleChange}
-                      />
-                      <PinkBtn
-                        style={{ alignSelf: "stretch" }}
-                        type="submit"
-                        disabled={loading || this.validateForm()}
-                      >
-                        Sign In
-                      </PinkBtn>
-                    </form>
+                      Sign In
+                    </PinkBtn>
                   </SignInForm>
                   <Mes>
                     Not a member? <Link to="/signup">Sign up now</Link>
@@ -142,7 +140,6 @@ const SignInContainer = Styled.div`
 
 const SignInForm = Styled(Form)`
   width: 40rem;
-  margin: 0 auto;
   }
   input {
     background: white !important;
@@ -151,5 +148,8 @@ const SignInForm = Styled(Form)`
 
 const Mes = Styled.div`
   font-size: 1.4rem;
-  color: ${props => props.theme.gray4};
+  color: ${props => props.theme.gray5};
+  a {
+    text-decoration: underline;
+  }
 `;

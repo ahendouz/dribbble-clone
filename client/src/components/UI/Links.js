@@ -57,11 +57,11 @@ export default Links;
 const Container = Styled.div`
   height: 17.5rem;
   width: 27%;
-  @media (max-width: ${props => props.theme.breakPoint1}) {
+  @media (max-width: ${props => props.theme.breakPoint7}) {
     height: auto;
     width: auto;
   }
-  @media (max-width: ${props => props.theme.breakPointa}) {
+  @media (max-width: ${props => props.theme.breakPoint8}) {
     height: 17.5rem;
   }
   > ul {

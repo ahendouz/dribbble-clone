@@ -5,9 +5,9 @@
   padding: 0;
   box-sizing: inherit;
 }
+
 html {
-  font-size: 62.5%; /* 100% = 16px so 62.5% = 10px
-                    1rem = 10px, 10px/16px = 62.5% */
+  font-size: 62.5%; /*16px -> 100%   |   10px -> 62.5%   |   10px = 1rem*/
 }
 
 body {
@@ -21,31 +21,20 @@ body {
   overflow-x: hidden;
 }
 
-.wrapper {
-  max-width: 100%;
-  margin: 0 auto;
-}
-.small-wrapper {
-  width: 55rem;
-}
-.medium-wrapper {
-  width: 100rem;
-}
-.big-wrapper {
-  width: 200rem;
-}
-
 a {
   text-decoration: none;
   color: inherit;
 }
+
+ul {
+  list-style: none;
+}
+
 button {
   border: none;
 }
+
 input:focus,
 button:focus {
   outline: none;
-}
-ul {
-  list-style: none;
 }

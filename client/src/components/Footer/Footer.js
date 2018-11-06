@@ -37,33 +37,32 @@ const FooterContainer = Styled.div`
   > p {
     padding-top: 2rem;
   }
-  @media (max-width: ${props => props.theme.breakPointo}) {
+  /* HERE */
+  @media (max-width: ${props => props.theme.breakPoint12}) {
     font-size: 1.2rem;
   };
   > div {
     margin: 0 auto;
-    @media (max-width: ${props => props.theme.breakPointw}) {
-      width: 200rem;
-    };
-    @media (max-width: ${props => props.theme.breakPointe}) {
+    width: 200rem;
+    @media (max-width: ${props => props.theme.breakPoint2}) {
       width: 175rem;
     };
-    @media (max-width: ${props => props.theme.breakPointt}) {
+    @media (max-width: ${props => props.theme.breakPoint3}) {
       width: 150rem;
     };
-    @media (max-width: ${props => props.theme.breakPointy}) {
+    @media (max-width: ${props => props.theme.breakPoint4}) {
       width: 125rem;
     };
-    @media (max-width: ${props => props.theme.breakPointu}) {
+    @media (max-width: ${props => props.theme.breakPoint5}) {
       width: 100rem;
     };
-    @media (max-width: ${props => props.theme.breakPointa}) {
+    @media (max-width: ${props => props.theme.breakPoint8}) {
       width: 75rem;
     };
-    @media (max-width: ${props => props.theme.breakPointo}) {
+    @media (max-width: ${props => props.theme.breakPoint12}) {
       width: 63rem;
     };
-    @media (max-width: ${props => props.theme.breakPointh}) {
+    @media (max-width: ${props => props.theme.breakPoint13}) {
       padding: 2rem;
       width: auto;
     };
@@ -73,7 +72,7 @@ const FooterContainer = Styled.div`
 const Top = Styled.div`
   display: flex;
   justify-content: space-around;
-  @media (max-width: ${props => props.theme.breakPointa}) {
+  @media (max-width: ${props => props.theme.breakPoint8}) {
     flex-direction: column;
   }
   > div {
@@ -85,11 +84,11 @@ const Top = Styled.div`
   }
   > div:first-of-type {
     width: 20%
-    @media (max-width: ${props => props.theme.breakPointa}) {
+    @media (max-width: ${props => props.theme.breakPoint8}) {
       width: 30%
       margin-bottom: 2.3rem
     }
-    @media (max-width: ${props => props.theme.breakPointo}) {
+    @media (max-width: ${props => props.theme.breakPoint12}) {
       width: 80%
     }
   }
@@ -97,7 +96,7 @@ const Top = Styled.div`
     width: 50%;
     display: flex;
     justify-content: space-around;
-    @media (max-width: ${props => props.theme.breakPointa}) {
+    @media (max-width: ${props => props.theme.breakPoint8}) {
       flex-direction: column;
     }
     > div {

@@ -92,7 +92,7 @@ const Header = Styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 2rem 0;
-  @media(max-width: ${props => props.theme.breakPointl}) {
+  @media(max-width: ${props => props.theme.breakPoint10}) {
     padding: 2rem 2rem;
     width: auto;
   }
@@ -114,12 +114,12 @@ const Header = Styled.div`
 
 const Shot = Styled.div`
   background: ${props => props.theme.white};
-  @media(max-width: ${props => props.theme.breakPointl}) {
+  @media(max-width: ${props => props.theme.breakPoint10}) {
     background: none;
   }
   .shot-wrapper {
     padding: 2rem 0;
-    @media(max-width: ${props => props.theme.breakPointl}) {
+    @media(max-width: ${props => props.theme.breakPoint10}) {
       padding: 0;
       width: auto;
     }
@@ -133,7 +133,7 @@ const Shot = Styled.div`
 const Description = Styled.div`
   padding: 3rem 0;
   flex: 1;
-  @media(max-width: ${props => props.theme.breakPointl}) {
+  @media(max-width: ${props => props.theme.breakPoint10}) {
     padding: 2rem 2rem;
     width: auto;
   };
@@ -142,14 +142,14 @@ const Description = Styled.div`
     align-items: flex-start;
     justify-content: space-between;
     padding: 2rem 0;
-    @media(max-width:  ${props => props.theme.breakPoint2}) {
+    @media(max-width:  ${props => props.theme.breakPoint9}) {
       flex-direction: column;
     }
     .left {
       width: 60%;
       color: ${props => props.theme.gray4};
       font-size: 1.5rem;
-      @media(max-width:  ${props => props.theme.breakPoint2}) {
+      @media(max-width:  ${props => props.theme.breakPoint9}) {
         width: 100%;
       }
       .description-text {
@@ -158,7 +158,7 @@ const Description = Styled.div`
       }
       .likes {
         padding-top: 2rem
-        @media(max-width:  ${props => props.theme.breakPoint2}) {
+        @media(max-width:  ${props => props.theme.breakPoint9}) {
           padding-bottom: 2rem
         }
         .heartIcon {

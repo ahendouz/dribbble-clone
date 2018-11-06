@@ -25,15 +25,9 @@ class Navbar extends Component {
       <Container>
         <Nav>
           <div onClick={this.toggle}>
-            <SVGicon className="navicon" name="nav" width={17} fill="white" />
+            <SVGicon className="navicon" name="nav" />
           </div>
-          <Logo
-            className="logo"
-            name="dribbble-logo"
-            width={79}
-            height={20}
-            fill="white"
-          />
+          <Logo className="dribbble-logo" name="dribbble-logo" />
           <NavbarLinks />
           {session && session.getCurrentUser ? (
             <NavbarAuth session={session} />
@@ -55,13 +49,6 @@ export default Navbar;
 
 const Container = Styled.div`
   background: ${props => props.theme.gray2};
-  .hiddenMenu {
-    display: none
-  }
-  .visibleMenu {
-    display: block
-    text-align: center;
-  }
   .search {
     position: relative;
     input {
@@ -77,7 +64,15 @@ const Container = Styled.div`
       fill: ${props => props.theme.gray6};
     }
   }
+  .hiddenMenu {
+    display: none
+  }
+  .visibleMenu {
+    display: block
+    text-align: center;
+  }
 `;
+
 const NavMenu = Styled.div`
   padding: 0 2rem;
   .search {
@@ -102,11 +97,15 @@ const NavMenu = Styled.div`
       border-top: 1px solid ${props => props.theme.gray3};
       width: 100%;
       padding: 1.2rem 0;
+      > a {
+        display: flex
+      }
      }
   }
 `;
+
 const Nav = Styled.nav`
-  color: ${props => props.theme.gray7};
+  color: ${props => props.theme.gray5};
   font-size: 1.3rem;
   height: 5.7rem;
   display: flex;
@@ -114,19 +113,23 @@ const Nav = Styled.nav`
   text-transform: capitalize;
   padding: 0 30px;
   position: relative;
-  @media (max-width: ${props => props.theme.breakPoint2}) {
+  @media (max-width: ${props => props.theme.breakPoint9}) {
     height: 4.2rem;
   }
   .navicon {
     display: none;
     fill: ${props => props.theme.gray6};
-    @media (max-width: ${props => props.theme.breakPoint2}) {
+    width: 17px;
+    @media (max-width: ${props => props.theme.breakPoint9}) {
       display: block
     }
   }
-  .logo {
+  .dribbble-logo {
     line-height: 1.1;
-    @media (max-width: ${props => props.theme.breakPoint2}) {
+    width: 79px;
+    height: 20px;
+    fill: ${props => props.theme.white};
+    @media (max-width: ${props => props.theme.breakPoint9}) {
       flex: 1;
       display: flex;
       justify-content: center;
@@ -138,31 +141,13 @@ const Nav = Styled.nav`
     } 
   }
   .links {
-    @media (max-width: ${props => props.theme.breakPoint2}) {
+    @media (max-width: ${props => props.theme.breakPoint9}) {
       display: none;
-    }
-  }
-  .user {
-    margin-left: auto;
-    display: flex;
-    align-items: center
-    align-self: stretch;
-    @media (max-width: ${props => props.theme.breakPoint2}) {
-      margin-left: 0;
-    }
-    .dropdown {
-      @media (max-width: ${props => props.theme.breakPoint2}) {
-        margin-right: 0;
-      }
-    }
-    p {
-      margin: 0;
-      padding-right: 1rem
     }
   }
   .search {
     position: relative;
-    @media (max-width: ${props => props.theme.breakPoint2}) {
+    @media (max-width: ${props => props.theme.breakPoint9}) {
       display: none;
     }
     input {

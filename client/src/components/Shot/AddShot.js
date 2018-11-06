@@ -104,53 +104,53 @@ class AddShot extends React.Component {
           return (
             <AddShotContainer>
               <AddShotHeading>What are you working on?</AddShotHeading>
-              <Form className="small-wrapper wrapper">
-                <form onSubmit={event => this.handleSubmit(event, addShot)}>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Add Name"
-                    onChange={this.handleChange}
-                    value={name}
-                  />
-                  <fieldset disabled={loading} aria-busy={loading}>
-                    <label htmlFor="file">
-                      Image
-                      <input
-                        type="file"
-                        name="file"
-                        disabled={this.state.image === "loading"}
-                        placeholder="Upload an image"
-                        onChange={this.uploadFile}
+              <AddShotForm
+                onSubmit={event => this.handleSubmit(event, addShot)}
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Add Name"
+                  onChange={this.handleChange}
+                  value={name}
+                />
+                <fieldset disabled={loading} aria-busy={loading}>
+                  <label htmlFor="file">
+                    Image
+                    <input
+                      type="file"
+                      name="file"
+                      disabled={this.state.image === "loading"}
+                      placeholder="Upload an image"
+                      onChange={this.uploadFile}
+                    />
+                    {this.state.image === "loading" ? (
+                      <p>Loading...</p>
+                    ) : this.state.image === "" ? null : (
+                      <img
+                        width="200"
+                        src={this.state.image}
+                        alt="Upload Preview"
                       />
-                      {this.state.image === "loading" ? (
-                        <p>Loading...</p>
-                      ) : this.state.image === "" ? null : (
-                        <img
-                          width="200"
-                          src={this.state.image}
-                          alt="Upload Preview"
-                        />
-                      )}
-                    </label>
-                  </fieldset>
-                  <input
-                    type="text"
-                    name="description"
-                    placeholder="Add Description"
-                    onChange={this.handleChange}
-                    value={description}
-                  />
-                  <PinkBtn
-                    disabled={loading || this.validateForm()}
-                    type="submit"
-                  >
-                    Add Shot
-                  </PinkBtn>
+                    )}
+                  </label>
+                </fieldset>
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="Add Description"
+                  onChange={this.handleChange}
+                  value={description}
+                />
+                <PinkBtn
+                  disabled={loading || this.validateForm()}
+                  type="submit"
+                >
+                  Add Shot
+                </PinkBtn>
 
-                  {/* {error && <Error error={error} />} */}
-                </form>
-              </Form>
+                {/* {error && <Error error={error} />} */}
+              </AddShotForm>
             </AddShotContainer>
           );
         }}
@@ -164,11 +164,12 @@ export default withAuth(session => session && session.getCurrentUser)(
 );
 
 const AddShotHeading = Styled(HeadingPrimary)`
-    padding: 1.2rem 0;
-    margin-bottom: 2rem;
-    background: ${props => props.theme.gray9};
+  padding: 5.2rem 0 2rem 0;
 `;
 const AddShotContainer = Styled.div`
   min-height: 100vh;
-  text-align: center
+  text-align: center;
+`;
+const AddShotForm = Styled(Form)`
+    width: 55rem;
 `;

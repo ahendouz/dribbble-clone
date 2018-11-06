@@ -4,7 +4,7 @@ export const Shot = Styled.li`
   .username{
     padding-top: 0.8rem;
     padding-left: 2rem;
-    @media (max-width: ${props => props.theme.breakPointd}) {
+    @media (max-width: ${props => props.theme.breakPoint15}) {
         display: none;
     };
   }
@@ -12,10 +12,10 @@ export const Shot = Styled.li`
     padding: 1rem 1rem 0 1rem;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07);
     background: white;
-    @media (max-width: ${props => props.theme.breakPointd}) {
+    @media (max-width: ${props => props.theme.breakPoint15}) {
       padding: 0.6rem;
     };
-    @media (max-width: ${props => props.theme.breakPointv}) {
+    @media (max-width: ${props => props.theme.breakPoint19}) {
       padding: 0.4rem;
     };
     .shotImg {
@@ -25,22 +25,22 @@ export const Shot = Styled.li`
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
-        @media (max-width: ${props => props.theme.breakPointm}) {
+        @media (max-width: ${props => props.theme.breakPoint16}) {
             height: 14rem;
         }
-        @media (max-width: ${props => props.theme.breakPointn}) {
+        @media (max-width: ${props => props.theme.breakPoint17}) {
             height: 12rem;
         };
-        @media (max-width: ${props => props.theme.breakPointb}) {
+        @media (max-width: ${props => props.theme.breakPoint18}) {
             height: 10rem;
         };
-        @media (max-width: ${props => props.theme.breakPointv}) {
+        @media (max-width: ${props => props.theme.breakPoint19}) {
             height: 9rem;
         };
-        @media (max-width: ${props => props.theme.breakPointc}) {
+        @media (max-width: ${props => props.theme.breakPoint20}) {
             height: 8rem;
         };
-        @media (max-width: ${props => props.theme.breakPointz}) {
+        @media (max-width: ${props => props.theme.breakPoint21}) {
             height: 7rem;
         };
         &:hover div {
@@ -75,7 +75,7 @@ export const Shot = Styled.li`
         justify-content: space-between;
         padding: 0.4rem 0 0.7rem 0;
         font-size: 1.1rem;
-        @media (max-width: ${props => props.theme.breakPointd}) {
+        @media (max-width: ${props => props.theme.breakPoint15}) {
             display: none;
         };
         .like {
