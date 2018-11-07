@@ -10,8 +10,6 @@ import ErrorMessage from "../ErrorMessage";
 import { PinkBtn } from "../../styles/Buttons";
 import { Form } from "../../styles/Form";
 
-
-
 const initialState = {
   username: "",
   password: ""
@@ -50,7 +48,7 @@ class Signin extends React.Component {
     const { username, password } = this.state;
     return (
       <Mutation mutation={SIGNIN_USER} variables={{ username, password }}>
-        {(signupUser, { data, loading, error }) => {
+        {(signinUser, { data, loading, error }) => {
           return (
             <Fragment>
               {error && (
@@ -68,7 +66,7 @@ class Signin extends React.Component {
                   </div>
                   <h2>Signin</h2>
                   <SignInForm
-                    onSubmit={event => this.handleSubmit(event, signupUser)}
+                    onSubmit={event => this.handleSubmit(event, signinUser)}
                   >
                     <input
                       type="text"

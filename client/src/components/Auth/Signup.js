@@ -10,7 +10,6 @@ import { Form } from "../../styles/Form";
 import { PinkBtn } from "../../styles/Buttons";
 import Logo from "../UI/Logo";
 
-
 const emailRegex = RegExp(
   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
 );
@@ -19,6 +18,7 @@ const initialState = {
   username: "",
   email: "",
   password: "",
+  fullname: "",
   passwordConfirmation: ""
 };
 
@@ -58,7 +58,13 @@ class Signup extends React.Component {
   };
 
   render() {
-    const { username, email, password, passwordConfirmation } = this.state;
+    const {
+      username,
+      email,
+      password,
+      passwordConfirmation,
+      fullname
+    } = this.state;
     return (
       <BigContainer>
         <SignUpContainer>
@@ -80,7 +86,13 @@ class Signup extends React.Component {
             <h2 className="title">Sign Up With Email</h2>
             <Mutation
               mutation={SIGNUP_USER}
-              variables={{ username, email, password, passwordConfirmation }}
+              variables={{
+                username,
+                email,
+                password,
+                fullname,
+                passwordConfirmation,
+              }}
             >
               {(signupUser, { data, loading, error }) => {
                 return (
@@ -92,6 +104,13 @@ class Signup extends React.Component {
                       name="username"
                       placeholder="Username"
                       value={username}
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      type="text"
+                      name="fullname"
+                      placeholder="fullname"
+                      value={fullname}
                       onChange={this.handleChange}
                     />
                     <input
@@ -142,12 +161,6 @@ export default withAuth(session => session && !session.getCurrentUser)(
   withRouter(Signup)
 );
 
-
-
-
-
-
-
 const BigContainer = Styled.div`
   background: ${props => props.theme.gray3};
   padding: 3rem 0;
@@ -159,7 +172,6 @@ const BigContainer = Styled.div`
     background: ${props => props.theme.white};
   }
 `;
-
 
 const SignUpContainer = Styled.div`
   width: 70rem;
@@ -176,7 +188,6 @@ const SignUpContainer = Styled.div`
     border-radius: 0;
   }
 `;
-
 
 const Artwork = Styled.div`
   background: ${props => props.theme.highlight4};
@@ -226,8 +237,6 @@ const Artwork = Styled.div`
   }
 `;
 
-
-
 const FormContainer = Styled.div`
   background-color: ${props => props.theme.white};
   .title {
@@ -235,7 +244,6 @@ const FormContainer = Styled.div`
     color: ${props => props.theme.gray4}
   }
 `;
-
 
 const Message = Styled.div`
   background-color: ${props => props.theme.white};

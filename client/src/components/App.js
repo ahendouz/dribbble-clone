@@ -18,6 +18,7 @@ const App = ({ session }) => (
       {({ data, loading, error }) => {
         if (loading) return <Loader />;
         if (error) return <ErrorPage />;
+        console.log(data);
         return (
           <Fragment>
             {!session ||

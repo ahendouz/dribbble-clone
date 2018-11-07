@@ -2,7 +2,6 @@ import React from "react";
 import Styled from "styled-components";
 
 const ShotColor = ({ hex }) => {
-  console.log(hex);
   return <Color background={hex} />;
 };
 export default ShotColor;
