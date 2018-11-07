@@ -15,11 +15,10 @@ const emailRegex = RegExp(
 );
 
 const initialState = {
-  username: "",
   email: "",
   password: "",
   fullname: "",
-  passwordConfirmation: ""
+  username: ""
 };
 
 class Signup extends React.Component {
@@ -47,24 +46,13 @@ class Signup extends React.Component {
   };
 
   validateForm = () => {
-    const { username, email, password, passwordConfirmation } = this.state;
-    const isInvalid =
-      !username ||
-      !email ||
-      !password ||
-      !passwordConfirmation ||
-      password !== passwordConfirmation;
+    const { email, password, fullname, username } = this.state;
+    const isInvalid = !email || !password || !fullname || !username;
     return isInvalid;
   };
 
   render() {
-    const {
-      username,
-      email,
-      password,
-      passwordConfirmation,
-      fullname
-    } = this.state;
+    const { email, password, fullname, username } = this.state;
     return (
       <BigContainer>
         <SignUpContainer>
@@ -87,11 +75,10 @@ class Signup extends React.Component {
             <Mutation
               mutation={SIGNUP_USER}
               variables={{
-                username,
                 email,
                 password,
                 fullname,
-                passwordConfirmation
+                username
               }}
             >
               {(signupUser, { data, loading, error }) => {
@@ -99,20 +86,6 @@ class Signup extends React.Component {
                   <Form
                     onSubmit={event => this.handleSubmit(event, signupUser)}
                   >
-                    <input
-                      type="text"
-                      name="username"
-                      placeholder="Username"
-                      value={username}
-                      onChange={this.handleChange}
-                    />
-                    <input
-                      type="text"
-                      name="fullname"
-                      placeholder="fullname"
-                      value={fullname}
-                      onChange={this.handleChange}
-                    />
                     <input
                       type="email"
                       name="email"
@@ -128,10 +101,17 @@ class Signup extends React.Component {
                       onChange={this.handleChange}
                     />
                     <input
-                      type="password"
-                      name="passwordConfirmation"
-                      placeholder="Confirm Password"
-                      value={passwordConfirmation}
+                      type="text"
+                      name="fullname"
+                      placeholder="First and last name"
+                      value={fullname}
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder="Username"
+                      value={username}
                       onChange={this.handleChange}
                     />
                     <PinkBtn

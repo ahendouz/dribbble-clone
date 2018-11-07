@@ -4,11 +4,11 @@ import Styled from "styled-components";
 import { GreenBtn } from "../../styles/Buttons";
 
 const UserInfo = ({ session }) => {
-  const { username } = session.getCurrentUser;
+  const { fullname } = session.getCurrentUser;
   return (
     <Info>
       <div className="userAvatar" />
-      <h1 className="username">{username}</h1>
+      <h1 className="fullname">{fullname}</h1>
       <p className="bio">Bio</p>
       <GreenBtn>Hire Me</GreenBtn>
     </Info>
@@ -39,7 +39,7 @@ const Info = Styled.div`
     border-radius: 50%;
     margin: 0 auto;
   }
-  .username {
+  .fullname {
     color: ${props => props.theme.gray3}
   }
   .bio {

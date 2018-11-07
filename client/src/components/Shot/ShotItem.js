@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Shot } from "../../styles/Shot";
 import { formatDate } from "../formatDate.js";
 import LikeShot from "./LikeShot";
-import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
+import { FullnameHighlighted } from "../../styles/FullnameHighlighted";
 
 const ShotItem = ({
   _id,
@@ -13,7 +13,6 @@ const ShotItem = ({
   description,
   createDate,
   likes,
-  username,
   fullname,
   props
 }) => {
@@ -45,7 +44,7 @@ const ShotItem = ({
           </div>
         </div>
       </div>
-      <UsernameHighlighted className="username">{fullname}</UsernameHighlighted>
+      <FullnameHighlighted className="fullname">{fullname}</FullnameHighlighted>
     </Shot>
   );
 };

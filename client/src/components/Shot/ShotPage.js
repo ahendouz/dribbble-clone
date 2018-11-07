@@ -10,7 +10,7 @@ import ErrorPage from "../ErrorPage";
 import { formatDate } from "../formatDate.js";
 import LikeShot from "./LikeShot";
 import SVGicon from "../SVGicon";
-import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
+import { FullnameHighlighted } from "../../styles/FullnameHighlighted";
 import Loader from "../UI/Loader";
 import ShotColor from "../UI/ShotColor";
 
@@ -34,7 +34,7 @@ class ShotPage extends Component {
             description,
             createDate,
             likes,
-            username
+            fullname
           } = data.getShot;
           return (
             <Container>
@@ -44,9 +44,9 @@ class ShotPage extends Component {
                   <div className="shotInfo">
                     <span>
                       by{" "}
-                      <UsernameHighlighted className="username">
-                        {username}
-                      </UsernameHighlighted>{" "}
+                      <FullnameHighlighted className="fullname">
+                        {fullname}
+                      </FullnameHighlighted>{" "}
                       on {formatDate(createDate)}
                     </span>
                   </div>
@@ -126,7 +126,7 @@ const Header = Styled.div`
     }
     .shotInfo {
       display: flex;
-      .username {
+      .fullname {
         margin-top: -0.1px;
       }
     }

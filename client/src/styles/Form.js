@@ -10,12 +10,15 @@ export const Form = Styled.form`
     margin-bottom: 1.3rem;
     padding: 10px 12px;
     font-family: "Haas Grot Text R Web","Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: ${props => props.theme.gray5};
+    color: ${props => props.theme.gray3};
     border: none;
     background: rgba(0,0,0,0.07);
     border-radius: 6px;
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
     font-size: 16px;
+    ::placeholder {
+      color: ${props => props.theme.gray5};
+    }
     @media (max-width: ${props => props.theme.breakPoint14}) {
       /* HERE */
         font-size: 14px;
