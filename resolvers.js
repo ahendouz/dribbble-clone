@@ -68,7 +68,7 @@ exports.resolvers = {
   Mutation: {
     addShot: async (
       root,
-      { name, image, largeImage, description, username },
+      { name, image, largeImage, description, username, fullname },
       { Shot }
     ) => {
       const newShot = await new Shot({
@@ -76,7 +76,8 @@ exports.resolvers = {
         image,
         largeImage,
         description,
-        username
+        username,
+        fullname
       }).save();
       return newShot;
     },
@@ -126,7 +127,11 @@ exports.resolvers = {
       };
     },
 
-    signupUser: async (root, { username, email, password }, { User }) => {
+    signupUser: async (
+      root,
+      { username, email, password, fullname },
+      { User }
+    ) => {
       const user = await User.findOne({ username });
       if (user) {
         throw new Error("User already exists");
@@ -134,7 +139,8 @@ exports.resolvers = {
       const newUser = await new User({
         username,
         email,
-        password
+        password,
+        fullname
       }).save();
       return { token: createToken(newUser, process.env.SECRET, "7d") };
     }

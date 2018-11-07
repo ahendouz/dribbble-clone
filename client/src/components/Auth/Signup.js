@@ -70,7 +70,7 @@ class Signup extends React.Component {
         <SignUpContainer>
           <Artwork>
             <div className="left--text">
-              <Logo name="dribbble-logo" />
+              <Logo name="dribbble-logo" height={25} width={100} />
               <h1>Discover the world’s top Designers & Creatives</h1>
               <p>Art by Alexa Erkaeva</p>
             </div>
@@ -91,7 +91,7 @@ class Signup extends React.Component {
                 email,
                 password,
                 fullname,
-                passwordConfirmation,
+                passwordConfirmation
               }}
             >
               {(signupUser, { data, loading, error }) => {
@@ -216,8 +216,6 @@ const Artwork = Styled.div`
     }
     .dribbble-logo {
         svg {
-          height: 2.5rem;
-          width: 10rem;
           fill: ${props => props.theme.gray9}
         }
     }

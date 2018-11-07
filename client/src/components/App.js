@@ -13,7 +13,7 @@ import ShotMenu from "./UI/ShotMenu";
 
 const App = ({ session }) => (
   <div>
-    {/* {session || (session.getCurrentUser && <ShotMenu />)} */}
+    {session && (session.getCurrentUser && <ShotMenu />)}
     <Query query={GET_ALL_SHOTS}>
       {({ data, loading, error }) => {
         if (loading) return <Loader />;

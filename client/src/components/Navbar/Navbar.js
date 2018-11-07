@@ -25,7 +25,7 @@ class Navbar extends Component {
       <Container>
         <Nav>
           <div onClick={this.toggle}>
-            <SVGicon className="navicon" name="nav" />
+            <SVGicon className="navicon" name="nav" width={17} height="auto" />
           </div>
           <Logo name="dribbble-logo" />
           <NavbarLinks />
@@ -120,7 +120,6 @@ const Nav = Styled.nav`
   .navicon {
     display: none;
     fill: ${props => props.theme.gray6};
-    width: 17px;
     @media (max-width: ${props => props.theme.breakPoint9}) {
       display: block
     }

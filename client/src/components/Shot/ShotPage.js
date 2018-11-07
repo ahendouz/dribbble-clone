@@ -65,15 +65,25 @@ class ShotPage extends Component {
                   <div className="left">
                     <p className="description-text">{description}</p>
                     <p className="likes">
-                      <SVGicon name="heart" className="heartIcon" />
+                      <SVGicon
+                        name="heart"
+                        className="heartIcon"
+                        width={13}
+                        height="auto"
+                      />
                       <span className="likeNum">{likes} likes</span>
                     </p>
                   </div>
                   <div className="right">
-                    <SVGicon name="palette" className="paletteIcon" />
+                    <SVGicon
+                      name="palette"
+                      className="paletteIcon"
+                      width={13}
+                      height="auto"
+                    />
                     <ul className="shotColors">
                       {this.state.colors.map(color => (
-                        <ShotColor hex={color} />
+                        <ShotColor key={color} hex={color} />
                       ))}
                     </ul>
                   </div>
@@ -176,7 +186,6 @@ const Description = Styled.div`
           padding-bottom: 2rem
         }
         .heartIcon {
-          width: 13px;
           fill: ${props => props.theme.gray5};
         }
         .likeNum {
@@ -189,7 +198,6 @@ const Description = Styled.div`
       align-items: center;
       .paletteIcon {
         margin-right: 1rem;
-        width: 13px;
         fill: ${props => props.theme.gray5};
       }
       .shotColors {
