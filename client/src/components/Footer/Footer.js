@@ -1,5 +1,5 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import Dribbble from "../UI/Dribbble";
 import Links from "../UI/Links";
@@ -29,7 +29,7 @@ const Footer = () => {
 };
 export default Footer;
 
-const FooterContainer = Styled.div`
+const FooterContainer = styled.div`
   background: ${props => props.theme.white};
   padding: 3rem 0;
   font-size: 1.3rem;
@@ -69,7 +69,7 @@ const FooterContainer = Styled.div`
   }
 `;
 
-const Top = Styled.div`
+const Top = styled.div`
   display: flex;
   justify-content: space-around;
   @media (max-width: ${props => props.theme.breakPoint8}) {
@@ -78,15 +78,15 @@ const Top = Styled.div`
   > div {
     h3 {
       padding-bottom: 7px;
-      color: ${props => props.theme.gray5}
-      font-weight: 500
+      color: ${props => props.theme.gray5};
+      font-weight: 500;
     }
   }
   > div:first-of-type {
-    width: 20%
+    width: 20%;
     @media (max-width: ${props => props.theme.breakPoint8}) {
-      width: 30%
-      margin-bottom: 2.3rem
+      width: 30%;
+      margin-bottom: 2.3rem;
     }
     @media (max-width: ${props => props.theme.breakPoint12}) {
       width: 80%
@@ -108,6 +108,6 @@ const Top = Styled.div`
   }
 `;
 
-const CopyRight = Styled.p`
+const CopyRight = styled.p`
   padding-top: 2rem;
 `;

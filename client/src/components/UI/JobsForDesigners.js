@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 const Links = () => {
   return (
@@ -51,12 +51,12 @@ const Links = () => {
 };
 export default Links;
 
-const Figcaption = Styled.figcaption`
+const Figcaption = styled.figcaption`
   display: flex;
   height: 3.3rem;
   margin-bottom: 14px;
   > img {
-    border-radius: 50%
+    border-radius: 50%;
     height: 100%;
     margin-right: 10px;
   }

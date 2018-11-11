@@ -10,18 +10,28 @@ export const theme = {
   gray8: "#e1e4e8",
   gray9: "#f4f4f4",
   white: "#ffffff",
-  
+
+  gray12: "#999",
+  gray13: "#777", //⚠️
+  gray10: "#555",
+  gray11: "#444",
+
   highlight1: "#3a8bbb",
   highlight2: "#e84f89",
+  highlight2Darker: "#d83372",
   highlight3: "#7dba63",
   highlight4: "#f9675e",
   highlight5: "#4f2589",
+  highlight6: "#ff5351",
+  highlight7: "#1e6189;",
 
   fontSize1: "1.3rem",
 
   shadow1: "0px 8px 16px 0px rgba(0,0,0,0.2)",
   shadow2: "0px 0px 19px 4px #292b2f;",
   shadow3: "3px 3px 3px 0px rgba(0, 0, 0, 0.09)",
+  shadow4: "0 2px 2px #ddd",
+  shadow5: "0 1px 2px rgba(0,0,0,0.07)",
 
   breakPoint1: "129.188em",
   breakPoint2: "113.688em",

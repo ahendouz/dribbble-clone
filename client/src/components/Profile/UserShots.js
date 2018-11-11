@@ -1,6 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import { GET_USER_SHOTS } from "../../queries";
 
@@ -29,7 +29,7 @@ const UserShots = ({ username }) => (
 
 export default UserShots;
 
-const UserShoots = Styled(Shots)`
+const UserShoots = styled(Shots)`
   flex-basis: 67%;
   .username {
     display: none

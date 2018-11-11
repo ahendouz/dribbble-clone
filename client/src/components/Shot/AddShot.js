@@ -1,7 +1,7 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import { ADD_SHOT, GET_ALL_SHOTS, GET_USER_SHOTS } from "../../queries";
 
@@ -123,7 +123,11 @@ class AddShot extends React.Component {
                   onChange={this.handleChange}
                   value={name}
                 />
-                <fieldset disabled={loading} aria-busy={loading}>
+                <fieldset
+                  disabled={loading}
+                  aria-busy={loading}
+                  className="uploadFieldset"
+                >
                   <label htmlFor="file">
                     Image
                     <input
@@ -144,7 +148,7 @@ class AddShot extends React.Component {
                     )}
                   </label>
                 </fieldset>
-                <input
+                <textarea
                   type="text"
                   name="description"
                   placeholder="Add Description"
@@ -172,13 +176,13 @@ export default withAuth(session => session && session.getCurrentUser)(
   withRouter(AddShot)
 );
 
-const AddShotHeading = Styled(HeadingPrimary)`
+const AddShotHeading = styled(HeadingPrimary)`
   padding: 5.2rem 0 2rem 0;
 `;
-const AddShotContainer = Styled.div`
+const AddShotContainer = styled.div`
   min-height: 100vh;
   text-align: center;
 `;
-const AddShotForm = Styled(Form)`
+const AddShotForm = styled(Form)`
     width: 55rem;
 `;

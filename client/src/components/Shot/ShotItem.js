@@ -27,11 +27,11 @@ const ShotItem = ({
                 {description.slice(0, 120)}
                 ...
               </p>
-              <p>{formatDate(createDate)}</p>
+              <p className="date">{formatDate(createDate)}</p>
             </div>
           </Link>
         </div>
-        <div className="shotInfo">
+        <div className="down">
           <Link to={`/shot/${_id}`}>
             <p>
               {name.slice(0, 29)}

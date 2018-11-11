@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import SVGicon from "../SVGicon";
 
-const ShotMenu = () => {
+const ShotMenu = ({ session }) => {
   return (
     <Menu className="shot-menu">
       <ul>
@@ -13,7 +13,9 @@ const ShotMenu = () => {
             Following <SVGicon name="downArrow" />
           </button>
           <div className="items">
-            <Link to="/coming-soon">Shots You Like</Link>
+            <Link to={`${session.getCurrentUser.username}/likes`}>
+              Shots You Like
+            </Link>
           </div>
         </Dropdown>
         <li>
@@ -35,7 +37,7 @@ const ShotMenu = () => {
 
 export default ShotMenu;
 
-const Menu = Styled.div`
+const Menu = styled.div`
     background: ${props => props.theme.white};
     border: 1px solid ${props => props.theme.gray8};
     color: ${props => props.theme.gray6};
@@ -45,7 +47,7 @@ const Menu = Styled.div`
         font-size: 1.22rem
     };
     > ul {
-        display: flex
+        display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 auto;
@@ -65,7 +67,7 @@ const Menu = Styled.div`
     }
 `;
 
-const Dropdown = Styled.li`
+const Dropdown = styled.li`
     position: relative;
     display: flex;
     align-self: stretch;

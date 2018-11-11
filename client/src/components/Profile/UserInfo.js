@@ -1,5 +1,5 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import { GreenBtn } from "../../styles/Buttons";
 
@@ -17,7 +17,7 @@ const UserInfo = ({ session }) => {
 
 export default UserInfo;
 
-const Info = Styled.div`
+const Info = styled.div`
   background: white;
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.07);

@@ -20,11 +20,13 @@ import Navbar from "./components/Navbar/Navbar";
 import AddShot from "./components/Shot/AddShot";
 import Profile from "./components/Profile/Profile";
 import ShotPage from "./components/Shot/ShotPage";
+import EditShot from "./components/Shot/EditShot";
 import ComingSoon from "./components/ComingSoon";
 import Footer from "./components/Footer/Footer";
+import UserFavShots from "./components/UserFavShots";
 
 // connecting the frontend with the backend
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   // https://m-dribbble-clone.herokuapp.com/graphql
   fetchOptions: {
@@ -64,9 +66,20 @@ const Root = ({ refetch, session }) => (
             path="/shot/add"
             render={() => <AddShot session={session} />}
           />
-          <Route path="/shot/:_id" component={ShotPage} />} />
+          <Route
+            path="/shot/:_id/edit"
+            render={() => <EditShot session={session} />}
+          />
+          <Route
+            path="/shot/:_id"
+            render={() => <ShotPage session={session} />}
+          />
           <Route path="/profile" render={() => <Profile session={session} />} />
           <Route path="/coming-soon" component={ComingSoon} />
+          {/* <Route
+            path={`/${session.getCurrentUser.username}/likes`}
+            render={() => <UserFavShots session={session} />}
+          /> */}
           <Redirect to="/" />
         </Switch>
         <Footer />

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import Logo from "../UI/Logo";
 import Search from "../Shot/Search";
@@ -47,12 +47,12 @@ class Navbar extends Component {
 
 export default Navbar;
 
-const Container = Styled.div`
+const Container = styled.div`
   background: ${props => props.theme.gray2};
   .search {
     position: relative;
     input {
-      border: none  
+      border: none;
       border-radius: 4px; 
       color: ${props => props.theme.gray6};
     }
@@ -73,7 +73,7 @@ const Container = Styled.div`
   }
 `;
 
-const NavMenu = Styled.div`
+const NavMenu = styled.div`
   padding: 0 2rem;
   .search {
     padding-bottom: 1rem;
@@ -104,7 +104,7 @@ const NavMenu = Styled.div`
   }
 `;
 
-const Nav = Styled.nav`
+const Nav = styled.nav`
   color: ${props => props.theme.gray5};
   font-size: 1.3rem;
   height: 5.7rem;
@@ -134,7 +134,7 @@ const Nav = Styled.nav`
     @media (max-width: ${props => props.theme.breakPoint9}) {
       display: flex;
       justify-content: center;
-      padding-left: 20px;
+      padding-left: 81px;
     }
     > svg:hover {
       fill: ${props => props.theme.gray6}

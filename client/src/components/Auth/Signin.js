@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Mutation } from "react-apollo";
 import { withRouter, Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import { SIGNIN_USER } from "../../queries";
 
@@ -51,11 +51,7 @@ class Signin extends React.Component {
         {(signinUser, { data, loading, error }) => {
           return (
             <Fragment>
-              {error && (
-                <SigninError>
-                  <ErrorMessage error={error} />
-                </SigninError>
-              )}
+              {error && <ErrorMessage type="signin" error={error} />}
               <SignInContainer>
                 <div className="container">
                   <div className="logo">
@@ -68,17 +64,17 @@ class Signin extends React.Component {
                   <SignInForm
                     onSubmit={event => this.handleSubmit(event, signinUser)}
                   >
+                    <label htmlFor="username">Username</label>
                     <input
                       type="text"
                       name="username"
-                      placeholder="Username"
                       value={username}
                       onChange={this.handleChange}
                     />
+                    <label htmlFor="password">Password</label>
                     <input
                       type="password"
                       name="password"
-                      placeholder="Password"
                       value={password}
                       onChange={this.handleChange}
                     />
@@ -107,15 +103,7 @@ export default withAuth(session => session && !session.getCurrentUser)(
   withRouter(Signin)
 );
 
-const SigninError = Styled.div`
-    background: #f55;
-    color: white;
-    padding: 1.4rem 0;
-    text-align: center;
-    font-size: 1.8rem;
-`;
-
-const SignInContainer = Styled.div`
+const SignInContainer = styled.div`
   background: ${props => props.theme.gray3};
   min-height: 100vh;
   padding: 3rem 0;
@@ -126,19 +114,19 @@ const SignInContainer = Styled.div`
       width: 23rem;
       margin: 0 auto;
       img {
-        width: 100%
+        width: 100%;
       }
     }
     h2 {
       font-size: 2.7rem;
       font-weight: 500;
-      color: ${props => props.theme.grey3};    
+      color: ${props => props.theme.grey3};
       padding-bottom: 2rem;
     }
   }
 `;
 
-const SignInForm = Styled(Form)`
+const SignInForm = styled(Form)`
   width: 40rem;
   }
   input {
@@ -146,7 +134,7 @@ const SignInForm = Styled(Form)`
   }
 `;
 
-const Mes = Styled.div`
+const Mes = styled.div`
   font-size: 1.4rem;
   color: ${props => props.theme.gray5};
   a {

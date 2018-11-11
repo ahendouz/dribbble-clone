@@ -87,6 +87,15 @@ exports.resolvers = {
       return shot;
     },
 
+    updateUserShot: async (root, { _id, name, description }, { Shot }) => {
+      const updateUserShot = await Shot.findOneAndUpdate(
+        { _id },
+        { $set: { name, description } },
+        { new: true }
+      );
+      return updateUserShot;
+    },
+
     likeShot: async (root, { _id, username }, { Shot, User }) => {
       const shot = await Shot.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
       const user = await User.findOneAndUpdate(
@@ -134,7 +143,7 @@ exports.resolvers = {
     ) => {
       const user = await User.findOne({ username });
       if (user) {
-        throw new Error("User already exists");
+        throw new Error("Username has already been taken");
       }
       const newUser = await new User({
         username,

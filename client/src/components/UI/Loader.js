@@ -1,5 +1,5 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 const style = {
   display: "flex",
   flexDirection: "column",
@@ -18,7 +18,7 @@ const Loader = () => {
 };
 export default Loader;
 
-const LoaderContainer = Styled.div`
+const LoaderContainer = styled.div`
     height: 60.9rem;
     /*background: ${props => props.theme.gray5};
     color: ${props => props.theme.gray3};

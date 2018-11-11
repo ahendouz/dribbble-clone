@@ -1,5 +1,5 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { HeadingPrimary } from "../styles/Heading";
@@ -26,7 +26,7 @@ const Error = ({ error }) => (
 
 export default Error;
 
-const Container = Styled.div`
+const Container = styled.div`
     background: white;
     text-align: center;
     min-height: calc(100vh - 5.7rem);

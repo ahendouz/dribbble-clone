@@ -1,6 +1,6 @@
-import Styled from "styled-components";
+import styled from "styled-components";
 
-export const Shots = Styled.div`
+export const Shots = styled.div`
   max-width: 100%;
   width: 200rem;
   @media (max-width: ${props => props.theme.breakPoint1}) {

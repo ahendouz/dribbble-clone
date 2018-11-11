@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 const NavbarUnAuth = () => (
   <NavUnAuth>
@@ -16,7 +16,7 @@ const NavbarUnAuth = () => (
 );
 export default NavbarUnAuth;
 
-const NavUnAuth = Styled.div`
+const NavUnAuth = styled.div`
   margin-left: auto;
   @media (max-width: ${props => props.theme.breakPoint9}) {
       margin-left: 0;
