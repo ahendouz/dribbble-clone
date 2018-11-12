@@ -1,8 +1,0 @@
-{
-  "editor.lineHeight": 35,
-  "editor.suggestLineHeight": 0,
-  "files.exclude": {
-    "**/.vscode": true,
-    "**/node_modules": true
-  }
-}
