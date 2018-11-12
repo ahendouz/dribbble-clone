@@ -277,10 +277,8 @@ const SVGIcon = ({
   height = ""
 }) => (
   <svg
-    width={width}
     style={style}
     fill={fill}
-    height={height}
     className={className}
     cursor="pointer"
     xmlns="http://www.w3.org/2000/svg"

@@ -24,8 +24,9 @@ const ShotItem = ({
             <div className="shotInfo">
               <h4 className="shotName">{name}</h4>
               <p className="shotDescription">
-                {description.slice(0, 120)}
-                ...
+                {description.length > 120
+                  ? `${description.slice(0, 120)}...`
+                  : description}
               </p>
               <p className="date">{formatDate(createDate)}</p>
             </div>
@@ -33,10 +34,7 @@ const ShotItem = ({
         </div>
         <div className="down">
           <Link to={`/shot/${_id}`}>
-            <p>
-              {name.slice(0, 29)}
-              ...
-            </p>
+            <p>{name.length > 29 ? `${name.slice(0, 29)}...` : name}</p>
           </Link>
           <div className="like">
             <p className="likesNum">{likes}</p>

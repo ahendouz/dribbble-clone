@@ -70,7 +70,7 @@ class AddShot extends React.Component {
   }
 
   uploadFile = async e => {
-    console.log("uploading file...");
+    // console.log("uploading file...");
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
@@ -84,7 +84,7 @@ class AddShot extends React.Component {
       }
     );
     const file = await res.json();
-    console.log(file);
+    // console.log(file);
     this.setState({
       image: file.secure_url,
       largeImage: file.secure_url

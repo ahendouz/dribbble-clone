@@ -11,7 +11,6 @@ import { FullnameHighlighted } from "../styles/FullnameHighlighted";
 
 const UserFavShots = ({ session }) => {
   const { favorites, fullname, username } = session.getCurrentUser;
-  console.log(session);
   return (
     <Container>
       <div className="menu">

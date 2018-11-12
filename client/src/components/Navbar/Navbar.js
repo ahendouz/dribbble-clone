@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import Logo from "../UI/Logo";
@@ -25,7 +25,7 @@ class Navbar extends Component {
       <Container>
         <Nav>
           <div onClick={this.toggle}>
-            <SVGicon className="navicon" name="nav" width={17} height="auto" />
+            <SVGicon className="navicon" name="nav" />
           </div>
           <Logo name="dribbble-logo" />
           <NavbarLinks />
@@ -93,14 +93,14 @@ const NavMenu = styled.div`
     flex-direction: column;
     text-align: start;
     margin-left: 0;
-     > li {
+    > li {
       border-top: 1px solid ${props => props.theme.gray3};
       width: 100%;
       padding: 1.2rem 0;
       > a {
-        display: flex
+        display: flex;
       }
-     }
+    }
   }
 `;
 
@@ -120,6 +120,8 @@ const Nav = styled.nav`
   .navicon {
     display: none;
     fill: ${props => props.theme.gray6};
+    width: 17px;
+    height: 100%; 
     @media (max-width: ${props => props.theme.breakPoint9}) {
       display: block
     }

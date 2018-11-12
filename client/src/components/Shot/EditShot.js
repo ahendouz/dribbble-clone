@@ -1,26 +1,24 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { Query, Mutation } from "react-apollo";
+import { Redirect, withRouter } from "react-router-dom";
+import { Mutation } from "react-apollo";
 import styled from "styled-components";
 
 import { GET_SHOT, UPDATE_USER_SHOT } from "../../queries";
 import { client } from "../../index";
+import withAuth from "../withAuth";
 
-import Loader from "../UI/Loader";
-import ErrorPage from "../ErrorPage";
 import { Form } from "../../styles/Form";
-import SVGicon from "../SVGicon";
 import { PinkBtn } from "../../styles/Buttons";
 import { GrayBtn } from "../../styles/Buttons";
 
-const initialState = {
-  name: "",
-  description: ""
-};
-
 // const { _id } = this.props.match.params;
 class EditShot extends Component {
-  state = { ...initialState };
+  state = {
+    name: "",
+    description: "",
+    largeImage: "",
+    username: ""
+  };
 
   handleChange = (event, val) => {
     const { name, value } = event.target;
@@ -33,12 +31,18 @@ class EditShot extends Component {
     const { _id } = this.props.match.params;
     client
       .query({ query: GET_SHOT, variables: { _id } })
-      .then(({ data: { getShot: { name, description, largeImage } } }) =>
-        this.setState({
-          name,
-          description,
-          largeImage
-        })
+      .then(
+        ({
+          data: {
+            getShot: { name, description, largeImage, username }
+          }
+        }) =>
+          this.setState({
+            name,
+            description,
+            largeImage,
+            username
+          })
       );
   }
 
@@ -48,16 +52,18 @@ class EditShot extends Component {
     const { _id } = this.props.match.params;
     this.props.history.push(`/shot/${_id}`);
   };
+
   cancel = () => {
     const { _id } = this.props.match.params;
     this.props.history.push(`/shot/${_id}`);
   };
 
   render() {
-    const { name, description, largeImage } = this.state;
+    const { name, description, largeImage, username } = this.state;
     const { _id } = this.props.match.params;
+    const { session } = this.props;
 
-    return (
+    return session.getCurrentUser.username === username ? (
       <Mutation
         mutation={UPDATE_USER_SHOT}
         variables={{ _id, name, description }}
@@ -66,7 +72,7 @@ class EditShot extends Component {
           return (
             <Container>
               <Shot>
-                <img src={largeImage} alt="shot image" />
+                <img src={largeImage} alt="Shot" />
               </Shot>
               <EditShotForm
                 onSubmit={event => {
@@ -104,41 +110,46 @@ class EditShot extends Component {
           );
         }}
       </Mutation>
+    ) : (
+      <Redirect to={`/shot/${_id}`} />
     );
   }
 }
-export default withRouter(EditShot);
+export default withAuth(session => session && session.getCurrentUser)(
+  withRouter(EditShot)
+);
 
 const Container = styled.div`
-    width: 92rem;
-    margin: 0 auto;
-    max-width: 100%;
-    padding: 3rem 0;
-    display: flex;
-    justify-content: space-between;
-    > div, > form {
-        flex-basis: 47%
-    }
+  width: 92rem;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+  > div,
+  > form {
+    flex-basis: 47%;
+  }
 `;
 
 const Shot = styled.div`
-    padding: 2rem;
-    background: white;
-    border-radius: 3px;
-    box-shadow: ${props => props.theme.shadow5};
-    img {
-        width: 100%;
-    }
+  padding: 2rem;
+  background: white;
+  border-radius: 3px;
+  box-shadow: ${props => props.theme.shadow5};
+  img {
+    width: 100%;
+  }
 `;
 
 const EditShotForm = styled(Form)`
-    margin: 0;
-    padding: 0;
-    .btns {
-        >button:first-of-type{
-            padding: 0.7rem 1.4rem;
-            border: 1px solid ${props => props.theme.highlight2};
-            margin-right: 1.4rem
-        }
+  margin: 0;
+  padding: 0;
+  .btns {
+    > button:first-of-type {
+      padding: 0.7rem 1.4rem;
+      border: 1px solid ${props => props.theme.highlight2};
+      margin-right: 1.4rem;
     }
+  }
 `;

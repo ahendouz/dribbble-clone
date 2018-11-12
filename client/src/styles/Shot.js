@@ -94,6 +94,10 @@ export const Shot = styled.li`
           padding: 0 3px 0 0;
           font-size: 1.3rem;
         }
+        svg {
+          width: 13px;
+          height: 13px;
+        }
         div {
           line-height: 1;
           margin-top: 1.9px;

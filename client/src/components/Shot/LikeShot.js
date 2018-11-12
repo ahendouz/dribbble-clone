@@ -117,8 +117,7 @@ class LikeShot extends Component {
                   >
                     <SVGicon
                       name="heart"
-                      width={13}
-                      height={13}
+                      
                       fill={
                         username ? (liked ? "#ee4589" : "#bbbbbb") : "#bbbbbb"
                       }

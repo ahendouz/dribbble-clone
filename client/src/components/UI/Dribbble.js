@@ -8,12 +8,7 @@ import SVGicon from "../SVGicon";
 const Dribbble = () => {
   return (
     <Container>
-      <Logo
-        className="dribbble-logo"
-        name="dribbble-logo"
-        width={79}
-        height={20}
-      />
+      <Logo className="dribbble-logo" name="dribbble-logo" />
       <h3>Show and tell for designers</h3>
       <p>
         What are you working on? Dribbble is a community of designers sharing
@@ -43,11 +38,15 @@ export default Dribbble;
 
 const Container = styled.div`
   .dribbble-logo {
-    fill: ${props => props.theme.gray5};
-    svg:hover {
-      fill: ${props => props.theme.gray6};
-      transition: fill 0.3s;
-    } 
+    svg {
+      fill: ${props => props.theme.gray5};
+      width: 79px;
+      height: 20px;
+      &:hover {
+        fill: ${props => props.theme.gray6};
+        transition: fill 0.3s;
+      } 
+    }
   }
   > p {
     padding: 0.8rem 0 2.1rem

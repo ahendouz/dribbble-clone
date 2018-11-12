@@ -24,14 +24,12 @@ class Signin extends React.Component {
 
   handleChange = event => {
     const { name, value } = event.target;
-    // console.log(`${name}: ${value}`);
     this.setState({ [name]: value });
   };
 
   handleSubmit = (event, signinUser) => {
     event.preventDefault();
     signinUser().then(async ({ data }) => {
-      // console.log(data);
       localStorage.setItem("token", data.signinUser.token);
       await this.props.refetch();
       this.clearState();
@@ -128,7 +126,6 @@ const SignInContainer = styled.div`
 
 const SignInForm = styled(Form)`
   width: 40rem;
-  }
   input {
     background: white !important;
   }

@@ -24,18 +24,18 @@ const Container = styled.div`
   margin: 0 auto;
   max-width: 100%;
   padding: 3rem 0px;
-  @media(max-width: ${props => props.theme.breakPoint6}) {
+  @media (max-width: ${props => props.theme.breakPoint6}) {
     flex-direction: column;
     width: 97rem;
   }
-  @media(max-width: ${props => props.theme.breakPoint6}) {
+  @media (max-width: ${props => props.theme.breakPoint6}) {
     width: 72rem;
   }
-  @media(max-width: ${props => props.theme.breakPoint11}) {
+  @media (max-width: ${props => props.theme.breakPoint11}) {
     width: 47rem;
   }
-  @media(max-width: ${props => props.theme.breakPoint14}) {
+  @media (max-width: ${props => props.theme.breakPoint14}) {
     width: auto;
-    padding: 2rem
+    padding: 2rem;
   }
 `;

@@ -294,7 +294,7 @@ const Description = styled.div`
             .questionMark {
               fill: ${props => props.theme.gray12};
               width: 16px;
-              height: auto;
+              height: 100%;
               margin-right: 5px;
             }
             span {

@@ -17,11 +17,10 @@ const DisplayError = ({ error, validationErrors, type }) => {
         <SignupError>
           <div>Error</div>
           <ul data-test="graphql-error">
-            {vErrors.map(error => {
-              if (error != "") {
-                return <li key={error}>{error}</li>;
-              }
-            })}
+            {vErrors.map(error => error !== "" && <li key={error}>{error}</li>)}
+            {/* // if (error !== "") {
+              //   return <li key={error}>{error}</li>;
+              // } */}
           </ul>
         </SignupError>
       );
@@ -35,11 +34,7 @@ const DisplayError = ({ error, validationErrors, type }) => {
           <div>Error</div>
           <ul data-test="graphql-error">
             <li>{error.message.replace("GraphQL error: ", "")}</li>
-            {vErrors.map(error => {
-              if (error != "") {
-                return <li>{error}</li>;
-              }
-            })}
+            {vErrors.map(error => error !== "" && <li>{error}</li>)}
           </ul>
         </SignupError>
       );
@@ -72,11 +67,11 @@ DisplayError.propTypes = {
 export default DisplayError;
 
 const SigninError = styled.div`
-    background: #f55;
-    color: white;
-    padding: 1.4rem 0;
-    text-align: center;
-    font-size: 1.8rem;
+  background: #f55;
+  color: white;
+  padding: 1.4rem 0;
+  text-align: center;
+  font-size: 1.8rem;
 `;
 const SignupError = styled.div`
   background: white;
@@ -86,9 +81,9 @@ const SignupError = styled.div`
   text-align: left;
   box-shadow: ${props => props.theme.shadow4};
   @media (max-width: ${props => props.theme.breakPoint14}) {
-      /* HERE */
-      margin: 2rem 2rem;
-    };
+    /* HERE */
+    margin: 2rem 2rem;
+  }
   div {
     background: ${props => props.theme.highlight6};
     color: white;
@@ -103,7 +98,7 @@ const SignupError = styled.div`
     li {
       position: relative;
       &:not(:last-of-type) {
-        padding-bottom: .6rem
+        padding-bottom: 0.6rem;
       }
       &:before {
         content: "";

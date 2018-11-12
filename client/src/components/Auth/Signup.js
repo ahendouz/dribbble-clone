@@ -109,7 +109,7 @@ class Signup extends React.Component {
         <SignUpContainer>
           <Artwork>
             <div className="left--text">
-              <Logo name="dribbble-logo" height={25} width={100} />
+              <Logo name="dribbble-logo" />
               <h1>Discover the world’s top Designers & Creatives</h1>
               <p>Art by Alexa Erkaeva</p>
             </div>
@@ -207,7 +207,7 @@ const BigContainer = styled.div`
   background: ${props => props.theme.gray3};
   padding: 3rem 0;
   @media (max-width: ${props => props.theme.breakPoint12}) {
-    padding: 1rem
+    padding: 1rem;
   }
   @media (max-width: ${props => props.theme.breakPoint16}) {
     padding: 0rem;
@@ -258,6 +258,8 @@ const Artwork = styled.div`
     }
     .dribbble-logo {
         svg {
+          width: 25px;
+          height: 100%;
           fill: ${props => props.theme.gray9}
         }
     }
@@ -290,7 +292,7 @@ const FormContainer = styled.div`
   background-color: ${props => props.theme.white};
   .title {
     padding-top: 2rem;
-    color: ${props => props.theme.gray4}
+    color: ${props => props.theme.gray4};
   }
 `;
 
