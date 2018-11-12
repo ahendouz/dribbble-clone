@@ -8,6 +8,7 @@ exports.typeDefs = `
         createDate: String
         likes: Int
         username: String
+        fullname: String
     }
 
     type User {
@@ -15,6 +16,7 @@ exports.typeDefs = `
         username: String! @unique
         password: String!
         email: String!
+        fullname: String!
         joinDate: String!
         favorites: [Shot!]!
     }
@@ -39,9 +41,16 @@ exports.typeDefs = `
             largeImage: String!,
             description: String!, 
             username: String
+            fullname: String
         ) : Shot
 
         deleteUserShot(_id: ID) : Shot
+
+        updateUserShot(
+            _id: ID
+            name: String!,
+            description: String!, 
+        ) : Shot
 
         likeShot(_id: ID!, username: String!) : Shot
         unlikeShot(_id: ID!, username: String!) : Shot
@@ -55,6 +64,7 @@ exports.typeDefs = `
             username: String!, 
             email: String!, 
             password: String!
+            fullname: String!
         ) : Token
     }
 `;

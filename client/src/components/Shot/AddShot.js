@@ -15,6 +15,7 @@ import SVGicon from "../SVGicon";
 import isValidImage from "../../utils/isValidImage";
 import { imageTypes, imageMaxSize } from "../../utils/imageSizeAndType";
 
+
 class AddShot extends React.Component {
   state = {
     name: "",
@@ -22,9 +23,10 @@ class AddShot extends React.Component {
     largeImage: "",
     description: "",
     username: "",
+    fullname: "",
     imagePreview: "",
     progress: 0,
-    uploading: true
+    uploading: true,
   };
 
   handleChange = event => {
@@ -62,7 +64,8 @@ class AddShot extends React.Component {
   componentDidMount() {
     // console.log(this.props.session.getCurrentUser.username);
     this.setState({
-      username: this.props.session.getCurrentUser.username
+      username: this.props.session.getCurrentUser.username,
+      fullname: this.props.session.getCurrentUser.fullname
     });
   }
 
@@ -119,12 +122,13 @@ class AddShot extends React.Component {
       username,
       imagePreview,
       progress,
-      uploading
+      uploading,
+      fullname,
     } = this.state;
     return (
       <Mutation
         mutation={ADD_SHOT}
-        variables={{ name, image, largeImage, description, username }}
+        variables={{ name, image, largeImage, description, username, fullname }}
         refetchQueries={() => [
           { query: GET_USER_SHOTS, variables: { username } }
         ]}

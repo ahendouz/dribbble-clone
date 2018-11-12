@@ -27,12 +27,13 @@ export const GET_CURRENT_USER = gql`
       username
       joinDate
       email
+      fullname
       favorites {
-        _id
-        name
+        ...CompleteShot
       }
     }
   }
+  ${shotFragments.shot}
 `;
 
 export const GET_USER_SHOTS = gql`
@@ -52,6 +53,7 @@ export const ADD_SHOT = gql`
     $largeImage: String!
     $description: String!
     $username: String!
+    $fullname: String!
   ) {
     addShot(
       name: $name
@@ -59,6 +61,7 @@ export const ADD_SHOT = gql`
       largeImage: $largeImage
       description: $description
       username: $username
+      fullname: $fullname
     ) {
       ...CompleteShot
     }
@@ -70,6 +73,16 @@ export const DELETE_USER_SHOT = gql`
   mutation($_id: ID!) {
     deleteUserShot(_id: $_id) {
       _id
+    }
+  }
+`;
+
+export const UPDATE_USER_SHOT = gql`
+  mutation($_id: ID, $name: String!, $description: String!) {
+    updateUserShot(_id: $_id, name: $name, description: $description) {
+      _id
+      name
+      description
     }
   }
 `;
@@ -113,8 +126,18 @@ export const SIGNIN_USER = gql`
   }
 `;
 export const SIGNUP_USER = gql`
-  mutation($username: String!, $email: String!, $password: String!) {
-    signupUser(username: $username, email: $email, password: $password) {
+  mutation(
+    $username: String!
+    $email: String!
+    $password: String!
+    $fullname: String!
+  ) {
+    signupUser(
+      username: $username
+      email: $email
+      password: $password
+      fullname: $fullname
+    ) {
       token
     }
   }

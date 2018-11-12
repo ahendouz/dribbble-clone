@@ -1,18 +1,17 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 const ShotColor = ({ hex }) => {
-  console.log(hex);
   return <Color background={hex} />;
 };
 export default ShotColor;
 
-const Color = Styled.li`
+const Color = styled.li`
   width: 3.9rem;
   height: 1.8rem;
-  background-color: ${props => props.background}
-  transition: all .2s; 
+  background-color: ${props => props.background};
+  transition: all 0.2s;
   &:hover {
-    transform: scale(1.5)
+    transform: scale(1.5);
   }
 `;

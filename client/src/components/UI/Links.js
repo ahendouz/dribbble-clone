@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 const Links = () => {
   return (
@@ -54,7 +54,7 @@ const Links = () => {
 };
 export default Links;
 
-const Container = Styled.div`
+const Container = styled.div`
   height: 17.5rem;
   width: 27%;
   @media (max-width: ${props => props.theme.breakPoint7}) {

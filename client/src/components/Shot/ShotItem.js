@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Shot } from "../../styles/Shot";
 import { formatDate } from "../formatDate.js";
 import LikeShot from "./LikeShot";
-import { UsernameHighlighted } from "../../styles/UsernameHighlighted";
+import { FullnameHighlighted } from "../../styles/FullnameHighlighted";
 
 const ShotItem = ({
   _id,
@@ -13,7 +13,7 @@ const ShotItem = ({
   description,
   createDate,
   likes,
-  username,
+  fullname,
   props
 }) => {
   return (
@@ -27,11 +27,11 @@ const ShotItem = ({
                 {description.slice(0, 120)}
                 ...
               </p>
-              <p>{formatDate(createDate)}</p>
+              <p className="date">{formatDate(createDate)}</p>
             </div>
           </Link>
         </div>
-        <div className="shotInfo">
+        <div className="down">
           <Link to={`/shot/${_id}`}>
             <p>
               {name.slice(0, 29)}
@@ -44,7 +44,7 @@ const ShotItem = ({
           </div>
         </div>
       </div>
-      <UsernameHighlighted className="username">{username}</UsernameHighlighted>
+      <FullnameHighlighted className="fullname">{fullname}</FullnameHighlighted>
     </Shot>
   );
 };

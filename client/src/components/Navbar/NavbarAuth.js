@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import SVGicon from "../SVGicon";
 import Signout from "../Auth/Signout";
@@ -9,12 +9,7 @@ const NavbarAuth = ({ session }) => (
   <NavAuth>
     <div className="addNewShot">
       <Link to="/shot/add">
-        <SVGicon
-          name="upload"
-          style={{ marginTop: "6px" }}
-          width={21}
-          height={20}
-        />
+        <SVGicon name="upload" />
       </Link>
     </div>
     <div className="dropdown">
@@ -31,10 +26,10 @@ const NavbarAuth = ({ session }) => (
 );
 export default NavbarAuth;
 
-const NavAuth = Styled.div`
+const NavAuth = styled.div`
     margin-left: auto;
     display: flex;
-    align-items: center
+    align-items: center;
     align-self: stretch;
     @media (max-width: ${props => props.theme.breakPoint9}) {
       margin-left: 0;
@@ -43,10 +38,13 @@ const NavAuth = Styled.div`
         padding-right: 1rem;
         margin-bottom: -2px;
         svg {
-        fill: ${props => props.theme.gray6};
+            margin-top: 6px;
+            width: 21px;
+            height: 20px;
+            fill: ${props => props.theme.gray6};
             &:hover {
-            fill: ${props => props.theme.gray8}
-            transition: fill 0.6s;
+                fill: ${props => props.theme.gray8};
+                transition: fill 0.6s;
             } 
         }
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import UserInfo from "./UserInfo";
 import UserShots from "./UserShots";
@@ -17,7 +17,7 @@ const Profile = ({ session }) => {
 
 export default withAuth(session => session && session.getCurrentUser)(Profile);
 
-const Container = Styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: space-between;
   width: 107rem;

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { PinkBtn } from "../styles/Buttons";
@@ -25,7 +25,7 @@ const UnAuthMessage = ({ session }) => {
 };
 export default UnAuthMessage;
 
-const Message = Styled.div`
+const Message = styled.div`
   .message {
     background: ${props => props.theme.gray1};
     text-align: center;
@@ -34,7 +34,7 @@ const Message = Styled.div`
     p {
       margin-bottom: 1.4rem
       span {
-        font-weight: bold
+        font-weight: bold;
         color: white
       }
     }

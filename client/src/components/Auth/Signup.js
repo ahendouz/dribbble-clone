@@ -1,25 +1,31 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { withRouter, Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 import { Mutation } from "react-apollo";
 
 import { SIGNUP_USER } from "../../queries";
 
+import ErrorMessage from "../ErrorMessage";
 import withAuth from "../withAuth";
 import { Form } from "../../styles/Form";
 import { PinkBtn } from "../../styles/Buttons";
 import Logo from "../UI/Logo";
-
 
 const emailRegex = RegExp(
   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
 );
 
 const initialState = {
-  username: "",
   email: "",
   password: "",
-  passwordConfirmation: ""
+  fullname: "",
+  username: "",
+  validationErrors: {
+    email: "",
+    password: "",
+    fullname: "",
+    username: ""
+  }
 };
 
 class Signup extends React.Component {
@@ -31,14 +37,44 @@ class Signup extends React.Component {
 
   handleChange = event => {
     const { name, value } = event.target;
-    // console.log(`${name}: ${value}`);
-    this.setState({ [name]: value });
+    let { validationErrors } = { ...this.state };
+
+    // For validation
+    switch (name) {
+      case "email":
+        validationErrors.email =
+          value.length === 0
+            ? "Email can't be blank"
+            : emailRegex.test(value)
+              ? ""
+              : "Email is invalid";
+        break;
+      case "password":
+        validationErrors.password =
+          value.length === 0
+            ? "Password can't be blank"
+            : value.length < 6
+              ? "Password is too short (minimum is 6 characters)"
+              : "";
+        break;
+      case "fullname":
+        validationErrors.fullname =
+          value.length === 0 ? "Name can't be blank" : "";
+        break;
+      case "username":
+        validationErrors.username =
+          value.length === 0 ? "Username can't be blank" : "";
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ validationErrors, [name]: value });
   };
 
   handleSubmit = (event, signupUser) => {
     event.preventDefault();
     signupUser().then(async ({ data }) => {
-      // console.log(data);
       localStorage.setItem("token", data.signupUser.token);
       await this.props.refetch();
       this.clearState();
@@ -47,24 +83,33 @@ class Signup extends React.Component {
   };
 
   validateForm = () => {
-    const { username, email, password, passwordConfirmation } = this.state;
+    const {
+      email,
+      password,
+      fullname,
+      username,
+      validationErrors
+    } = this.state;
     const isInvalid =
-      !username ||
       !email ||
       !password ||
-      !passwordConfirmation ||
-      password !== passwordConfirmation;
+      !fullname ||
+      !username ||
+      validationErrors.email !== "" ||
+      validationErrors.password !== "" ||
+      validationErrors.fullname !== "" ||
+      validationErrors.username !== "";
     return isInvalid;
   };
 
   render() {
-    const { username, email, password, passwordConfirmation } = this.state;
+    const { email, password, fullname, username } = this.state;
     return (
       <BigContainer>
         <SignUpContainer>
           <Artwork>
             <div className="left--text">
-              <Logo name="dribbble-logo" />
+              <Logo name="dribbble-logo" height={25} width={100} />
               <h1>Discover the world’s top Designers & Creatives</h1>
               <p>Art by Alexa Erkaeva</p>
             </div>
@@ -80,50 +125,66 @@ class Signup extends React.Component {
             <h2 className="title">Sign Up With Email</h2>
             <Mutation
               mutation={SIGNUP_USER}
-              variables={{ username, email, password, passwordConfirmation }}
+              variables={{
+                email,
+                password,
+                fullname,
+                username
+              }}
             >
               {(signupUser, { data, loading, error }) => {
                 return (
-                  <Form
-                    onSubmit={event => this.handleSubmit(event, signupUser)}
-                  >
-                    <input
-                      type="text"
-                      name="username"
-                      placeholder="Username"
-                      value={username}
-                      onChange={this.handleChange}
+                  <Fragment>
+                    <ErrorMessage
+                      type="signup"
+                      validationErrors={this.state.validationErrors}
+                      error={error}
                     />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={email}
-                      onChange={this.handleChange}
-                    />
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={this.handleChange}
-                    />
-                    <input
-                      type="password"
-                      name="passwordConfirmation"
-                      placeholder="Confirm Password"
-                      value={passwordConfirmation}
-                      onChange={this.handleChange}
-                    />
-                    <PinkBtn
-                      className="submitBtn"
-                      type="submit"
-                      disabled={loading || this.validateForm()}
+                    <Form
+                      onSubmit={event => this.handleSubmit(event, signupUser)}
                     >
-                      Create Account
-                    </PinkBtn>
-                    {/* {error && <Error error={error} />} */}
-                  </Form>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value={email}
+                        onChange={this.handleChange}
+                      />
+                      <fieldset className="passwordFieldset">
+                        <input
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                          value={password}
+                          className="passwordInput"
+                          onChange={this.handleChange}
+                        />
+                        <p>Minimum 6 characters</p>
+                      </fieldset>
+                      <input
+                        type="text"
+                        name="fullname"
+                        placeholder="First and last name"
+                        value={fullname}
+                        onChange={this.handleChange}
+                      />
+                      <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        value={username}
+                        onChange={this.handleChange}
+                      />
+                      <PinkBtn
+                        className="submitBtn"
+                        type="submit"
+                        disabled={loading || this.validateForm()}
+                      >
+                        Create Account
+                      </PinkBtn>
+                      {/* {error && <Error error={error} />} */}
+                    </Form>
+                  </Fragment>
                 );
               }}
             </Mutation>
@@ -142,13 +203,7 @@ export default withAuth(session => session && !session.getCurrentUser)(
   withRouter(Signup)
 );
 
-
-
-
-
-
-
-const BigContainer = Styled.div`
+const BigContainer = styled.div`
   background: ${props => props.theme.gray3};
   padding: 3rem 0;
   @media (max-width: ${props => props.theme.breakPoint12}) {
@@ -160,8 +215,7 @@ const BigContainer = Styled.div`
   }
 `;
 
-
-const SignUpContainer = Styled.div`
+const SignUpContainer = styled.div`
   width: 70rem;
   margin: 0 auto;
   border-radius: 15px;
@@ -177,8 +231,7 @@ const SignUpContainer = Styled.div`
   }
 `;
 
-
-const Artwork = Styled.div`
+const Artwork = styled.div`
   background: ${props => props.theme.highlight4};
   height: 25rem;
   display: flex;
@@ -205,13 +258,20 @@ const Artwork = Styled.div`
     }
     .dribbble-logo {
         svg {
-          height: 2.5rem;
-          width: 10rem;
           fill: ${props => props.theme.gray9}
         }
     }
     h1 {
       padding: 1.4rem 0 2.2rem 0;
+      @media (max-width: ${props => props.theme.breakPoint17}) {
+        padding: 1.4rem 0 1.5rem 0;
+      } 
+    }
+    p {
+      font-size: 1.2rem
+      opacity: .6;
+      @media (max-width: ${props => props.theme.breakPoint17}) {
+      } 
     }
   }
   .right--artworkImg {
@@ -226,9 +286,7 @@ const Artwork = Styled.div`
   }
 `;
 
-
-
-const FormContainer = Styled.div`
+const FormContainer = styled.div`
   background-color: ${props => props.theme.white};
   .title {
     padding-top: 2rem;
@@ -236,17 +294,16 @@ const FormContainer = Styled.div`
   }
 `;
 
-
-const Message = Styled.div`
+const Message = styled.div`
   background-color: ${props => props.theme.white};
   padding: 3rem 0;
   font-size: 1.4rem;
   font-weight: 500;
-  color: ${props => props.theme.gray4}
+  color: ${props => props.theme.gray4};
   border-top: 1px solid ${props => props.theme.gray7};
   @media (max-width: ${props => props.theme.breakPoint16}) {
     border-top: none;
-    padding: 0;
+    padding-top: 0.4rem;
   }
   a {
     color: ${props => props.theme.highlight1};

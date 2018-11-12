@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 const NavbarLinks = () => {
   return (
@@ -26,7 +26,7 @@ const NavbarLinks = () => {
 
 export default NavbarLinks;
 
-const Links = Styled.ul`
+const Links = styled.ul`
   display: flex;
   margin-left: 3rem;
   font-size: 1.45rem;

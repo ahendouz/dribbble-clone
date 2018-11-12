@@ -11,6 +11,7 @@ export const shotFragments = {
       createDate
       likes
       username
+      fullname
     }
   `,
   like: gql`

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 import Logo from "../UI/Logo";
 import SVGicon from "../SVGicon";
@@ -41,11 +41,11 @@ const Dribbble = () => {
 };
 export default Dribbble;
 
-const Container = Styled.div`
+const Container = styled.div`
   .dribbble-logo {
-    fill: ${props => props.theme.gray5}
+    fill: ${props => props.theme.gray5};
     svg:hover {
-      fill: ${props => props.theme.gray6}
+      fill: ${props => props.theme.gray6};
       transition: fill 0.3s;
     } 
   }

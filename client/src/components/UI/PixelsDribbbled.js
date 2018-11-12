@@ -1,5 +1,5 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 
 const PixelsDribbbled = () => {
   return (
@@ -21,7 +21,7 @@ const PixelsDribbbled = () => {
 };
 export default PixelsDribbbled;
 
-const Figcaption = Styled.figcaption`
+const Figcaption = styled.figcaption`
   display: flex;
   height: 5.8rem;
   margin-top: 2rem;

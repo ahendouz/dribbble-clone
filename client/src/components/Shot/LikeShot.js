@@ -105,6 +105,7 @@ class LikeShot extends Component {
                     type={liked ? "Liked" : "Like"}
                     onClick={() => this.handleClick(likeShot, unlikeShot)}
                   >
+                    <SVGicon name="heart" />
                     {liked ? "Liked" : "Like"}
                   </LikeBtn>
                 );
