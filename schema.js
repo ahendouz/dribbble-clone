@@ -9,8 +9,15 @@ exports.typeDefs = `
         likes: Int
         username: String
         fullname: String
+        userImg: String
     }
 
+    type Skill {
+        url: String
+    }
+    type ElseWhere {
+        url: String
+    }
     type User {
         _id: ID
         username: String! @unique
@@ -19,6 +26,10 @@ exports.typeDefs = `
         fullname: String!
         joinDate: String!
         favorites: [Shot!]!
+        userImg: String,
+        skills: [Skill]
+        biography: String
+        elseWhere: [ElseWhere]
     }
 
     type Query {
@@ -42,6 +53,7 @@ exports.typeDefs = `
             description: String!, 
             username: String
             fullname: String
+            userImg: String
         ) : Shot
 
         deleteUserShot(_id: ID) : Shot
@@ -52,8 +64,15 @@ exports.typeDefs = `
             description: String!, 
         ) : Shot
 
+
         likeShot(_id: ID!, username: String!) : Shot
         unlikeShot(_id: ID!, username: String!) : Shot
+
+        updateUser(
+            _id: ID
+            fullname: String!
+            userImg: String!
+        ) : User
 
         signinUser(
             username: String!,

@@ -8,7 +8,11 @@ const UserSchema = new Schema({
   email: { type: String, required: true },
   fullname: { type: String, required: true },
   joinDate: { type: Date, default: Date.now },
-  favorites: [{ type: Schema.Types.ObjectId, ref: "Shot" }]
+  favorites: [{ type: Schema.Types.ObjectId, ref: "Shot" }],
+  userImg: { type: String, required: true },
+  skills: [{ type: String }],
+  biography: { type: String },
+  elseWhere: [{ type: String }]
 });
 
 // before any user save to the database we goining to excute this function

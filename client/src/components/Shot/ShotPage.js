@@ -58,21 +58,27 @@ class ShotPage extends Component {
             createDate,
             likes,
             username,
-            fullname
+            fullname,
+            userImg
           } = data.getShot;
           return (
             <Container>
               <Header>
                 <div className="headerContent">
-                  <h2 className="shotName">{name}</h2>
-                  <div className="shotInfo">
-                    <span>
-                      by{" "}
-                      <FullnameHighlighted className="fullname">
-                        {fullname}
-                      </FullnameHighlighted>{" "}
-                      on {formatDate(createDate)}
-                    </span>
+                  <div className="userImg">
+                    <img src={userImg} alt="user" />
+                  </div>
+                  <div className="info">
+                    <h2 className="shotName">{name}</h2>
+                    <div className="shotInfo">
+                      <span>
+                        by{" "}
+                        <FullnameHighlighted className="fullname">
+                          {fullname}
+                        </FullnameHighlighted>{" "}
+                        on {formatDate(createDate)}
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <LikeShot _id={_id} btnType="button" />
@@ -207,28 +213,51 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 2rem 0;
-  @media (max-width: ${props => props.theme.breakPoint10}) {
-    padding: 2rem 2rem;
-    width: auto;
-  }
   .headerContent {
-    .shotName {
-      color: ${props => props.theme.gray11};
-      font-size: 2rem;
+    display: flex;
+    align-items: start;
+    min-height: 4rem;
+    margin: 2rem 0;
+    .userImg {
+      width: 4rem;
+      height: 4rem;
+      overflow: hidden;
+      border-radius: 50%;
+      img {
+        width: 100%;
+      }
     }
-    .shotInfo {
+    .info {
+      margin-left: 1.4rem;
+      min-height: 100%;
       display: flex;
-      font-size: 1.4rem;
-      color: ${props => props.theme.gray12};
-      .fullname {
-        margin-top: -0.1px;
+      flex-direction: column;
+      /* justify-content: space-between; */
+      max-width: 86%;
+      .shotName {
+        color: ${props => props.theme.gray11};
+        font-size: 2rem;
+        margin-bottom: 0.7rem;
+        margin-top: -0.1rem;
+      }
+      .shotInfo,
+      .shotName {
+        line-height: 1;
+      }
+      .shotInfo {
+        display: flex;
         font-size: 1.4rem;
+        color: ${props => props.theme.gray12};
+        .fullname {
+          margin-top: -0.1px;
+          font-size: 1.4rem;
+        }
       }
     }
   }
   > button {
     align-self: center;
+    margin: 2rem 0;
   }
 `;
 

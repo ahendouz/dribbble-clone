@@ -20,6 +20,9 @@ export default Loader;
 
 const LoaderContainer = styled.div`
     height: 60.9rem;
+    img {
+      width: 44px;
+    }
     /*background: ${props => props.theme.gray5};
     color: ${props => props.theme.gray3};
     display: flex;

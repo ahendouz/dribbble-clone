@@ -14,6 +14,7 @@ const ShotItem = ({
   createDate,
   likes,
   fullname,
+  userImg,
   props
 }) => {
   return (
@@ -42,7 +43,14 @@ const ShotItem = ({
           </div>
         </div>
       </div>
-      <FullnameHighlighted className="fullname">{fullname}</FullnameHighlighted>
+      <div className="shotUser">
+        <div className="userImg">
+          <img src={userImg} alt="user" />
+        </div>
+        <FullnameHighlighted className="fullname">
+          {fullname}
+        </FullnameHighlighted>
+      </div>
     </Shot>
   );
 };

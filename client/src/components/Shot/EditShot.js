@@ -20,7 +20,7 @@ class EditShot extends Component {
     username: ""
   };
 
-  handleChange = (event, val) => {
+  handleChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value

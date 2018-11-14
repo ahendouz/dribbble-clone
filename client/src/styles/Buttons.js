@@ -28,6 +28,17 @@ export const GrayBtn = styled(DefaultBtn)`
     color: ${props => props.theme.gray11};
   }
 `;
+export const DarkBtn = styled(DefaultBtn)`
+  padding: 0.7rem 1.4rem;
+  background: ${props => props.theme.gray14};
+
+  color: ${props => props => props.theme.white};
+
+  &:hover {
+    background: ${props => props.theme.gray15};
+    color: ${props => props.theme.white};
+  }
+`;
 
 export const LikeBtn = styled(DefaultBtn)`
   padding: 0.7rem 1.4rem;
@@ -45,7 +56,7 @@ export const LikeBtn = styled(DefaultBtn)`
     props.type === "Liked"
       ? `1px solid ${props.theme.highlight2}`
       : `1px solid ${props.theme.gray6}`};
-  transition: all .2s;
+  transition: all 0.2s;
 
   &:hover {
     box-shadow: ${props =>
@@ -58,13 +69,13 @@ export const LikeBtn = styled(DefaultBtn)`
       fill: ${props => props.type !== "Liked" && props.theme.gray11};
     }
   }
-  svg { 
+  svg {
     fill: ${props =>
       props.type === "Liked" ? props.theme.white : props.theme.gray4};
     width: 13px;
     height: 13px;
     margin-right: 6px;
-    transition: all .2s
+    transition: all 0.2s;
   }
 `;
 

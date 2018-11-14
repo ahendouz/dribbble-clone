@@ -13,6 +13,8 @@ export const theme = {
 
   gray12: "#999",
   gray13: "#777", //⚠️
+  gray14: "#aaaaaa",
+  gray15: "#929292",
   gray10: "#555",
   gray11: "#444",
 

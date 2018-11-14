@@ -2,13 +2,6 @@ import styled from "styled-components";
 
 export const Shot = styled.li`
   text-align: left;
-  .username {
-    padding-top: 0.8rem;
-    padding-left: 2rem;
-    @media (max-width: ${props => props.theme.breakPoint15}) {
-      display: none;
-    }
-  }
   .shotContainer {
     padding: 1rem 1rem 0 1rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
@@ -107,6 +100,26 @@ export const Shot = styled.li`
           cursor: pointer;
         }
       }
+    }
+  }
+  .shotUser {
+    margin: 0.6rem 0 0 0.6rem;
+    display: flex;
+    align-items: center;
+    @media (max-width: ${props => props.theme.breakPoint15}) {
+      display: none;
+    }
+    .userImg {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 1.5rem;
+      height: 1.5rem;
+      img {
+        width: 100%;
+      }
+    }
+    .fullname {
+      margin-left: 0.5rem;
     }
   }
 `;

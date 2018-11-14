@@ -68,7 +68,7 @@ exports.resolvers = {
   Mutation: {
     addShot: async (
       root,
-      { name, image, largeImage, description, username, fullname },
+      { name, image, largeImage, description, username, fullname, userImg },
       { Shot }
     ) => {
       const newShot = await new Shot({
@@ -77,7 +77,8 @@ exports.resolvers = {
         largeImage,
         description,
         username,
-        fullname
+        fullname,
+        userImg
       }).save();
       return newShot;
     },
@@ -117,6 +118,15 @@ exports.resolvers = {
       return shot;
     },
 
+    updateUser: async (root, { _id, fullname, userImg }, { User }) => {
+      const updateUser = await User.findOneAndUpdate(
+        { _id },
+        { $set: { fullname, userImg } },
+        { new: true }
+      );
+      return updateUser;
+    },
+
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
 
@@ -149,7 +159,9 @@ exports.resolvers = {
         username,
         email,
         password,
-        fullname
+        fullname,
+        userImg:
+          "https://res.cloudinary.com/ahendouz/image/upload/v1542008638/avatar-default-aa2eab7684294781f93bc99ad394a0eb3249c5768c21390163c9f55ea8ef83a4.png"
       }).save();
       return { token: createToken(newUser, process.env.SECRET, "7d") };
     }

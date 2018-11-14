@@ -16,7 +16,8 @@ const initialState = {
   largeImage: "",
   description: "",
   username: "",
-  fullname: ""
+  fullname: "",
+  userImg: ""
 };
 class AddShot extends React.Component {
   state = { ...initialState };
@@ -65,7 +66,8 @@ class AddShot extends React.Component {
     // console.log(this.props.session.getCurrentUser.username);
     this.setState({
       username: this.props.session.getCurrentUser.username,
-      fullname: this.props.session.getCurrentUser.fullname
+      fullname: this.props.session.getCurrentUser.fullname,
+      userImg: this.props.session.getCurrentUser.userImg
     });
   }
 
@@ -98,12 +100,21 @@ class AddShot extends React.Component {
       largeImage,
       description,
       username,
-      fullname
+      fullname,
+      userImg
     } = this.state;
     return (
       <Mutation
         mutation={ADD_SHOT}
-        variables={{ name, image, largeImage, description, username, fullname }}
+        variables={{
+          name,
+          image,
+          largeImage,
+          description,
+          username,
+          fullname,
+          userImg
+        }}
         refetchQueries={() => [
           { query: GET_USER_SHOTS, variables: { username } }
         ]}
@@ -184,5 +195,5 @@ const AddShotContainer = styled.div`
   text-align: center;
 `;
 const AddShotForm = styled(Form)`
-    width: 55rem;
+  width: 55rem;
 `;

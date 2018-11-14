@@ -24,6 +24,7 @@ import EditShot from "./components/Shot/EditShot";
 import ComingSoon from "./components/ComingSoon";
 import Footer from "./components/Footer/Footer";
 import UserFavShots from "./components/UserFavShots";
+import Account from "./components/Account";
 
 // connecting the frontend with the backend
 export const client = new ApolloClient({
@@ -76,10 +77,14 @@ const Root = ({ refetch, session }) => (
           />
           <Route path="/profile" render={() => <Profile session={session} />} />
           <Route path="/coming-soon" component={ComingSoon} />
-          {/* <Route
-            path={`/${session.getCurrentUser.username}/likes`}
-            render={() => <UserFavShots session={session} />}
-          /> */}
+          {session &&
+            session.getCurrentUser && (
+              <Route
+                path={`/${session.getCurrentUser.username}/likes`}
+                render={() => <UserFavShots session={session} />}
+              />
+            )}
+          <Route path="/account" render={() => <Account session={session} />} />
           <Redirect to="/" />
         </Switch>
         <Footer />

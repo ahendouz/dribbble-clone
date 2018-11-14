@@ -9,7 +9,8 @@ const ShotSchema = new Schema({
   createDate: { type: Date, default: Date.now },
   likes: { type: Number, default: 0 },
   username: { type: String },
-  fullname: { type: String }
+  fullname: { type: String },
+  userImg: { type: String },
 });
 
 ShotSchema.index({

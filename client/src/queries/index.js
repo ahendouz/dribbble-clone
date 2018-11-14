@@ -24,6 +24,7 @@ export const GET_SHOT = gql`
 export const GET_CURRENT_USER = gql`
   query {
     getCurrentUser {
+      _id
       username
       joinDate
       email
@@ -31,6 +32,7 @@ export const GET_CURRENT_USER = gql`
       favorites {
         ...CompleteShot
       }
+      userImg
     }
   }
   ${shotFragments.shot}
@@ -54,6 +56,7 @@ export const ADD_SHOT = gql`
     $description: String!
     $username: String!
     $fullname: String!
+    $userImg: String!
   ) {
     addShot(
       name: $name
@@ -62,6 +65,7 @@ export const ADD_SHOT = gql`
       description: $description
       username: $username
       fullname: $fullname
+      userImg: $userImg
     ) {
       ...CompleteShot
     }
@@ -139,6 +143,16 @@ export const SIGNUP_USER = gql`
       fullname: $fullname
     ) {
       token
+    }
+  }
+`;
+
+export const UPDATE_USER = gql`
+  mutation($_id: ID, $fullname: String!, $userImg: String!) {
+    updateUser(_id: $_id, fullname: $fullname, userImg: $userImg) {
+      _id
+      fullname
+      userImg
     }
   }
 `;
