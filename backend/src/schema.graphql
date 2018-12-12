@@ -1,0 +1,65 @@
+# import * from "./generated/prisma.graphql"
+type Query {
+  shots(orderBy: ShotOrderByInput): [Shot!]!
+  shot(where: ShotWhereInput!): Shot!
+  getCurrentUser: User
+  user(where: UserWhereInput!): User!
+}
+
+type Mutation {
+  createShot(
+    title: String!
+    description: String
+    image: String!
+    largeImage: String!
+    tags: [String!]
+    colors: [String!]
+  ): Shot!
+  signup(
+    username: String!
+    email: String!
+    password: String!
+    fullname: String!
+  ): AuthPayload
+  signin(username: String!, password: String!): AuthPayload
+  commentShot(comment: String!, shotId: String!): Comment!
+  # likeShot(shotId: String!): Like!
+  # unLikeShot(shotId: String!): Like!
+  likeUnlikeShot(shotId: String!): Like!
+  editShot(
+    id: ID!
+    title: String
+    description: String
+    # image: String
+    # largeImage: String
+    tags: [String!]
+  ): Shot!
+  deleteShot(id: ID!): Shot!
+  editUser(
+    id: ID!
+    fullname: String
+    bio: String
+    profileImage: String
+    skills: [String!]
+    location: String
+  ): User!
+  deleteUser(id: ID!): User!
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  fullname: String!
+  username: String!
+  email: String!
+  shots: [Shot!]!
+  profileImage: String!
+  favorites: [Like!]!
+  skills: [String!]
+  location: String
+  bio: String
+}

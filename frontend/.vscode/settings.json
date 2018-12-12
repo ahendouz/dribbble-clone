@@ -1,0 +1,13 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#000000CC",
+    "titleBar.activeBackground": "#FFC600",
+    "titleBar.inactiveBackground": "#FFC600CC"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/package-lock.json": true,
+    "**/yarn.lock": true
+  }
+}

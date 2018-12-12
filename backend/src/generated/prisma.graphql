@@ -1,0 +1,2538 @@
+# source: https://eu1.prisma.sh/hicham-0464d0/dribbble-clone/dev
+# timestamp: Fri Dec 07 2018 15:47:49 GMT+0000 (Western European Standard Time)
+
+type AggregateComment {
+  count: Int!
+}
+
+type AggregateLike {
+  count: Int!
+}
+
+type AggregateLink {
+  count: Int!
+}
+
+type AggregateShot {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Comment implements Node {
+  id: ID!
+  comment: String!
+  commentedBy: User!
+  shot: Shot!
+}
+
+"""A connection to a list of items."""
+type CommentConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CommentEdge]!
+  aggregate: AggregateComment!
+}
+
+input CommentCreateInput {
+  comment: String!
+  commentedBy: UserCreateOneInput!
+  shot: ShotCreateOneWithoutCommentsInput!
+}
+
+input CommentCreateManyWithoutShotInput {
+  create: [CommentCreateWithoutShotInput!]
+  connect: [CommentWhereUniqueInput!]
+}
+
+input CommentCreateWithoutShotInput {
+  comment: String!
+  commentedBy: UserCreateOneInput!
+}
+
+"""An edge in a connection."""
+type CommentEdge {
+  """The item at the end of the edge."""
+  node: Comment!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CommentOrderByInput {
+  id_ASC
+  id_DESC
+  comment_ASC
+  comment_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type CommentPreviousValues {
+  id: ID!
+  comment: String!
+}
+
+input CommentScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CommentScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CommentScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CommentScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  comment: String
+
+  """All values that are not equal to given value."""
+  comment_not: String
+
+  """All values that are contained in given list."""
+  comment_in: [String!]
+
+  """All values that are not contained in given list."""
+  comment_not_in: [String!]
+
+  """All values less than the given value."""
+  comment_lt: String
+
+  """All values less than or equal the given value."""
+  comment_lte: String
+
+  """All values greater than the given value."""
+  comment_gt: String
+
+  """All values greater than or equal the given value."""
+  comment_gte: String
+
+  """All values containing the given string."""
+  comment_contains: String
+
+  """All values not containing the given string."""
+  comment_not_contains: String
+
+  """All values starting with the given string."""
+  comment_starts_with: String
+
+  """All values not starting with the given string."""
+  comment_not_starts_with: String
+
+  """All values ending with the given string."""
+  comment_ends_with: String
+
+  """All values not ending with the given string."""
+  comment_not_ends_with: String
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  node: Comment
+  updatedFields: [String!]
+  previousValues: CommentPreviousValues
+}
+
+input CommentSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CommentSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CommentSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CommentSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CommentWhereInput
+}
+
+input CommentUpdateInput {
+  comment: String
+  commentedBy: UserUpdateOneRequiredInput
+  shot: ShotUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateManyDataInput {
+  comment: String
+}
+
+input CommentUpdateManyMutationInput {
+  comment: String
+}
+
+input CommentUpdateManyWithoutShotInput {
+  create: [CommentCreateWithoutShotInput!]
+  connect: [CommentWhereUniqueInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  delete: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutShotInput!]
+  updateMany: [CommentUpdateManyWithWhereNestedInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutShotInput!]
+}
+
+input CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput!
+  data: CommentUpdateManyDataInput!
+}
+
+input CommentUpdateWithoutShotDataInput {
+  comment: String
+  commentedBy: UserUpdateOneRequiredInput
+}
+
+input CommentUpdateWithWhereUniqueWithoutShotInput {
+  where: CommentWhereUniqueInput!
+  data: CommentUpdateWithoutShotDataInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutShotInput {
+  where: CommentWhereUniqueInput!
+  update: CommentUpdateWithoutShotDataInput!
+  create: CommentCreateWithoutShotInput!
+}
+
+input CommentWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CommentWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CommentWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CommentWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  comment: String
+
+  """All values that are not equal to given value."""
+  comment_not: String
+
+  """All values that are contained in given list."""
+  comment_in: [String!]
+
+  """All values that are not contained in given list."""
+  comment_not_in: [String!]
+
+  """All values less than the given value."""
+  comment_lt: String
+
+  """All values less than or equal the given value."""
+  comment_lte: String
+
+  """All values greater than the given value."""
+  comment_gt: String
+
+  """All values greater than or equal the given value."""
+  comment_gte: String
+
+  """All values containing the given string."""
+  comment_contains: String
+
+  """All values not containing the given string."""
+  comment_not_contains: String
+
+  """All values starting with the given string."""
+  comment_starts_with: String
+
+  """All values not starting with the given string."""
+  comment_not_starts_with: String
+
+  """All values ending with the given string."""
+  comment_ends_with: String
+
+  """All values not ending with the given string."""
+  comment_not_ends_with: String
+  commentedBy: UserWhereInput
+  shot: ShotWhereInput
+}
+
+input CommentWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type Like implements Node {
+  id: ID!
+  likedBy: User!
+  shot: Shot!
+}
+
+"""A connection to a list of items."""
+type LikeConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [LikeEdge]!
+  aggregate: AggregateLike!
+}
+
+input LikeCreateInput {
+  likedBy: UserCreateOneWithoutFavoritesInput!
+  shot: ShotCreateOneInput!
+}
+
+input LikeCreateManyWithoutLikedByInput {
+  create: [LikeCreateWithoutLikedByInput!]
+  connect: [LikeWhereUniqueInput!]
+}
+
+input LikeCreateWithoutLikedByInput {
+  shot: ShotCreateOneInput!
+}
+
+"""An edge in a connection."""
+type LikeEdge {
+  """The item at the end of the edge."""
+  node: Like!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum LikeOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type LikePreviousValues {
+  id: ID!
+}
+
+input LikeScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LikeScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LikeScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LikeScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+}
+
+type LikeSubscriptionPayload {
+  mutation: MutationType!
+  node: Like
+  updatedFields: [String!]
+  previousValues: LikePreviousValues
+}
+
+input LikeSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LikeSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LikeSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LikeSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: LikeWhereInput
+}
+
+input LikeUpdateInput {
+  likedBy: UserUpdateOneRequiredWithoutFavoritesInput
+  shot: ShotUpdateOneRequiredInput
+}
+
+input LikeUpdateManyWithoutLikedByInput {
+  create: [LikeCreateWithoutLikedByInput!]
+  connect: [LikeWhereUniqueInput!]
+  disconnect: [LikeWhereUniqueInput!]
+  delete: [LikeWhereUniqueInput!]
+  update: [LikeUpdateWithWhereUniqueWithoutLikedByInput!]
+  deleteMany: [LikeScalarWhereInput!]
+  upsert: [LikeUpsertWithWhereUniqueWithoutLikedByInput!]
+}
+
+input LikeUpdateWithoutLikedByDataInput {
+  shot: ShotUpdateOneRequiredInput
+}
+
+input LikeUpdateWithWhereUniqueWithoutLikedByInput {
+  where: LikeWhereUniqueInput!
+  data: LikeUpdateWithoutLikedByDataInput!
+}
+
+input LikeUpsertWithWhereUniqueWithoutLikedByInput {
+  where: LikeWhereUniqueInput!
+  update: LikeUpdateWithoutLikedByDataInput!
+  create: LikeCreateWithoutLikedByInput!
+}
+
+input LikeWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LikeWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LikeWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LikeWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  likedBy: UserWhereInput
+  shot: ShotWhereInput
+}
+
+input LikeWhereUniqueInput {
+  id: ID
+}
+
+type Link implements Node {
+  id: ID!
+  type: LINKTYPE
+  slug: String!
+  user: User
+}
+
+"""A connection to a list of items."""
+type LinkConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [LinkEdge]!
+  aggregate: AggregateLink!
+}
+
+input LinkCreateInput {
+  type: LINKTYPE
+  slug: String!
+  user: UserCreateOneWithoutLinksInput
+}
+
+input LinkCreateManyWithoutUserInput {
+  create: [LinkCreateWithoutUserInput!]
+  connect: [LinkWhereUniqueInput!]
+}
+
+input LinkCreateWithoutUserInput {
+  type: LINKTYPE
+  slug: String!
+}
+
+"""An edge in a connection."""
+type LinkEdge {
+  """The item at the end of the edge."""
+  node: Link!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum LinkOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  slug_ASC
+  slug_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type LinkPreviousValues {
+  id: ID!
+  type: LINKTYPE
+  slug: String!
+}
+
+input LinkScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LinkScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LinkScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LinkScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  type: LINKTYPE
+
+  """All values that are not equal to given value."""
+  type_not: LINKTYPE
+
+  """All values that are contained in given list."""
+  type_in: [LINKTYPE!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [LINKTYPE!]
+  slug: String
+
+  """All values that are not equal to given value."""
+  slug_not: String
+
+  """All values that are contained in given list."""
+  slug_in: [String!]
+
+  """All values that are not contained in given list."""
+  slug_not_in: [String!]
+
+  """All values less than the given value."""
+  slug_lt: String
+
+  """All values less than or equal the given value."""
+  slug_lte: String
+
+  """All values greater than the given value."""
+  slug_gt: String
+
+  """All values greater than or equal the given value."""
+  slug_gte: String
+
+  """All values containing the given string."""
+  slug_contains: String
+
+  """All values not containing the given string."""
+  slug_not_contains: String
+
+  """All values starting with the given string."""
+  slug_starts_with: String
+
+  """All values not starting with the given string."""
+  slug_not_starts_with: String
+
+  """All values ending with the given string."""
+  slug_ends_with: String
+
+  """All values not ending with the given string."""
+  slug_not_ends_with: String
+}
+
+type LinkSubscriptionPayload {
+  mutation: MutationType!
+  node: Link
+  updatedFields: [String!]
+  previousValues: LinkPreviousValues
+}
+
+input LinkSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LinkSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LinkSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LinkSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: LinkWhereInput
+}
+
+enum LINKTYPE {
+  Twitter
+  Facebook
+  Instagram
+  Website
+}
+
+input LinkUpdateInput {
+  type: LINKTYPE
+  slug: String
+  user: UserUpdateOneWithoutLinksInput
+}
+
+input LinkUpdateManyDataInput {
+  type: LINKTYPE
+  slug: String
+}
+
+input LinkUpdateManyMutationInput {
+  type: LINKTYPE
+  slug: String
+}
+
+input LinkUpdateManyWithoutUserInput {
+  create: [LinkCreateWithoutUserInput!]
+  connect: [LinkWhereUniqueInput!]
+  disconnect: [LinkWhereUniqueInput!]
+  delete: [LinkWhereUniqueInput!]
+  update: [LinkUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [LinkUpdateManyWithWhereNestedInput!]
+  deleteMany: [LinkScalarWhereInput!]
+  upsert: [LinkUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input LinkUpdateManyWithWhereNestedInput {
+  where: LinkScalarWhereInput!
+  data: LinkUpdateManyDataInput!
+}
+
+input LinkUpdateWithoutUserDataInput {
+  type: LINKTYPE
+  slug: String
+}
+
+input LinkUpdateWithWhereUniqueWithoutUserInput {
+  where: LinkWhereUniqueInput!
+  data: LinkUpdateWithoutUserDataInput!
+}
+
+input LinkUpsertWithWhereUniqueWithoutUserInput {
+  where: LinkWhereUniqueInput!
+  update: LinkUpdateWithoutUserDataInput!
+  create: LinkCreateWithoutUserInput!
+}
+
+input LinkWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LinkWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LinkWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LinkWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  type: LINKTYPE
+
+  """All values that are not equal to given value."""
+  type_not: LINKTYPE
+
+  """All values that are contained in given list."""
+  type_in: [LINKTYPE!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [LINKTYPE!]
+  slug: String
+
+  """All values that are not equal to given value."""
+  slug_not: String
+
+  """All values that are contained in given list."""
+  slug_in: [String!]
+
+  """All values that are not contained in given list."""
+  slug_not_in: [String!]
+
+  """All values less than the given value."""
+  slug_lt: String
+
+  """All values less than or equal the given value."""
+  slug_lte: String
+
+  """All values greater than the given value."""
+  slug_gt: String
+
+  """All values greater than or equal the given value."""
+  slug_gte: String
+
+  """All values containing the given string."""
+  slug_contains: String
+
+  """All values not containing the given string."""
+  slug_not_contains: String
+
+  """All values starting with the given string."""
+  slug_starts_with: String
+
+  """All values not starting with the given string."""
+  slug_not_starts_with: String
+
+  """All values ending with the given string."""
+  slug_ends_with: String
+
+  """All values not ending with the given string."""
+  slug_not_ends_with: String
+  user: UserWhereInput
+}
+
+input LinkWhereUniqueInput {
+  id: ID
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createLink(data: LinkCreateInput!): Link!
+  createLike(data: LikeCreateInput!): Like!
+  createComment(data: CommentCreateInput!): Comment!
+  createUser(data: UserCreateInput!): User!
+  createShot(data: ShotCreateInput!): Shot!
+  updateLink(data: LinkUpdateInput!, where: LinkWhereUniqueInput!): Link
+  updateLike(data: LikeUpdateInput!, where: LikeWhereUniqueInput!): Like
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateShot(data: ShotUpdateInput!, where: ShotWhereUniqueInput!): Shot
+  deleteLink(where: LinkWhereUniqueInput!): Link
+  deleteLike(where: LikeWhereUniqueInput!): Like
+  deleteComment(where: CommentWhereUniqueInput!): Comment
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteShot(where: ShotWhereUniqueInput!): Shot
+  upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
+  upsertLike(where: LikeWhereUniqueInput!, create: LikeCreateInput!, update: LikeUpdateInput!): Like!
+  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertShot(where: ShotWhereUniqueInput!, create: ShotCreateInput!, update: ShotUpdateInput!): Shot!
+  updateManyLinks(data: LinkUpdateManyMutationInput!, where: LinkWhereInput): BatchPayload!
+  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyShots(data: ShotUpdateManyMutationInput!, where: ShotWhereInput): BatchPayload!
+  deleteManyLinks(where: LinkWhereInput): BatchPayload!
+  deleteManyLikes(where: LikeWhereInput): BatchPayload!
+  deleteManyComments(where: CommentWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyShots(where: ShotWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
+  likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like]!
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  shots(where: ShotWhereInput, orderBy: ShotOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Shot]!
+  link(where: LinkWhereUniqueInput!): Link
+  like(where: LikeWhereUniqueInput!): Like
+  comment(where: CommentWhereUniqueInput!): Comment
+  user(where: UserWhereUniqueInput!): User
+  shot(where: ShotWhereUniqueInput!): Shot
+  linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
+  likesConnection(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LikeConnection!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  shotsConnection(where: ShotWhereInput, orderBy: ShotOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ShotConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Shot implements Node {
+  id: ID!
+  title: String!
+  description: String
+  image: String!
+  largeImage: String!
+  tags: [String!]!
+  likes: Int!
+  colors: [String!]!
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  postedBy: User!
+  createdAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type ShotConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ShotEdge]!
+  aggregate: AggregateShot!
+}
+
+input ShotCreatecolorsInput {
+  set: [String!]
+}
+
+input ShotCreateInput {
+  title: String!
+  description: String
+  image: String!
+  largeImage: String!
+  likes: Int
+  tags: ShotCreatetagsInput
+  colors: ShotCreatecolorsInput
+  comments: CommentCreateManyWithoutShotInput
+  postedBy: UserCreateOneWithoutShotsInput!
+}
+
+input ShotCreateManyWithoutPostedByInput {
+  create: [ShotCreateWithoutPostedByInput!]
+  connect: [ShotWhereUniqueInput!]
+}
+
+input ShotCreateOneInput {
+  create: ShotCreateInput
+  connect: ShotWhereUniqueInput
+}
+
+input ShotCreateOneWithoutCommentsInput {
+  create: ShotCreateWithoutCommentsInput
+  connect: ShotWhereUniqueInput
+}
+
+input ShotCreatetagsInput {
+  set: [String!]
+}
+
+input ShotCreateWithoutCommentsInput {
+  title: String!
+  description: String
+  image: String!
+  largeImage: String!
+  likes: Int
+  tags: ShotCreatetagsInput
+  colors: ShotCreatecolorsInput
+  postedBy: UserCreateOneWithoutShotsInput!
+}
+
+input ShotCreateWithoutPostedByInput {
+  title: String!
+  description: String
+  image: String!
+  largeImage: String!
+  likes: Int
+  tags: ShotCreatetagsInput
+  colors: ShotCreatecolorsInput
+  comments: CommentCreateManyWithoutShotInput
+}
+
+"""An edge in a connection."""
+type ShotEdge {
+  """The item at the end of the edge."""
+  node: Shot!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ShotOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  image_ASC
+  image_DESC
+  largeImage_ASC
+  largeImage_DESC
+  likes_ASC
+  likes_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ShotPreviousValues {
+  id: ID!
+  title: String!
+  description: String
+  image: String!
+  largeImage: String!
+  tags: [String!]!
+  likes: Int!
+  colors: [String!]!
+  createdAt: DateTime!
+}
+
+input ShotScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ShotScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ShotScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ShotScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+  largeImage: String
+
+  """All values that are not equal to given value."""
+  largeImage_not: String
+
+  """All values that are contained in given list."""
+  largeImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  largeImage_not_in: [String!]
+
+  """All values less than the given value."""
+  largeImage_lt: String
+
+  """All values less than or equal the given value."""
+  largeImage_lte: String
+
+  """All values greater than the given value."""
+  largeImage_gt: String
+
+  """All values greater than or equal the given value."""
+  largeImage_gte: String
+
+  """All values containing the given string."""
+  largeImage_contains: String
+
+  """All values not containing the given string."""
+  largeImage_not_contains: String
+
+  """All values starting with the given string."""
+  largeImage_starts_with: String
+
+  """All values not starting with the given string."""
+  largeImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  largeImage_ends_with: String
+
+  """All values not ending with the given string."""
+  largeImage_not_ends_with: String
+  likes: Int
+
+  """All values that are not equal to given value."""
+  likes_not: Int
+
+  """All values that are contained in given list."""
+  likes_in: [Int!]
+
+  """All values that are not contained in given list."""
+  likes_not_in: [Int!]
+
+  """All values less than the given value."""
+  likes_lt: Int
+
+  """All values less than or equal the given value."""
+  likes_lte: Int
+
+  """All values greater than the given value."""
+  likes_gt: Int
+
+  """All values greater than or equal the given value."""
+  likes_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+}
+
+type ShotSubscriptionPayload {
+  mutation: MutationType!
+  node: Shot
+  updatedFields: [String!]
+  previousValues: ShotPreviousValues
+}
+
+input ShotSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ShotSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ShotSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ShotSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ShotWhereInput
+}
+
+input ShotUpdatecolorsInput {
+  set: [String!]
+}
+
+input ShotUpdateDataInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  likes: Int
+  tags: ShotUpdatetagsInput
+  colors: ShotUpdatecolorsInput
+  comments: CommentUpdateManyWithoutShotInput
+  postedBy: UserUpdateOneRequiredWithoutShotsInput
+}
+
+input ShotUpdateInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  likes: Int
+  tags: ShotUpdatetagsInput
+  colors: ShotUpdatecolorsInput
+  comments: CommentUpdateManyWithoutShotInput
+  postedBy: UserUpdateOneRequiredWithoutShotsInput
+}
+
+input ShotUpdateManyDataInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  likes: Int
+  tags: ShotUpdatetagsInput
+  colors: ShotUpdatecolorsInput
+}
+
+input ShotUpdateManyMutationInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  likes: Int
+  tags: ShotUpdatetagsInput
+  colors: ShotUpdatecolorsInput
+}
+
+input ShotUpdateManyWithoutPostedByInput {
+  create: [ShotCreateWithoutPostedByInput!]
+  connect: [ShotWhereUniqueInput!]
+  disconnect: [ShotWhereUniqueInput!]
+  delete: [ShotWhereUniqueInput!]
+  update: [ShotUpdateWithWhereUniqueWithoutPostedByInput!]
+  updateMany: [ShotUpdateManyWithWhereNestedInput!]
+  deleteMany: [ShotScalarWhereInput!]
+  upsert: [ShotUpsertWithWhereUniqueWithoutPostedByInput!]
+}
+
+input ShotUpdateManyWithWhereNestedInput {
+  where: ShotScalarWhereInput!
+  data: ShotUpdateManyDataInput!
+}
+
+input ShotUpdateOneRequiredInput {
+  create: ShotCreateInput
+  connect: ShotWhereUniqueInput
+  update: ShotUpdateDataInput
+  upsert: ShotUpsertNestedInput
+}
+
+input ShotUpdateOneRequiredWithoutCommentsInput {
+  create: ShotCreateWithoutCommentsInput
+  connect: ShotWhereUniqueInput
+  update: ShotUpdateWithoutCommentsDataInput
+  upsert: ShotUpsertWithoutCommentsInput
+}
+
+input ShotUpdatetagsInput {
+  set: [String!]
+}
+
+input ShotUpdateWithoutCommentsDataInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  likes: Int
+  tags: ShotUpdatetagsInput
+  colors: ShotUpdatecolorsInput
+  postedBy: UserUpdateOneRequiredWithoutShotsInput
+}
+
+input ShotUpdateWithoutPostedByDataInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  likes: Int
+  tags: ShotUpdatetagsInput
+  colors: ShotUpdatecolorsInput
+  comments: CommentUpdateManyWithoutShotInput
+}
+
+input ShotUpdateWithWhereUniqueWithoutPostedByInput {
+  where: ShotWhereUniqueInput!
+  data: ShotUpdateWithoutPostedByDataInput!
+}
+
+input ShotUpsertNestedInput {
+  update: ShotUpdateDataInput!
+  create: ShotCreateInput!
+}
+
+input ShotUpsertWithoutCommentsInput {
+  update: ShotUpdateWithoutCommentsDataInput!
+  create: ShotCreateWithoutCommentsInput!
+}
+
+input ShotUpsertWithWhereUniqueWithoutPostedByInput {
+  where: ShotWhereUniqueInput!
+  update: ShotUpdateWithoutPostedByDataInput!
+  create: ShotCreateWithoutPostedByInput!
+}
+
+input ShotWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ShotWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ShotWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ShotWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+  largeImage: String
+
+  """All values that are not equal to given value."""
+  largeImage_not: String
+
+  """All values that are contained in given list."""
+  largeImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  largeImage_not_in: [String!]
+
+  """All values less than the given value."""
+  largeImage_lt: String
+
+  """All values less than or equal the given value."""
+  largeImage_lte: String
+
+  """All values greater than the given value."""
+  largeImage_gt: String
+
+  """All values greater than or equal the given value."""
+  largeImage_gte: String
+
+  """All values containing the given string."""
+  largeImage_contains: String
+
+  """All values not containing the given string."""
+  largeImage_not_contains: String
+
+  """All values starting with the given string."""
+  largeImage_starts_with: String
+
+  """All values not starting with the given string."""
+  largeImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  largeImage_ends_with: String
+
+  """All values not ending with the given string."""
+  largeImage_not_ends_with: String
+  likes: Int
+
+  """All values that are not equal to given value."""
+  likes_not: Int
+
+  """All values that are contained in given list."""
+  likes_in: [Int!]
+
+  """All values that are not contained in given list."""
+  likes_not_in: [Int!]
+
+  """All values less than the given value."""
+  likes_lt: Int
+
+  """All values less than or equal the given value."""
+  likes_lte: Int
+
+  """All values greater than the given value."""
+  likes_gt: Int
+
+  """All values greater than or equal the given value."""
+  likes_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  comments_every: CommentWhereInput
+  comments_some: CommentWhereInput
+  comments_none: CommentWhereInput
+  postedBy: UserWhereInput
+}
+
+input ShotWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
+  like(where: LikeSubscriptionWhereInput): LikeSubscriptionPayload
+  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  shot(where: ShotSubscriptionWhereInput): ShotSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  username: String!
+  password: String!
+  email: String!
+  fullname: String!
+  bio: String
+  favorites(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
+  profileImage: String!
+  skills: [String!]!
+  Links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link!]
+  location: String
+  shots(where: ShotWhereInput, orderBy: ShotOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Shot!]
+  createdAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  username: String!
+  password: String!
+  email: String!
+  fullname: String!
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserCreateskillsInput
+  favorites: LikeCreateManyWithoutLikedByInput
+  Links: LinkCreateManyWithoutUserInput
+  shots: ShotCreateManyWithoutPostedByInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutFavoritesInput {
+  create: UserCreateWithoutFavoritesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutLinksInput {
+  create: UserCreateWithoutLinksInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutShotsInput {
+  create: UserCreateWithoutShotsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateskillsInput {
+  set: [String!]
+}
+
+input UserCreateWithoutFavoritesInput {
+  username: String!
+  password: String!
+  email: String!
+  fullname: String!
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserCreateskillsInput
+  Links: LinkCreateManyWithoutUserInput
+  shots: ShotCreateManyWithoutPostedByInput
+}
+
+input UserCreateWithoutLinksInput {
+  username: String!
+  password: String!
+  email: String!
+  fullname: String!
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserCreateskillsInput
+  favorites: LikeCreateManyWithoutLikedByInput
+  shots: ShotCreateManyWithoutPostedByInput
+}
+
+input UserCreateWithoutShotsInput {
+  username: String!
+  password: String!
+  email: String!
+  fullname: String!
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserCreateskillsInput
+  favorites: LikeCreateManyWithoutLikedByInput
+  Links: LinkCreateManyWithoutUserInput
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  username_ASC
+  username_DESC
+  password_ASC
+  password_DESC
+  email_ASC
+  email_DESC
+  fullname_ASC
+  fullname_DESC
+  bio_ASC
+  bio_DESC
+  profileImage_ASC
+  profileImage_DESC
+  location_ASC
+  location_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  username: String!
+  password: String!
+  email: String!
+  fullname: String!
+  bio: String
+  profileImage: String!
+  skills: [String!]!
+  location: String
+  createdAt: DateTime!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateDataInput {
+  username: String
+  password: String
+  email: String
+  fullname: String
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserUpdateskillsInput
+  favorites: LikeUpdateManyWithoutLikedByInput
+  Links: LinkUpdateManyWithoutUserInput
+  shots: ShotUpdateManyWithoutPostedByInput
+}
+
+input UserUpdateInput {
+  username: String
+  password: String
+  email: String
+  fullname: String
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserUpdateskillsInput
+  favorites: LikeUpdateManyWithoutLikedByInput
+  Links: LinkUpdateManyWithoutUserInput
+  shots: ShotUpdateManyWithoutPostedByInput
+}
+
+input UserUpdateManyMutationInput {
+  username: String
+  password: String
+  email: String
+  fullname: String
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserUpdateskillsInput
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+}
+
+input UserUpdateOneRequiredWithoutFavoritesInput {
+  create: UserCreateWithoutFavoritesInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutFavoritesDataInput
+  upsert: UserUpsertWithoutFavoritesInput
+}
+
+input UserUpdateOneRequiredWithoutShotsInput {
+  create: UserCreateWithoutShotsInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutShotsDataInput
+  upsert: UserUpsertWithoutShotsInput
+}
+
+input UserUpdateOneWithoutLinksInput {
+  create: UserCreateWithoutLinksInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserUpdateWithoutLinksDataInput
+  upsert: UserUpsertWithoutLinksInput
+}
+
+input UserUpdateskillsInput {
+  set: [String!]
+}
+
+input UserUpdateWithoutFavoritesDataInput {
+  username: String
+  password: String
+  email: String
+  fullname: String
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserUpdateskillsInput
+  Links: LinkUpdateManyWithoutUserInput
+  shots: ShotUpdateManyWithoutPostedByInput
+}
+
+input UserUpdateWithoutLinksDataInput {
+  username: String
+  password: String
+  email: String
+  fullname: String
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserUpdateskillsInput
+  favorites: LikeUpdateManyWithoutLikedByInput
+  shots: ShotUpdateManyWithoutPostedByInput
+}
+
+input UserUpdateWithoutShotsDataInput {
+  username: String
+  password: String
+  email: String
+  fullname: String
+  bio: String
+  profileImage: String
+  location: String
+  skills: UserUpdateskillsInput
+  favorites: LikeUpdateManyWithoutLikedByInput
+  Links: LinkUpdateManyWithoutUserInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutFavoritesInput {
+  update: UserUpdateWithoutFavoritesDataInput!
+  create: UserCreateWithoutFavoritesInput!
+}
+
+input UserUpsertWithoutLinksInput {
+  update: UserUpdateWithoutLinksDataInput!
+  create: UserCreateWithoutLinksInput!
+}
+
+input UserUpsertWithoutShotsInput {
+  update: UserUpdateWithoutShotsDataInput!
+  create: UserCreateWithoutShotsInput!
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  fullname: String
+
+  """All values that are not equal to given value."""
+  fullname_not: String
+
+  """All values that are contained in given list."""
+  fullname_in: [String!]
+
+  """All values that are not contained in given list."""
+  fullname_not_in: [String!]
+
+  """All values less than the given value."""
+  fullname_lt: String
+
+  """All values less than or equal the given value."""
+  fullname_lte: String
+
+  """All values greater than the given value."""
+  fullname_gt: String
+
+  """All values greater than or equal the given value."""
+  fullname_gte: String
+
+  """All values containing the given string."""
+  fullname_contains: String
+
+  """All values not containing the given string."""
+  fullname_not_contains: String
+
+  """All values starting with the given string."""
+  fullname_starts_with: String
+
+  """All values not starting with the given string."""
+  fullname_not_starts_with: String
+
+  """All values ending with the given string."""
+  fullname_ends_with: String
+
+  """All values not ending with the given string."""
+  fullname_not_ends_with: String
+  bio: String
+
+  """All values that are not equal to given value."""
+  bio_not: String
+
+  """All values that are contained in given list."""
+  bio_in: [String!]
+
+  """All values that are not contained in given list."""
+  bio_not_in: [String!]
+
+  """All values less than the given value."""
+  bio_lt: String
+
+  """All values less than or equal the given value."""
+  bio_lte: String
+
+  """All values greater than the given value."""
+  bio_gt: String
+
+  """All values greater than or equal the given value."""
+  bio_gte: String
+
+  """All values containing the given string."""
+  bio_contains: String
+
+  """All values not containing the given string."""
+  bio_not_contains: String
+
+  """All values starting with the given string."""
+  bio_starts_with: String
+
+  """All values not starting with the given string."""
+  bio_not_starts_with: String
+
+  """All values ending with the given string."""
+  bio_ends_with: String
+
+  """All values not ending with the given string."""
+  bio_not_ends_with: String
+  profileImage: String
+
+  """All values that are not equal to given value."""
+  profileImage_not: String
+
+  """All values that are contained in given list."""
+  profileImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  profileImage_not_in: [String!]
+
+  """All values less than the given value."""
+  profileImage_lt: String
+
+  """All values less than or equal the given value."""
+  profileImage_lte: String
+
+  """All values greater than the given value."""
+  profileImage_gt: String
+
+  """All values greater than or equal the given value."""
+  profileImage_gte: String
+
+  """All values containing the given string."""
+  profileImage_contains: String
+
+  """All values not containing the given string."""
+  profileImage_not_contains: String
+
+  """All values starting with the given string."""
+  profileImage_starts_with: String
+
+  """All values not starting with the given string."""
+  profileImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  profileImage_ends_with: String
+
+  """All values not ending with the given string."""
+  profileImage_not_ends_with: String
+  location: String
+
+  """All values that are not equal to given value."""
+  location_not: String
+
+  """All values that are contained in given list."""
+  location_in: [String!]
+
+  """All values that are not contained in given list."""
+  location_not_in: [String!]
+
+  """All values less than the given value."""
+  location_lt: String
+
+  """All values less than or equal the given value."""
+  location_lte: String
+
+  """All values greater than the given value."""
+  location_gt: String
+
+  """All values greater than or equal the given value."""
+  location_gte: String
+
+  """All values containing the given string."""
+  location_contains: String
+
+  """All values not containing the given string."""
+  location_not_contains: String
+
+  """All values starting with the given string."""
+  location_starts_with: String
+
+  """All values not starting with the given string."""
+  location_not_starts_with: String
+
+  """All values ending with the given string."""
+  location_ends_with: String
+
+  """All values not ending with the given string."""
+  location_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  favorites_every: LikeWhereInput
+  favorites_some: LikeWhereInput
+  favorites_none: LikeWhereInput
+  Links_every: LinkWhereInput
+  Links_some: LinkWhereInput
+  Links_none: LinkWhereInput
+  shots_every: ShotWhereInput
+  shots_some: ShotWhereInput
+  shots_none: ShotWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  username: String
+  email: String
+}

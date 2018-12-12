@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#FF2C70",
+    "titleBar.inactiveBackground": "#FF2C70CC"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/package-lock.json": true,
+    "**/yarn.lock": true
+  }
+}

@@ -1,0 +1,60 @@
+type User {
+  id: ID! @unique
+  username: String! @unique
+  password: String!
+  email: String! @unique
+  fullname: String!
+  bio: String
+  favorites: [Like!]!
+  profileImage: String!
+    @default(
+      value: "https://res.cloudinary.com/ahendouz/image/upload/v1542008638/avatar-default-aa2eab7684294781f93bc99ad394a0eb3249c5768c21390163c9f55ea8ef83a4.png"
+    )
+  skills: [String!]
+  Links: [Link!]
+  location: String
+  shots: [Shot!]!
+  createdAt: DateTime!
+}
+
+type Link {
+  id: ID! @unique
+  type: LINKTYPE
+  slug: String!
+  user: User
+}
+
+enum LINKTYPE {
+  Twitter
+  Facebook
+  Instagram
+  Website
+}
+
+type Shot {
+  id: ID! @unique
+  title: String!
+  description: String
+  image: String!
+  largeImage: String!
+  # otherImages: [String!]
+  tags: [String!]
+  likes: Int! @default(value: "0")
+  colors: [String!]
+  comments: [Comment!]
+  postedBy: User!
+  createdAt: DateTime!
+}
+
+type Like {
+  id: ID! @unique
+  likedBy: User!
+  shot: Shot!
+}
+
+type Comment {
+  id: ID! @unique
+  comment: String!
+  commentedBy: User!
+  shot: Shot!
+}
