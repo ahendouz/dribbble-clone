@@ -17,7 +17,10 @@ const UserInfo = ({
     <Info width={width}>
       {session && session.getCurrentUser && session.getCurrentUser.id === id && (
         <div className="edit">
-          <SVGicon name="settings" fill="#bbbbbb" />
+          <div className="icon">
+            <SVGicon name="settings" className="settings" fill="#bbbbbb" />
+            <SVGicon name="downArrow" className="downArrow" fill="#bbbbbb" />
+          </div>
 
           <div className="drop">
             <Link to={`/${userId}/edit`}>edit your account Settings</Link>
@@ -30,9 +33,11 @@ const UserInfo = ({
       </div>
       <h1 className="fullname">{fullname}</h1>
 
-      <p className="bio">{location}</p>
+      <p className="loacation">{location}</p>
       <p className="bio">{bio}</p>
-      <GreenBtn>Hire Me</GreenBtn>
+      <Link to="/coming-soon">
+        <GreenBtn>Hire Me</GreenBtn>
+      </Link>
     </Info>
   );
 };
@@ -43,7 +48,7 @@ const Info = styled.div`
   background: white;
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   text-align: center;
   text-transform: capitalize;
   font-size: 1.2rem;
@@ -51,11 +56,17 @@ const Info = styled.div`
   align-self: baseline;
   position: relative;
   .edit {
-    svg {
-      width: 16px;
+    .icon {
       padding: 8px 11px;
-      box-sizing: content-box;
       border-radius: 3px 3px 0px 0px;
+      display: inline-block;
+      .settings {
+        width: 16px;
+      }
+      .downArrow {
+        width: 11px;
+        margin: 0px 0px 3px 4px;
+      }
     }
     position: absolute;
     top: 20px;
@@ -67,9 +78,10 @@ const Info = styled.div`
       padding: 9px;
       margin-top: -7px;
       border-radius: 3px 0 3px 3px;
+      font-size: 1.25rem;
     }
     &:hover {
-      svg {
+      .icon {
         background: ${props => props.theme.gray2};
       }
       .drop {
@@ -96,7 +108,17 @@ const Info = styled.div`
   .fullname {
     color: ${props => props.theme.gray3};
   }
+  .bio,
+  .location {
+    font-size: 1.4rem;
+  }
   .bio {
+    color: ${props => props.theme.gray11};
+    margin: 1.5rem 0 1.2rem 0;
+  }
+  .location {
     margin: 0.1rem 0 0.6rem 0;
+    color: ${props => props.theme.gray12};
+    margin-bottom: 1rem;
   }
 `;

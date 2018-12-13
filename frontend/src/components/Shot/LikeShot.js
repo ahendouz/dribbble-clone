@@ -11,8 +11,7 @@ import { LikeBtn } from "../../styles/Buttons";
 class LikeShot extends React.Component {
   handleClick = likeUnlikeShot => {
     if (this.props.currentUserId) {
-      likeUnlikeShot().then(async ({ data }) => {
-      });
+      likeUnlikeShot().then(async ({ data }) => {});
     } else {
       this.props.history.push("/signup");
     }
@@ -48,6 +47,7 @@ class LikeShot extends React.Component {
                 type="Liked"
                 disabled={loading}
                 onClick={() => this.handleClick(likeUnlikeShot)}
+                style={{ background: "none", border: "none" }}
               >
                 <SVGicon name="heart" fill="#ee4589" />
               </button>

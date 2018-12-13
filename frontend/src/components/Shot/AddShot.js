@@ -164,14 +164,14 @@ class AddShot extends React.Component {
                   <DropContainer>
                     <div>
                       <FileTypeCard>
-                        <SVGicon name="image" width="40px" height="35px" />
+                        <SVGicon name="image" />
                         <span>
                           <h3>High resolution images</h3>
                           <p>PNG, JPG, JPEG, GIF</p>
                         </span>
                       </FileTypeCard>
                       <FileTypeCard>
-                        <SVGicon name="gif" style={{ width: "100px" }} />
+                        <SVGicon name="gif" />
                         <span>
                           <h3>Animated GIFs</h3>
                           <p>800x600 or 400x300</p>
@@ -181,7 +181,7 @@ class AddShot extends React.Component {
                     <SVGicon
                       name="upload"
                       fill="#3a8abb"
-                      style={{ width: "40px", height: "35px" }}
+                      style={{ width: "160px" }}
                     />
                     <h2>Click or Drag an image. (up to 9MB)</h2>
                   </DropContainer>
@@ -278,6 +278,10 @@ const DropContainer = styled.div`
 const FileTypeCard = styled.div`
   display: flex;
   margin: 1rem;
+  align-items: end;
+  svg {
+    width: 60px;
+  }
   span {
     color: #504f4f;
     text-align: left;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,11 +16,12 @@ import EditShot from "../components/Shot/EditShot";
 import User from "../components/User/User";
 import EditUser from "../components/User/EditUser";
 import UserFavoriteShots from "../components/User/UserFavoriteShots";
+import ComingSoon from "../components/UI/ComingSoon";
 import Footer from "../components/Footer/Footer";
 
 export const Root = ({ refetch, session }) => (
   <Router>
-    <div>
+    <Fragment>
       <Navbar session={session} />
       <Switch>
         <Route path="/" exact render={() => <Home session={session} />} />
@@ -33,6 +34,7 @@ export const Root = ({ refetch, session }) => (
           render={() => <Signup refetch={refetch} session={session} />}
         />
         <Route path="/shot/add" render={() => <AddShot session={session} />} />
+        <Route path="/coming-soon" component={ComingSoon} />
         {session && session.getCurrentUser && (
           <Route
             path={`/${session.getCurrentUser.username}/likes`}
@@ -52,6 +54,6 @@ export const Root = ({ refetch, session }) => (
         <Redirect to="/" />
       </Switch>
       <Footer />
-    </div>
+    </Fragment>
   </Router>
 );

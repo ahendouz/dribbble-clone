@@ -3,13 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { Query } from "react-apollo";
 
-import {
-  SHOT
-  // DELETE_USER_SHOT,
-  // GET_ALL_SHOTS,
-  // GET_USER_SHOTS,
-  // GET_CURRENT_USER
-} from "../../queries/Queries";
+import { SHOT } from "../../queries/Queries";
 
 import Comment from "./Comment";
 import EditShotBtn from "../UI/EditShotBtn";

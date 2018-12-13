@@ -37,7 +37,7 @@ const ShotItem = ({
         </div>
         <div className="down">
           <Link to={`/shot/${shotId}`}>
-            <p>{title.length > 29 ? `${title.slice(0, 29)}...` : title}</p>
+            <p>{title.length > 24 ? `${title.slice(0, 24)}...` : title}</p>
           </Link>
           <div className="comment">
             <SVGicon name="comment" fill="#bbbbbb" />

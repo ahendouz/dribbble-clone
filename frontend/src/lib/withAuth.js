@@ -8,6 +8,7 @@ const withAuth = conditionFunc => Component => props => (
   <Query query={GET_CURRENT_USER}>
     {({ data, loading }) => {
       if (loading) return null;
+      !data && (data = { getCurrentUser: null });
       return conditionFunc(data) ? (
         <Component {...props} />
       ) : (

@@ -21,6 +21,10 @@ body {
   overflow-x: hidden;
 }
 
+#root > div:nth-of-type(2) {
+  min-height: calc(100vh - 4rem);
+}
+
 a {
   text-decoration: none;
   color: inherit;

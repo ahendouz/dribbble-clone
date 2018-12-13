@@ -4,7 +4,6 @@ import { Query } from "react-apollo";
 import styled from "styled-components";
 
 import { USER } from "../../queries/Queries";
-import withAuth from "../../lib/withAuth";
 
 import Loader from "../UI/Loader";
 import ErrorPage from "../Errors/ErrorPage";
@@ -24,6 +23,7 @@ class User extends Component {
           return (
             <Container width={shots.length}>
               <UserInfo
+                width={shots.length}
                 data={data}
                 session={session}
                 userId={id}

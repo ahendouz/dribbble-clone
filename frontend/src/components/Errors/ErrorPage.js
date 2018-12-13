@@ -3,54 +3,52 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { HeadingPrimary } from "../../styles/Heading";
+import { ReactComponent as Ops } from "../../svgs/ops.svg";
 
-const Error = ({ error }) => (
+const Error = () => (
   <Container>
-    <div>
-      <HeadingPrimary>Ops something went wrong.</HeadingPrimary>
-      <p>
-        Please reload the page or go back to the{" "}
-        <span>
-          <Link to="/">home page</Link>
-        </span>
-      </p>
-      <div>
-        <img
-          src="https://res.cloudinary.com/ahendouz/image/upload/v1541272454/1_PhW8nDP8C9fDmHcfEE0mvA.png"
-          alt="ball"
-        />
-      </div>
-    </div>
+    <HeadingPrimary>Ops something went wrong.</HeadingPrimary>
+    <p>
+      Please reload the page or go back to the{" "}
+      <span>
+        <Link to="/">home page</Link>
+      </span>
+    </p>
+    <Ops style={{ marginTop: "-3rem" }} />
   </Container>
 );
 
 export default Error;
 
-const Container = styled.div`
+export const Container = styled.div`
   background: white;
-  text-align: center;
-  min-height: calc(100vh - 5.7rem);
+  height: 62.4rem;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-top: 5rem;
-  > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-align: center;
+  @media (max-width: ${props => props.theme.breakPoint15}) {
+    h1 {
+      font-size: 2.1rem;
+    }
     p {
-      font-size: 1.5rem;
-      padding: 0rem 0 6rem 0;
-      span {
-        font-weight: 600;
-        color: ${props => props.theme.gray6};
-      }
+      font-size: 1.1rem;
     }
-    > div {
-      width: 22.2rem;
-      overflow: hidden;
-      img {
-        width: 100%;
-      }
+    svg {
+      width: 100% !important;
     }
+  }
+  h1 {
+    color: ${props => props.theme.gray3};
+  }
+  p {
+    font-size: 1.5rem;
+    padding-bottom: 6rem;
+  }
+  > svg {
+    width: 60%;
+    height: auto;
+    width: 500px;
   }
 `;

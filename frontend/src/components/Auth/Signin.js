@@ -98,8 +98,6 @@ class Signin extends React.Component {
   }
 }
 
-// export default Signin
-// export default withRouter(Signin);
 export default withAuth(session => session && !session.getCurrentUser)(
   withRouter(Signin)
 );

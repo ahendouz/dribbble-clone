@@ -131,6 +131,7 @@ class Signup extends React.Component {
                 fullname,
                 username
               }}
+              // refetchQueries={() => [{query: USER}]}
             >
               {(signup, { data, loading, error }) => {
                 return (

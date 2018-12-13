@@ -36,10 +36,14 @@ const Figcaption = styled.figcaption`
     > h1 {
       font-size: 2.3rem;
       margin: -10px 0 3px 0;
-      color: ${props => props.theme.gray2}
+      color: ${props => props.theme.gray2};
+      @media (max-width: ${props => props.theme.breakPoint16}) {
+        font-size: 1.3rem;
+      }
     }
-     > p, h1 {
-       line-height: 1;
-     }
+    > p,
+    h1 {
+      line-height: 1;
+    }
   }
 `;
