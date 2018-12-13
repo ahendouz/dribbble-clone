@@ -1,4 +1,4 @@
-![FullStack GraphQL Dribbble Clone 🏀](https://res.cloudinary.com/ahendouz/image/upload/v1544689416/Untitled-2.png)
+![FullStack GraphQL Dribbble Clone 🏀](https://res.cloudinary.com/ahendouz/image/upload/v1544690570/dribbble-clone-image.png)
 
 # FullStack GraphQL Dribbble Clone 🏀
 - Welcome to my simple Dribbble clone. i'm so excited to share this fullStack application with you. you may ask yourself right now what Dribbble is? Well I have the answer. simply, this is an active design community where designers of all varieties can post their shots of whatever they are working on.
@@ -42,7 +42,7 @@ I hope all of you will enjoy exploring it and if you have any feedback, you can 
 
 
 
-![Diagram](https://res.cloudinary.com/ahendouz/image/upload/v1544690570/dribbble-clone-image.png)
+![Diagram](https://res.cloudinary.com/ahendouz/image/upload/v1544689364/download.png)
 
 ## **Features ✍🏼**
 
