@@ -1,8 +1,4 @@
-# FullStack GraphQL Dribbble Clone 🏀
-
-
-
-[](https://res.cloudinary.com/ahendouz/image/upload/v1544689416/Untitled-2.png)
+![FullStack GraphQL Dribbble Clone 🏀](https://res.cloudinary.com/ahendouz/image/upload/v1544689416/Untitled-2.png)
 
 ## Introduction 🤗
 
