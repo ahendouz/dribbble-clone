@@ -34,7 +34,9 @@ class Navbar extends Component {
           ) : (
             <NavbarUnAuth />
           )}
-          <Search />
+          <div className="search-big-scree">
+            <Search />
+          </div>
         </Nav>
         <NavMenu className={this.state.toggle ? "visibleMenu" : "hiddenMenu"}>
           <Search />
@@ -154,10 +156,20 @@ const Nav = styled.nav`
       display: none;
     }
   }
-  .search {
-    position: relative;
+  .search-big-scree {
     @media (max-width: ${props => props.theme.breakPoint9}) {
       display: none;
+    }
+    search {
+      width: 215px;
+    }
+  }
+  .search {
+    width: 215px;
+    .search {
+      input {
+        width: 100%;
+      }
     }
     input {
       font-size: 1.3rem;

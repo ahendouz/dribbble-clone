@@ -1,6 +1,6 @@
 # import * from "./generated/prisma.graphql"
 type Query {
-  shots(orderBy: ShotOrderByInput): [Shot!]!
+  shots(where: ShotWhereInput, orderBy: ShotOrderByInput, first: Int): [Shot!]!
   shot(where: ShotWhereInput!): Shot!
   getCurrentUser: User
   user(where: UserWhereInput!): User!

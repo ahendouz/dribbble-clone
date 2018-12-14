@@ -32,6 +32,7 @@
 3.  Download dependencies
 
         cd/backend npm i
+        cd/backend prisma deploy
         cd/frontend npm i
 
 ## **Diagram 🧐**
