@@ -1,6 +1,6 @@
 ![FullStack GraphQL Dribbble Clone 🏀](https://res.cloudinary.com/ahendouz/image/upload/v1544690570/dribbble-clone-image.png)
 
-# FullStack GraphQL Dribbble Clone 🏀
+## Introduction 💁🏽‍♂️
 
 - Welcome to my simple Dribbble clone. i'm so excited to share this fullStack application with you. you may ask yourself right now what Dribbble is? Well I have the answer. simply, this is an active design community where designers of all varieties can post their shots of whatever they are working on.
   And as you may see it, I tried to make a clone of the original platform by using `GraphGL Yoga` and `Prisma` on the backend and `ReactJS` and `ApolloClient` on the frontend.
@@ -17,7 +17,7 @@
   - GraphQL Yoga
   - Prisma
 - **Database**
-  - Prisma demo
+  - Prisma
 
 ## **Installation 💪🏼**
 
@@ -37,7 +37,7 @@
 
 ## **Diagram 🧐**
 
-![Diagram](https://res.cloudinary.com/ahendouz/image/upload/v1544691039/download_1.png)
+![Diagram](https://res.cloudinary.com/ahendouz/image/upload/v1544777806/bbbb.png)
 
 ## **Features ✍🏼**
 
@@ -45,13 +45,14 @@
 - Password Hashing 🔁
 - Ability To Create Shots 🆕
 - Like / Unlike Functionality 👍🏼👎🏼
-- Modify your shots
-- Delete Shot
+- Modify your shots 🔁
+- Delete Shot 🗑
 - User Profile 👤
-- Modify Your Profile
-- Favorite Shots
-- Delete User
+- Modify Your Profile 🔁
+- Favorite Shots 💜
+- Delete User 🗑
+- Search Functionality 🕵🏽‍♂️
 
 ## **Next Up**
 
-- [ ] Search Functionality 🕵🏽‍♂️
+- [x] Search Functionality 🕵🏽‍♂️
