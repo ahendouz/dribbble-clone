@@ -16,8 +16,9 @@ import { formatDate } from "../../lib/formatDate";
 import LikeShot from "./LikeShot";
 import { FullnameHighlighted } from "../../styles/FullnameHighlighted";
 import Loader from "../UI/Loader";
-import SmallUserImage from "../UI/SmallUserImage";
+import UserImage from "../UI/UserImage";
 import { Line } from "../../styles/Line";
+import UserHover from "../UI/UserHover";
 
 class ShotPage extends Component {
   render() {
@@ -44,17 +45,22 @@ class ShotPage extends Component {
             <Container>
               <Header>
                 <div className="headerContent">
-                  <SmallUserImage profileImage={profileImage} size="4rem" />
+                  <UserHover userId={userId}>
+                    <UserImage profileImage={profileImage} size="4rem" />
+                  </UserHover>
                   <div className="info">
                     <h2 className="shotName">{title}</h2>
                     <div className="shotInfo">
-                      <span>
-                        by{" "}
-                        <Link to={`/${userId}`}>
-                          <FullnameHighlighted className="fullname">
-                            {fullname}
-                          </FullnameHighlighted>{" "}
-                        </Link>
+                      <span style={{ display: "flex" }}>
+                        <UserHover userId={userId} session={session}>
+                          &nbsp;
+                          <Link to={`/${userId}`}>
+                            <FullnameHighlighted className="fullname">
+                              {fullname}
+                            </FullnameHighlighted>
+                            &nbsp;
+                          </Link>
+                        </UserHover>
                         on {formatDate(createdAt)}
                       </span>
                     </div>

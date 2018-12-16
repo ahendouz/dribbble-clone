@@ -46,6 +46,7 @@ export const SHOT = gql`
         id
         comment
         commentedBy {
+          id
           fullname
           profileImage
         }

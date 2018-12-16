@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import SVGicon from "../../icons/SVGicon";
 import Signout from "../Auth/Signout";
-import SmallUserImage from "../UI/SmallUserImage";
+import UserImage from "../UI/UserImage";
 
 const NavbarAuth = ({
   session: {
@@ -14,7 +14,7 @@ const NavbarAuth = ({
   <NavAuth>
     <div className="dropdown">
       <button>
-        <SmallUserImage profileImage={profileImage} size="1.8rem" />
+        <UserImage profileImage={profileImage} size="1.8rem" />
       </button>
       <div className="items">
         <Link to={`/${id}`} className="username">

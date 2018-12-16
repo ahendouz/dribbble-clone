@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const SmallUserImage = ({ profileImage, size }) => (
+const UserImage = ({ profileImage, size }) => (
   <ProfileImg size={size}>
     <img src={profileImage} alt="user" />
   </ProfileImg>
 );
-export default SmallUserImage;
+export default UserImage;
 
 const ProfileImg = styled.div`
   border-radius: 50%;

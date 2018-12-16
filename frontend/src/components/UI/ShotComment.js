@@ -1,14 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import SmallUserImage from "../UI/SmallUserImage";
+import UserImage from "../UI/UserImage";
+import UserHover from "./UserHover";
 
-const ShotComment = ({ comment, commentedBy: { fullname, profileImage } }) => {
+const ShotComment = ({
+  comment,
+  commentedBy: { id: userId, fullname, profileImage }
+}) => {
   return (
     <Comment>
-      <SmallUserImage profileImage={profileImage} size="3rem" />
+      <UserHover userId={userId}>
+        <UserImage profileImage={profileImage} size="3rem" />
+      </UserHover>
 
       <div className="right-side">
-        <h2 className="userName">{fullname}</h2>
+        <UserHover userId={userId}>
+          <h2 className="userName">{fullname}</h2>
+        </UserHover>
         <div className="comment">{comment}</div>
       </div>
     </Comment>

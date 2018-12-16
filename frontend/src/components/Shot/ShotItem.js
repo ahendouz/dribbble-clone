@@ -6,7 +6,8 @@ import { formatDate } from "../../lib/formatDate";
 import LikeShot from "./LikeShot";
 import { FullnameHighlighted } from "../../styles/FullnameHighlighted";
 import SVGicon from "../../icons/SVGicon";
-import SmallUserImage from "../UI/SmallUserImage";
+import UserImage from "../UI/UserImage";
+import UserHover from "../UI/UserHover";
 
 const ShotItem = ({
   id: shotId,
@@ -54,14 +55,16 @@ const ShotItem = ({
           </div>
         </div>
       </div>
-      <div className="shotUser">
-        <SmallUserImage profileImage={profileImage} size="1.5rem" />
-        <Link to={`/${userId}`}>
-          <FullnameHighlighted className="fullname">
-            {fullname}
-          </FullnameHighlighted>
-        </Link>
-      </div>
+      <UserHover userId={userId}>
+        <div className="shotUser" style={{ position: "relative" }}>
+          <UserImage profileImage={profileImage} size="1.5rem" />
+          <Link to={`/${userId}`}>
+            <FullnameHighlighted className="fullname">
+              {fullname}
+            </FullnameHighlighted>
+          </Link>
+        </div>
+      </UserHover>
     </Shot>
   );
 };
