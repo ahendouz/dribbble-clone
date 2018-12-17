@@ -26,10 +26,26 @@ const getCurrentUser = (root, args, context, info) => {
     return null;
   }
 };
+const isUserLikeShot = async (root, { shotId }, context, info) => {
+  const userId = getUserId(context);
+  const user = await context.db.query.user(
+    { where: { id: userId } },
+    `{favorites{shot{id}}}`
+  );
+  const isLiked = user.favorites
+    .filter(favorite => favorite.shot.id === shotId)
+    .map(favorite => favorite.shot.id)[0];
+  if (isLiked) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 module.exports = {
   shots,
   shot,
   user,
-  getCurrentUser
+  getCurrentUser,
+  isUserLikeShot
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
 export const SigninError = ({ error }) => (
   <SigninErrorContainer>
     <p data-test="graphql-error">
@@ -16,9 +15,8 @@ const SigninErrorContainer = styled.div`
   padding: 1.4rem 0;
   text-align: center;
   font-size: 1.8rem;
+  min-height: auto !important;
 `;
-
-
 
 const gqlErrors = error => {
   const errMessage = error.message.replace("GraphQL error: ", "");

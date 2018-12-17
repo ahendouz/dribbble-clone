@@ -108,3 +108,9 @@ export const USER = gql`
     }
   }
 `;
+
+export const ISUSERLIKESHOT = gql`
+  query($shotId: String!) {
+    isUserLikeShot(shotId: $shotId)
+  }
+`;

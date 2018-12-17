@@ -1,5 +1,4 @@
 import { gql } from "apollo-boost";
-import { Mutation } from "react-apollo";
 
 // CREATING PART
 export const CREATE_SHOT = gql`

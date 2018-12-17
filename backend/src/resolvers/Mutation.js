@@ -151,6 +151,12 @@ const signup = async (parent, args, context, info) => {
   // encrypting the User’s password using the bcryptjs library
   const password = await bcrypt.hash(args.password, 10);
 
+  //removing space from username
+  args.username = args.username.replace(/\s/g, "");
+
+  // lowercasing the email for validition
+  args.email = args.email.toLowerCase();
+
   // store the new User in the database
   const user = await context.db.mutation.createUser(
     {
@@ -246,8 +252,6 @@ module.exports = {
   signup,
   signin,
   createShot,
-  // likeShot,
-  // unLikeShot,
   likeUnlikeShot,
   commentShot,
   editShot,

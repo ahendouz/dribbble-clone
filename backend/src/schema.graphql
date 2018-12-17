@@ -4,6 +4,7 @@ type Query {
   shot(where: ShotWhereInput!, first: Int): Shot!
   getCurrentUser: User
   user(where: UserWhereInput!): User!
+  isUserLikeShot(shotId: String!): Boolean!
 }
 
 type Mutation {

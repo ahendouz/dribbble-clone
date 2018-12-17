@@ -16,7 +16,6 @@ import { HeadingPrimary } from "../../styles/Heading";
 import SVGicon from "../../icons/SVGicon";
 import isValidImage from "../../utils/isValidImage";
 import { imageTypes, imageMaxSize } from "../../utils/imageSizeAndType";
-import { Shots } from "../../styles/Shots";
 
 class AddShot extends React.Component {
   state = {

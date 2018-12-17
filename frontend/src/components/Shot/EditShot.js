@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import styled from "styled-components";
 

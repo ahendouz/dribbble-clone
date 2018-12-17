@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { HeadingPrimary } from "../../styles/Heading";
 
 import { ReactComponent as ComingSoonSvg } from "../../svgs/coming-soon.svg";

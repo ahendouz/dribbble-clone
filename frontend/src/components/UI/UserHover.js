@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { ApolloConsumer } from "react-apollo";
 import { gql } from "apollo-boost";
 import styled from "styled-components";
@@ -22,7 +22,6 @@ const USER_HOVER = gql`
 class UserHover extends Component {
   state = {
     userInfo: {},
-    visibility: false
   };
 
   handleMoseOver = async (e, client) => {
@@ -35,14 +34,13 @@ class UserHover extends Component {
       this.setState({
         userInfo: res
       });
-      console.log(res);
     }
   };
   handleMouseLeave = (el, e) => {
     this.setState({ userInfo: {} });
   };
   render() {
-    const { children, session, userId } = this.props;
+    const { children } = this.props;
     const { data } = this.state.userInfo;
     return (
       <ApolloConsumer>
@@ -98,7 +96,7 @@ const UserHoverInfo = styled.div`
   box-shadow: ${props => props.theme.shadow1};
   border-radius: 4px;
   margin-left: -50px;
-  margin-top: 4px;
+  margin-top: 2px;
   cursor: pointer;
   .shots {
     display: flex;
