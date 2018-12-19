@@ -32,14 +32,17 @@ const isUserLikeShot = async (root, { shotId }, context, info) => {
     { where: { id: userId } },
     `{favorites{shot{id}}}`
   );
-  const isLiked = user.favorites
-    .filter(favorite => favorite.shot.id === shotId)
-    .map(favorite => favorite.shot.id)[0];
-  if (isLiked) {
-    return true;
-  } else {
-    return false;
+  if (user) {
+    const isLiked = user.favorites
+      .filter(favorite => favorite.shot.id === shotId)
+      .map(favorite => favorite.shot.id)[0];
+    if (isLiked) {
+      return true;
+    } else {
+      return false;
+    }
   }
+  return false;
 };
 
 module.exports = {

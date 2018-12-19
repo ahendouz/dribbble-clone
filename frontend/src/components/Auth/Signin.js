@@ -9,6 +9,7 @@ import withAuth from "../../lib/withAuth";
 import { SigninError } from "../Errors/ErrorMessage";
 import { PinkBtn } from "../../styles/Buttons";
 import { Form } from "../../styles/Form";
+import UserImage from "../UI/UserImage";
 
 const initialState = {
   username: "",
@@ -23,8 +24,10 @@ class Signin extends React.Component {
   };
 
   handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    let { name, value } = event.target;
+    name === "username" &&
+      this.setState({ username: value.replace(/\s/g, "") });
+    name === "password" && this.setState({ password: value });
   };
 
   handleSubmit = (event, signin) => {
