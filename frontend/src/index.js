@@ -13,9 +13,9 @@ import "./index.css";
 export const client = new ApolloClient({
   // uri: "http://localhost:4444/",
   uri: "https://dribbble-clone-yoga-prod.herokuapp.com/",
-  fetchOptions: {
-    credentials: "include"
-  },
+  // fetchOptions: {
+  //   credentials: "include"
+  // },
   request: operation => {
     const token = localStorage.getItem("token");
     operation.setContext({
