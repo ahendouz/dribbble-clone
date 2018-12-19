@@ -11,7 +11,8 @@ import { theme } from "./theme/theme";
 import "./index.css";
 
 export const client = new ApolloClient({
-  uri: "http://localhost:4444/",
+  // uri: "http://localhost:4444/",
+  uri: "https://dribbble-clone-yoga-prod.herokuapp.com/graphql",
   fetchOptions: {
     credentials: "include"
   },
