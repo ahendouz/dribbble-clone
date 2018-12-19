@@ -12,7 +12,7 @@ import "./index.css";
 
 export const client = new ApolloClient({
   // uri: "http://localhost:4444/",
-  uri: "https://dribbble-clone-yoga-prod.herokuapp.com/graphql",
+  uri: "https://dribbble-clone-yoga-prod.herokuapp.com/",
   fetchOptions: {
     credentials: "include"
   },
