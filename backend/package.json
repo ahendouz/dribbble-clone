@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "playground": "graphql playground --port 5000"
+    "playground": "graphql playground --port 5000",
+    "start": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
