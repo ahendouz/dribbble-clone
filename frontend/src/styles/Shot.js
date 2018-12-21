@@ -123,4 +123,7 @@ export const Shot = styled.li`
       margin-left: 0.5rem;
     }
   }
+  > div:last-of-type {
+    display: inline-table;
+  }
 `;

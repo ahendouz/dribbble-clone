@@ -102,6 +102,7 @@ const UserHoverInfo = styled.div`
     background: white;
     z-index: 2;
     border-radius: 4px;
+    /* display: inline-flex; */
     cursor: pointer;
     padding: 2rem;
     .shots {

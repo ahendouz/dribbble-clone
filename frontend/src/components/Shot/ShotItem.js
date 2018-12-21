@@ -23,8 +23,8 @@ const ShotItem = ({
   return (
     <Shot>
       <div className="shotContainer">
-        <div className="shotImg" style={{ backgroundImage: `url(${image})` }}>
-          <Link to={`/shot/${shotId}`}>
+        <Link to={`/shot/${shotId}`}>
+          <div className="shotImg" style={{ backgroundImage: `url(${image})` }}>
             <div className="shotInfo">
               <h4 className="shotName">{title}</h4>
               <p className="shotDescription">
@@ -34,8 +34,8 @@ const ShotItem = ({
               </p>
               <p className="date">{formatDate(createdAt)}</p>
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
         <div className="down">
           <Link to={`/shot/${shotId}`}>
             <p>{title.length > 24 ? `${title.slice(0, 24)}...` : title}</p>
