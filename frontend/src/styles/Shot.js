@@ -37,8 +37,10 @@ export const Shot = styled.li`
       @media (max-width: ${props => props.theme.breakPoint21}) {
         height: 7rem;
       }
-      &:hover div {
-        visibility: visible;
+      @media (min-width: ${props => props.theme.breakPoint14}) {
+        &:hover div {
+          visibility: visible;
+        }
       }
       .shotInfo {
         background-color: white;
