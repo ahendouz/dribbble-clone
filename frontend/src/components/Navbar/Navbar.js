@@ -23,7 +23,7 @@ class Navbar extends Component {
     const { session } = this.props;
     return (
       <Container>
-        <Nav>
+        <Nav session={session}>
           <div onClick={this.toggle}>
             <SVGicon className="navicon" name="nav" />
           </div>
@@ -144,7 +144,9 @@ const Nav = styled.nav`
     @media (max-width: ${props => props.theme.breakPoint9}) {
       display: flex;
       justify-content: center;
-      padding-left: 35px;
+      /* padding-left: 35px; */
+      padding-left: ${props =>
+        props.session && props.session.getCurrentUser ? "35px" : "91px"};
     }
     > svg:hover {
       fill: ${props => props.theme.gray6};
