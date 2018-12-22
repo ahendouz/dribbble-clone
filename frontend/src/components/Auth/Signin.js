@@ -7,9 +7,10 @@ import { SIGNIN } from "../../queries/Mutations";
 
 import withAuth from "../../lib/withAuth";
 import { SigninError } from "../Errors/ErrorMessage";
+import Loader from "../UI/Loader";
+
 import { PinkBtn } from "../../styles/Buttons";
 import { Form } from "../../styles/Form";
-import UserImage from "../UI/UserImage";
 
 const initialState = {
   username: "",
@@ -51,6 +52,7 @@ class Signin extends React.Component {
     return (
       <Mutation mutation={SIGNIN} variables={{ username, password }}>
         {(signin, { data, loading, error }) => {
+          if (loading) return <Loader />;
           return (
             <Fragment>
               {error && <SigninError error={error} />}

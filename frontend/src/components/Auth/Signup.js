@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { SIGNUP } from "../../queries/Mutations";
 
 import { DefaultError } from "../Errors/ErrorMessage";
+import Loader from "../UI/Loader";
 import withAuth from "../../lib/withAuth";
 import { Form } from "../../styles/Form";
 import { PinkBtn } from "../../styles/Buttons";
@@ -134,6 +135,7 @@ class Signup extends React.Component {
               // refetchQueries={() => [{query: USER}]}
             >
               {(signup, { data, loading, error }) => {
+                if (loading) return <Loader />;
                 return (
                   <Fragment>
                     <DefaultError

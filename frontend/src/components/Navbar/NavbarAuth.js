@@ -80,7 +80,7 @@ const NavAuth = styled.div`
       @media (max-width: ${props => props.theme.breakPoint9}) {
         top: 41px;
       }
-      left: -7px;
+      left: -50px;
       background-color: ${props => props.theme.gray2};
       min-width: 130px;
       box-shadow: ${props => props.theme.shadow1};
