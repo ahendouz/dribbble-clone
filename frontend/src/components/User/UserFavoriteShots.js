@@ -2,12 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
-
-import { USER } from "../../queries/Queries";
+import { gql } from "apollo-boost";
 
 import { HomeShots } from "../Home";
 import ShotItem from "../Shot/ShotItem";
 import { FullnameHighlighted } from "../../styles/FullnameHighlighted";
+
+const USER = gql`
+  query($id: ID!) {
+    user(where: { id: $id }) {
+      profileImage
+      fullname
+      favorites {
+        shot {
+          id
+          image
+          title
+          description
+          createdAt
+          likes
+          postedBy {
+            id
+            fullname
+            profileImage
+          }
+          comments {
+            comment
+          }
+        }
+      }
+    }
+  }
+`;
 
 const UserFavShots = ({
   session: {

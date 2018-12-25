@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
+import { gql } from "apollo-boost";
 import styled from "styled-components";
 
-import { SHOT } from "../../queries/Queries";
 import { EDIT_SHOT } from "../../queries/Mutations";
 import { client } from "../../index";
 import withAuth from "../../lib/withAuth";
@@ -12,12 +12,23 @@ import { Form } from "../../styles/Form";
 import { PinkBtn } from "../../styles/Buttons";
 import { GrayBtn } from "../../styles/Buttons";
 
+const SHOT = gql`
+  query($id: ID!) {
+    shot(where: { id: $id }) {
+      id
+      title
+      description
+      image
+      tags
+    }
+  }
+`;
 class EditShot extends Component {
   state = {
     id: "",
     title: "",
     description: "",
-    largeImage: "",
+    image: "",
     username: ""
   };
 
@@ -32,19 +43,14 @@ class EditShot extends Component {
     const { id } = this.props.match.params;
     client
       .query({ query: SHOT, variables: { id } })
-      .then(
-        ({
-          data: {
-            shot: { id, title, description, largeImage, tags }
-          }
-        }) =>
-          this.setState({
-            id,
-            title,
-            description,
-            largeImage,
-            tags: tags.toString().replace(/,/g, " ")
-          })
+      .then(({ data: { shot: { id, title, description, image, tags } } }) =>
+        this.setState({
+          id,
+          title,
+          description,
+          image,
+          tags: tags.toString().replace(/,/g, " ")
+        })
       );
   }
 
@@ -61,7 +67,7 @@ class EditShot extends Component {
   };
 
   render() {
-    const { id, title, description, largeImage, tags: tagsString } = this.state;
+    const { id, title, description, image, tags: tagsString } = this.state;
     const tags =
       tagsString && this.state.tags.split(" ").filter(tag => tag !== "");
     return (
@@ -74,7 +80,7 @@ class EditShot extends Component {
           return (
             <Container>
               <Shot>
-                <img src={largeImage} alt="Shot" />
+                <img src={image} alt="Shot" />
               </Shot>
               <EditShotForm
                 onSubmit={event => {

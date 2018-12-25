@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
-import styled from "styled-components";
+import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
+import styled from "styled-components";
 
 import { client } from "../../index";
 
-import { USER } from "../../queries/Queries";
 import { EDIT_USER } from "../../queries/Mutations";
 import DeleteUser from "./DeleteUser";
 import withAuth from "../../lib/withAuth";
@@ -13,8 +13,20 @@ import withAuth from "../../lib/withAuth";
 import { PinkBtn, DarkBtn } from "../../styles/Buttons";
 import { Form } from "../../styles/Form";
 import { FullnameHighlighted } from "../../styles/FullnameHighlighted";
-// import withAuth from "../../lib/withAuth";
 
+// user query
+const USER = gql`
+  query($id: ID!) {
+    user(where: { id: $id }) {
+      id
+      fullname
+      profileImage
+      bio
+      skills
+      location
+    }
+  }
+`;
 class EditUser extends Component {
   state = {
     id: "",
