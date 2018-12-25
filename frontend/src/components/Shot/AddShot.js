@@ -85,9 +85,10 @@ class AddShot extends React.Component {
         this.setState({ progress });
       }
     });
+    console.log(res);
     const shot = res.data;
     this.setState({
-      image: shot.secure_url,
+      image: shot.eager[0].secure_url,
       largeImage: shot.secure_url,
       uploading: !this.state.uploading
     });

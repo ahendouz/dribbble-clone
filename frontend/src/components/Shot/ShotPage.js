@@ -182,6 +182,7 @@ const Header = styled.div`
 `;
 
 const Shot = styled.div`
+  min-height: 476px;
   background: ${props => props.theme.white};
   @media (max-width: ${props => props.theme.breakPoint10}) {
     background: none;

@@ -14,8 +14,7 @@ import ShotMenu from "./UI/ShotMenu";
 const Home = ({ session }) => (
   <div>
     {session && (session.getCurrentUser && <ShotMenu session={session} />)}
-    hello
-    {/* <Query query={SHOTS}>
+    <Query query={SHOTS}>
       {({ data, loading, error }) => {
         if (loading) return <Loader />;
         if (error) return <ErrorPage />;
@@ -41,7 +40,7 @@ const Home = ({ session }) => (
           </Fragment>
         );
       }}
-    </Query> */}
+    </Query>
   </div>
 );
 
