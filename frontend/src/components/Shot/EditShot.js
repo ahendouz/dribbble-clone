@@ -29,14 +29,24 @@ class EditShot extends Component {
     title: "",
     description: "",
     image: "",
+    tags: "",
     username: ""
   };
 
   handleChange = event => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+
+    if (name === "tags") {
+      // being unable to do more than one space
+      const trim = value.replace(/\s+/gi, " ");
+      this.setState({
+        tags: trim
+      });
+    } else {
+      this.setState({
+        [name]: value
+      });
+    }
   };
 
   componentDidMount() {

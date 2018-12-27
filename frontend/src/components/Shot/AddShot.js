@@ -78,9 +78,9 @@ class AddShot extends React.Component {
       method: "POST",
       url: "https://api.cloudinary.com/v1_1/ahendouz/image/upload",
       data,
-      // ahrbil => getting upload progress from axios
+      // getting upload progress from axios
       onUploadProgress: prog => {
-        // ahrbil => progress with range of 0 and 100
+        // progress with range of 0 and 100
         const progress = Math.round((prog.loaded * 100) / prog.total);
         this.setState({ progress });
       }
@@ -102,14 +102,14 @@ class AddShot extends React.Component {
     }
     if (acceptedFiles && acceptedFiles.length > 0) {
       if (isValidImage(acceptedFiles[0])) {
-        // ahrbil => reading the file from input with FileReader() API
+        // reading the file from input with FileReader() API
         // updating the state to display it
         const reader = new FileReader();
         reader.readAsDataURL(acceptedFiles[0]);
         reader.addEventListener("load", () =>
           this.setState({ imagePreview: reader.result })
         );
-        // ahrbil => passing the file to be uploaded to cloudinary
+        // passing the file to be uploaded to cloudinary
         this.handleFileUpload(acceptedFiles[0]);
       }
     }
