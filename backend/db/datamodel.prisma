@@ -8,7 +8,7 @@ type User {
   favorites: [Like!]!
   profileImage: String!
     @default(
-      value: "https://res.cloudinary.com/ahendouz/image/upload/v1542008638/avatar-default-aa2eab7684294781f93bc99ad394a0eb3249c5768c21390163c9f55ea8ef83a4.png"
+      value: "https://res.cloudinary.com/ahendouz/image/upload/v1546355933/avatar-default-aa2eab7684294781f93bc99ad394a0eb3249c5768c21390163c9f55ea8ef83a4.png"
     )
   skills: [String!]
   Links: [Link!]
